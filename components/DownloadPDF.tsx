@@ -69,13 +69,13 @@ export default function DownloadPDF({ reportData, mapUrls }) {
       startY: 30,
       head: [["Field", "Details"]],
       body: [
-        ["Owner Name", reportData.owner_name],
-        ["Owner Address", reportData.owner_address],
-        ["Report Date", reportData.report_date],
-        ["Case Ref No", reportData.case_ref_no],
-        ["Property Address", reportData.property_address],
-        ["Nearest Landmark", reportData.nearest_landmark],
-        ["Type of Property", reportData.type_of_property],
+        ["Owner Name", reportData.owner_name || "-"],
+        ["Owner Address", reportData.owner_address || "-"],
+        ["Report Date", reportData.report_date || "-"],
+        ["Case Ref No", reportData.case_ref_no || "-"],
+        ["Property Address", reportData.property_address || "-"],
+        ["Nearest Landmark", reportData.nearest_landmark || "-"],
+        ["Type of Property", reportData.type_of_property || "-"],
       ],
       headStyles: {
         fillColor: [4, 120, 87],
@@ -116,7 +116,12 @@ export default function DownloadPDF({ reportData, mapUrls }) {
         ],
         ["Carpet Area", reportData.carpet_area || "0"],
         ["Super Built Up Area", reportData.super_built_up_area || "0"],
-        ["Property Age", `${reportData.age_of_property} years`],
+        [
+          "Property Age",
+          reportData.age_of_property
+            ? `${reportData.age_of_property} years`
+            : "-",
+        ],
         [
           "Land Area",
           reportData.land_area ? `${reportData.land_area} sqft` : "-",
@@ -130,7 +135,9 @@ export default function DownloadPDF({ reportData, mapUrls }) {
         ["Loading", reportData.loading || "N/A"],
         [
           unitRateLabel,
-          `Rs. ${reportData.unit_rate_considered_for_ca_bua_sba}/-`,
+          reportData.unit_rate_considered_for_ca_bua_sba
+            ? `Rs. ${reportData.unit_rate_considered_for_ca_bua_sba}/-`
+            : "-",
         ],
       ],
       headStyles: {
@@ -147,17 +154,16 @@ export default function DownloadPDF({ reportData, mapUrls }) {
      * ---------------------------------- */
     doc.setFontSize(18);
     doc.text("Location Maps", 14, 15);
+    const pageWidth = doc.internal.pageSize.getWidth();
 
     // ROAD MAP
-    doc.text("Road Map", 14, 25);
+    doc.text("Road Map", pageWidth / 2, 25, { align: "center" });
     const road = await loadImage(mapUrls.normal);
-    // doc.addImage(road, "PNG", 14, 30, 100, 70);
-    addCenteredImage(doc, road, 30, 170, 100); //
+    addCenteredImage(doc, road, 30, 170, 100);
 
     // SATELLITE MAP
-    doc.text("Satellite Map", 14, 140);
+    doc.text("Satellite Map", pageWidth / 2, 140, { align: "center" });
     const sat = await loadImage(mapUrls.satellite);
-    // doc.addImage(sat, "PNG", 14, 125, 100, 70);
     addCenteredImage(doc, sat, 150, 170, 100);
 
     doc.addPage();
@@ -167,7 +173,6 @@ export default function DownloadPDF({ reportData, mapUrls }) {
      * ---------------------------------- */
     doc.setFontSize(14);
     doc.text("Remarks", 14, 20);
-    const pageWidth = doc.internal.pageSize.getWidth();
     const boxX = 12;
     const boxY = 30;
     const boxWidth = pageWidth - 24; // consistent margins

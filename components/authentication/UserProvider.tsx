@@ -1,0 +1,104 @@
+"use client";
+
+import { jwtDecode } from "jwt-decode";
+import React, { createContext, useEffect, useState, ReactNode } from "react";
+import axiosInstance from "@/lib/axiosInstance";
+
+interface UserContextType {
+  token: string | null;
+  userData: any;
+  loading: boolean;
+  setToken: (token: string | null) => void;
+  setUserData: (user: any) => void;
+  refetchUserData: () => void;
+}
+
+export const UserContext = createContext<UserContextType | undefined>(
+  undefined
+);
+
+export const UserProvider = ({ children }: { children: ReactNode }) => {
+  const [token, setToken] = useState<string | null>(null);
+  const [userData, setUserData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  /** --------------------------------------------------
+   *  FETCH USER DETAILS FROM BACKEND
+   * -------------------------------------------------- */
+  const getUserDetail = async (decoded: { id: string }) => {
+    try {
+      const response = await axiosInstance.get(`/user/${decoded.id}`);
+      setUserData(response.data.user);
+    } catch (err) {
+      console.error("Error fetching user:", err);
+      setUserData(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /** --------------------------------------------------
+   *  FETCH TOKEN → DECODE → LOAD USER
+   * -------------------------------------------------- */
+  const refetchUserData = () => {
+    setLoading(true);
+
+    const localToken = localStorage.getItem("token");
+
+    if (!localToken) {
+      setUserData(null);
+      setToken(null);
+      setLoading(false);
+      return;
+    }
+
+    setToken(localToken);
+
+    try {
+      const decoded: any = jwtDecode(localToken);
+      if (decoded?.id) {
+        getUserDetail(decoded);
+      } else {
+        setUserData(null);
+        setLoading(false);
+      }
+    } catch (e) {
+      console.error("Invalid token");
+      setUserData(null);
+      setLoading(false);
+    }
+  };
+
+  /** --------------------------------------------------
+   *  ON MOUNT → LOAD USER
+   * -------------------------------------------------- */
+  useEffect(() => {
+    refetchUserData();
+  }, []);
+
+  /** --------------------------------------------------
+   *  SYNC LOGIN/LOGOUT ACROSS TABS
+   * -------------------------------------------------- */
+  useEffect(() => {
+    const sync = (e: StorageEvent) => {
+      if (e.key === "token") refetchUserData();
+    };
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
+  }, []);
+
+  return (
+    <UserContext.Provider
+      value={{
+        token,
+        userData,
+        loading,
+        setToken,
+        setUserData,
+        refetchUserData,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
+};

@@ -1,17 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { Building2, Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import LogoutButton from "./authentication/LogoutButton";
-import { useAuth } from "./authentication/AuthContext";
+import { UserContext } from "./authentication/UserProvider";
 
 export function Header() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isLoggedIn } = useAuth();
+  const userContext = useContext(UserContext);
+  const token = userContext?.token ?? null;
+  const isLoggedIn = !!token;
 
   const navigation = [
     { name: "Home", href: "/" },

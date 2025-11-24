@@ -2,14 +2,19 @@
 
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./AuthContext";
+import { UserContext } from "./UserProvider";
+import { useContext } from "react";
 
 export default function LogoutButton() {
-  const { logout } = useAuth();
   const router = useRouter();
+  const userContext = useContext(UserContext);
 
   const handleLogout = () => {
-    logout();
+    localStorage.removeItem("token");
+
+    userContext?.setToken(null);
+    userContext?.setUserData(null);
+
     router.push("/login");
   };
 

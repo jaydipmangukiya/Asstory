@@ -96,7 +96,7 @@ export default function ApartmentDetailsPage() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* FINAL VALUATION */}
-          <Card className="lg:col-span-2 bg-gradient-to-br from-blue-50 to-emerald-50 border-2 border-emerald-200">
+          <Card className="bg-gradient-to-br from-blue-50 to-emerald-50 border-2 border-emerald-200">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-2xl">
                 <IndianRupee className="h-6 w-6 text-emerald-700" />
@@ -104,7 +104,7 @@ export default function ApartmentDetailsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <div className="flex justify-center space-x-2 mb-2">
+              <div className="flex space-x-2 justify-center items-center">
                 <span className="text-5xl font-bold text-emerald-700">
                   ₹ {price(reportData.final_valuation)}
                 </span>
@@ -112,6 +112,17 @@ export default function ApartmentDetailsPage() {
               <p className="text-gray-600 text-lg">
                 Comprehensive Property Valuation
               </p>
+            </CardContent>
+          </Card>
+          {/* DOWNLOAD PDF */}
+          <Card className="bg-gradient-to-r from-blue-50 to-emerald-50 border-2 border-emerald-200">
+            <CardContent className="p-6 text-center">
+              <FileText className="h-12 w-12 text-emerald-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold">Download Full Report</h3>
+              <p className="text-gray-600 mb-4">
+                Get detailed valuation, maps, market trends & more.
+              </p>
+              <DownloadPDF reportData={reportData} mapUrls={mapUrls} />
             </CardContent>
           </Card>
 
@@ -333,19 +344,6 @@ export default function ApartmentDetailsPage() {
             </CardContent>
           </Card>
         </div>
-
-        {/* DOWNLOAD PDF */}
-        <Card className="bg-gradient-to-r from-blue-50 to-emerald-50 border-2 border-emerald-200">
-          <CardContent className="p-6 text-center">
-            <FileText className="h-12 w-12 text-emerald-600 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold">Download Full Report</h3>
-            <p className="text-gray-600 mb-4">
-              Get detailed valuation, maps, market trends & more.
-            </p>
-
-            <DownloadPDF reportData={reportData} mapUrls={mapUrls} />
-          </CardContent>
-        </Card>
       </div>
       <Footer />
     </div>

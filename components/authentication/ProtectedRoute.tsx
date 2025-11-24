@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./AuthContext";
+import { UserContext } from "./UserProvider";
 
 export default function ProtectedRoute({
   children,
@@ -10,15 +10,18 @@ export default function ProtectedRoute({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { isLoggedIn, authLoading } = useAuth();
+  const userContext = useContext(UserContext);
+
+  const token = userContext?.token ?? null;
+  const loading = userContext?.loading ?? false;
 
   useEffect(() => {
-    if (!authLoading && !isLoggedIn) {
+    if (!loading && !token) {
       router.replace("/login");
     }
-  }, [isLoggedIn, router, authLoading]);
+  }, [token, loading, router]);
 
-  if (authLoading) {
+  if (loading || userContext === undefined) {
     return (
       <div className="h-screen flex items-center justify-center text-lg font-semibold">
         Loading...

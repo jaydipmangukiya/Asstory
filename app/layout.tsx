@@ -3,7 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import { AuthProvider } from "@/components/authentication/AuthContext";
+import { UserProvider } from "@/components/authentication/UserProvider";
+import RazorpayScriptLoader from "./views/subscription/RazorpayScriptLoader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,10 +31,11 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <AuthProvider>
+        <UserProvider>
+          <RazorpayScriptLoader />
           {children}
           <Toaster />
-        </AuthProvider>
+        </UserProvider>
       </body>
     </html>
   );

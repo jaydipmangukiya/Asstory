@@ -58,7 +58,7 @@ export default function PricingBox({
           </div>
           {isActive && (
             <p className="text-green-600 text-sm font-semibold mt-1">
-              (Active Plan)
+              Currently this plan is active
             </p>
           )}
         </CardHeader>

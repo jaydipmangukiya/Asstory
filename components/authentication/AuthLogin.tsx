@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { loginUser } from "@/app/api/authService";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./AuthContext";
+import { UserContext } from "./UserProvider";
 
 export default function AuthLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,13 +21,13 @@ export default function AuthLogin() {
   });
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-  const { isLoggedIn, login } = useAuth();
+  const { userData, refetchUserData } = useContext(UserContext)!;
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (userData && userData._id) {
       router.replace("/");
     }
-  }, [isLoggedIn, router]);
+  }, [userData]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,12 +36,13 @@ export default function AuthLogin() {
     try {
       const res = await loginUser(formData.email, formData.password);
       // ✅ Check if response and token exist
-      if (res && res.token && res.userResponse) {
-        login(res.token, res.userResponse);
+      if (res && res.token) {
+        localStorage.setItem("token", res.token);
         toast({
           title: "Login Successful 🎉",
           description: `Welcome ${res.email}`,
         });
+        await refetchUserData();
 
         // Redirect after short delay
         setTimeout(() => {

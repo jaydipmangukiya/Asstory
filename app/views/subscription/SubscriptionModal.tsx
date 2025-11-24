@@ -26,7 +26,7 @@ export default function SubscriptionModal({
         </DialogHeader>
 
         <div className="mt-6">
-          <SubscriptionPlans />
+          <SubscriptionPlans handleClose={handleClose} />
         </div>
       </DialogContent>
     </Dialog>

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { nearestLocationReport } from "@/app/api/apartment";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/components/authentication/AuthContext";
+import { UserContext } from "@/components/authentication/UserProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubscriptionModal from "@/app/views/subscription/SubscriptionModal";
@@ -21,7 +21,7 @@ const Apartment = () => {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
-  const { userData } = useAuth();
+  const { userData } = useContext(UserContext)!;
 
   const [area, setArea] = useState<number>();
   const [selectArea, setSelectArea] = useState<string>("Carpet");
@@ -73,7 +73,7 @@ const Apartment = () => {
     onSubmit: async (values) => {
       // If user has report quota
       if (
-        userData?.subscriptions_id &&
+        userData?.subscriptions_id?._id &&
         userData?.no_of_report > 0 &&
         userData?.is_paid === true
       ) {
