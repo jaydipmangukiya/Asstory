@@ -22,3 +22,18 @@ export const getReportById = async (id: string): Promise<any> => {
     throw new Error(error.response?.data?.message || "Failed to fetch Report");
   }
 };
+
+export const getReportByUsers = async (
+  limit: number = 10,
+  skip: number = 0,
+  id: string
+): Promise<any> => {
+  try {
+    const response = await axiosInstance.get(
+      `/report/byUser/${id}?limit=${limit}&skip=${skip}`
+    );
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Failed to fetch report");
+  }
+};

@@ -1,8 +1,8 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Building2, Menu, X, User, LogOut } from "lucide-react";
+import { Building2, Menu, X, User, LogOut, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import LogoutButton from "./authentication/LogoutButton";
@@ -11,8 +11,13 @@ import { UserContext } from "./authentication/UserProvider";
 export function Header() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openProfileMenu, setOpenProfileMenu] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+
   const userContext = useContext(UserContext);
   const token = userContext?.token ?? null;
+  const userName = userContext?.userData?.name ?? "User";
+
   const isLoggedIn = !!token;
 
   const navigation = [
@@ -21,6 +26,19 @@ export function Header() {
     { name: "Services", href: "/services" },
     { name: "Contact", href: "/contact" },
   ];
+
+  useEffect(() => {
+    function handleClickOutside(e: any) {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(e.target as Node)
+      ) {
+        setOpenProfileMenu(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header className="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50 shadow-sm">
@@ -47,10 +65,40 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Desktop Auth Buttons */}
+          {/* Desktop Auth / Profile Menu */}
           <div className="hidden md:flex items-center space-x-4">
             {isLoggedIn ? (
-              <LogoutButton />
+              <div className="relative" ref={profileRef}>
+                <button
+                  onClick={() => setOpenProfileMenu(!openProfileMenu)}
+                  className="flex items-center gap-2 px-3 py-1 rounded-full border border-slate-300 bg-white hover:bg-slate-50 transition"
+                >
+                  <User className="h-5 w-5 text-slate-700" />
+                  <span className="text-slate-800 font-medium">{userName}</span>
+                </button>
+
+                {openProfileMenu && (
+                  <div className="absolute right-0 mt-3 w-48 bg-white shadow-lg rounded-xl border border-slate-200 py-2 z-50">
+                    <Link
+                      href="/profile"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-slate-100 text-slate-700"
+                    >
+                      <User className="h-4 w-4" /> My Profile
+                    </Link>
+
+                    <Link
+                      href="/history"
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-slate-100 text-slate-700"
+                    >
+                      <History className="h-4 w-4" /> History
+                    </Link>
+
+                    <div className="px-4 py-2 hover:bg-slate-100 cursor-pointer text-slate-700">
+                      <LogoutButton />
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               <>
                 <Link href="/login">
@@ -101,23 +149,43 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-
-              <div className="flex flex-col space-y-2 pt-4 border-t border-slate-200">
-                <>
-                  <Link href="/login">
-                    <Button
-                      variant="outline"
-                      className="w-full border-emerald-600 text-emerald-600 hover:bg-emerald-50"
+              <div className="pt-4 border-t border-slate-200 flex flex-col space-y-3">
+                {isLoggedIn ? (
+                  <>
+                    <Link
+                      href="/profile"
+                      className="text-slate-700 font-medium"
                     >
-                      Sign In
-                    </Button>
-                  </Link>
-                  <Link href="/register">
-                    <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white">
-                      Get Started
-                    </Button>
-                  </Link>
-                </>
+                      My Profile
+                    </Link>
+
+                    <Link
+                      href="/history"
+                      className="text-slate-700 font-medium"
+                    >
+                      History
+                    </Link>
+
+                    <LogoutButton />
+                  </>
+                ) : (
+                  <>
+                    <Link href="/login">
+                      <Button
+                        variant="outline"
+                        className="w-full text-emerald-600 border-emerald-600"
+                      >
+                        Login
+                      </Button>
+                    </Link>
+
+                    <Link href="/register">
+                      <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white">
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
