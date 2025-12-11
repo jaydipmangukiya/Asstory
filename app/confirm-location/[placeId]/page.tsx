@@ -64,14 +64,6 @@ export default function LocationConfirmationPage({
     }
   };
 
-  if (!latitude || !longitude) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-gray-600">
-        Loading map...
-      </div>
-    );
-  }
-
   //   const handleNext = () => {
   //     if (selectedPropertyType) {
   //       // Redirect to property details form with confirmed location and type
@@ -117,13 +109,19 @@ export default function LocationConfirmationPage({
             </CardHeader>
             <CardContent>
               <div className="h-[450px] w-full">
-                <MapComponent
-                  initialLatitude={latitude}
-                  initialLongitude={longitude}
-                  isDraggable={isDraggable}
-                  setIsDraggable={setIsDraggable}
-                  setOpen={setOpen}
-                />
+                {!latitude || !longitude ? (
+                  <div className="h-full flex items-center justify-center text-gray-600">
+                    Loading map...
+                  </div>
+                ) : (
+                  <MapComponent
+                    initialLatitude={latitude}
+                    initialLongitude={longitude}
+                    isDraggable={isDraggable}
+                    setIsDraggable={setIsDraggable}
+                    setOpen={setOpen}
+                  />
+                )}
               </div>
 
               {/* Location Details */}

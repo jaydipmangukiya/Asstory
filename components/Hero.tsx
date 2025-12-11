@@ -20,15 +20,15 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link href="/login">
-              <Button
-                size="lg"
-                className="bg-white text-emerald-700 hover:bg-gray-100 font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 text-lg"
-              >
-                <Search className="h-5 w-5 mr-2" />
-                Start Free Valuation
-              </Button>
-            </Link>
+            {/* <Link href="/login"> */}
+            <Button
+              size="lg"
+              className="bg-white text-emerald-700 hover:bg-gray-100 font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 text-lg"
+            >
+              <Search className="h-5 w-5 mr-2" />
+              Start Free Valuation
+            </Button>
+            {/* </Link> */}
             <Link href="/about">
               <Button
                 size="lg"

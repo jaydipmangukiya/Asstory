@@ -211,17 +211,14 @@ export default function TermsPage() {
               <p className="text-slate-700 mb-4">
                 These Terms are governed by the laws of India. Any disputes
                 arising from the use of our services will be subject to the
-                exclusive jurisdiction of the courts in Mumbai, Maharashtra.
+                exclusive jurisdiction of the courts in Surat, Gujarat.
               </p>
               <div className="space-y-2 text-slate-700">
                 <p>
                   <strong>Contact for Legal Matters:</strong>
                 </p>
                 <p>Email: legal@propvaluer.com</p>
-                <p>
-                  Address: 123 Business District, Mumbai, Maharashtra 400001,
-                  India
-                </p>
+                <p>Address: Surat, Gujarat, 395003, India</p>
               </div>
             </CardContent>
           </Card>

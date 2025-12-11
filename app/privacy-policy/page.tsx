@@ -194,8 +194,7 @@ export default function PrivacyPolicyPage() {
                   <strong>Phone:</strong> +91 98765 43210
                 </p>
                 <p>
-                  <strong>Address:</strong> 123 Business District, Mumbai,
-                  Maharashtra 400001, India
+                  <strong>Address:</strong> Surat, Gujarat, 395003, India
                 </p>
               </div>
             </CardContent>

@@ -131,7 +131,7 @@ const Apartment = () => {
 
       const res = await nearestLocationReport(data);
 
-      if (res?.status === 200) {
+      if (res?.status === 200 && res?.data?.report_id) {
         toast({
           title: "Success",
           description: "Report generated successfully.",
@@ -141,7 +141,6 @@ const Apartment = () => {
         localStorage.removeItem("propertyType");
         router.push(`/apartment-details/${res?.data?.report_id}`);
       } else {
-        console.log("testsss");
         toast({
           title: "Failed",
           description: res?.data?.message || "Unable to generate report.",
@@ -149,7 +148,6 @@ const Apartment = () => {
         });
       }
     } catch (err: any) {
-      console.log("1111");
       toast({
         title: "Error",
         description: err.message || "Something went wrong",
@@ -199,11 +197,11 @@ const Apartment = () => {
 
   return (
     <div className="w-full">
-      {loading && (
+      {/* {loading && (
         <div className="absolute inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50">
           <Loader />
         </div>
-      )}
+      )} */}
       <Header />
       <Card className="max-w-4xl mx-auto shadow-xl my-6">
         <CardHeader className="text-center bg-gradient-to-r from-blue-50 to-emerald-50">
@@ -407,6 +405,7 @@ const Apartment = () => {
             <div className="flex justify-center mt-8">
               <Button
                 type="submit"
+                disabled={loading}
                 className="w-full bg-gradient-to-r from-blue-700 to-emerald-700 hover:from-blue-800 hover:to-emerald-800 text-lg py-6"
               >
                 Get Property Valuation

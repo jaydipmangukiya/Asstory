@@ -80,7 +80,7 @@ export default function SupportPage() {
     {
       question: "Do you cover all cities in India?",
       answer:
-        "We currently cover 50+ major cities across India including Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Pune, and more. We're continuously expanding our coverage.",
+        "We currently cover 50+ major cities across India including Surat, Delhi, Bangalore, Hyderabad, Chennai, Pune, and more. We're continuously expanding our coverage.",
     },
     {
       question: "Is my property information secure?",
@@ -329,7 +329,7 @@ export default function SupportPage() {
                   <h4 className="font-semibold text-slate-800 mb-2">
                     Visit Us
                   </h4>
-                  <p className="text-slate-600">Mumbai, Maharashtra</p>
+                  <p className="text-slate-600">Surat, Gujarat</p>
                 </div>
               </div>
             </CardContent>

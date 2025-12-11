@@ -115,7 +115,7 @@ const Land = () => {
       };
 
       const res = await nearestLocationReport(data);
-      if (res?.status === 200) {
+      if (res?.status === 200 && res?.data?.report_id) {
         toast({
           title: "Success",
           description: "Report generated successfully.",
@@ -156,11 +156,11 @@ const Land = () => {
 
   return (
     <div className="w-full">
-      {loading && (
+      {/* {loading && (
         <div className="absolute inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50">
           <Loader />
         </div>
-      )}
+      )} */}
       <Header />
       <Card className="max-w-4xl mx-auto shadow-xl my-6">
         <CardHeader className="text-center bg-gradient-to-r from-blue-50 to-emerald-50">

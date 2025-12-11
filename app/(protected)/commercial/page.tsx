@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Loader } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -131,7 +131,7 @@ const Commercial = () => {
       };
 
       const res = await nearestLocationReport(data);
-      if (res?.status === 200) {
+      if (res?.status === 200 && res?.data?.report_id) {
         toast({
           title: "Success",
           description: "Report generated successfully.",
@@ -195,12 +195,12 @@ const Commercial = () => {
 
   return (
     <div className="w-full">
-      {loading && (
-        <div className="absolute inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50">
-          <Loader />
-        </div>
-      )}
       <Header />
+      {/* {!loading && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[9999]">
+          <Loader2 className="animate-spin h-10 w-10 text-emerald-600" />
+        </div>
+      )} */}
       <Card className="max-w-4xl mx-auto shadow-xl my-6">
         <CardHeader className="text-center bg-gradient-to-r from-blue-50 to-emerald-50">
           <CardTitle className="text-2xl font-bold text-gray-900">
@@ -402,6 +402,7 @@ const Commercial = () => {
 
             <div className="flex justify-center mt-8">
               <Button
+                disabled={loading}
                 type="submit"
                 className="w-full bg-gradient-to-r from-blue-700 to-emerald-700 hover:from-blue-800 hover:to-emerald-800 text-lg py-6"
               >

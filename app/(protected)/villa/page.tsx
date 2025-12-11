@@ -121,7 +121,7 @@ const Villa = () => {
 
       const res = await nearestLocationReport(data);
 
-      if (res.data?.report_id) {
+      if (res.data?.report_id && res?.status === 200) {
         toast({
           title: "Success",
           description: "Report generated successfully.",
@@ -159,15 +159,14 @@ const Villa = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData, pendingSubmitValues]);
-  console.log(values.areaMesurment, "values.areaMesurment");
 
   return (
     <div className="w-full">
-      {loading && (
+      {/* {loading && (
         <div className="absolute inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50">
           <Loader />
         </div>
-      )}
+      )} */}
       <Header />
       <Card className="max-w-4xl mx-auto shadow-xl my-6">
         <CardHeader className="text-center bg-gradient-to-r from-blue-50 to-emerald-50">

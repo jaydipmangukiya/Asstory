@@ -44,7 +44,7 @@ export function Footer() {
                   href="/contact"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Contact
+                  Contact Us
                 </Link>
               </li>
               <li>
@@ -80,7 +80,7 @@ export function Footer() {
               </li>
               <li className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-blue-400" />
-                <span className="text-gray-400">Mumbai, Maharashtra</span>
+                <span className="text-gray-400">Surat, Gujarat</span>
               </li>
             </ul>
           </div>

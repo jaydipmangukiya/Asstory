@@ -22,9 +22,9 @@ export function Header() {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
+    { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact Us", href: "/contact" },
     { name: "Auction Property", href: "/property-auction-list" },
   ];
 

@@ -28,13 +28,13 @@ export default function ContactPage() {
     {
       icon: <MapPin className="h-6 w-6 text-emerald-600" />,
       title: "Office Address",
-      details: ["123 Business District", "Mumbai, Maharashtra 400001", "India"],
+      details: ["Surat, Gujarat, 395003", "India"],
     },
-    {
-      icon: <Phone className="h-6 w-6 text-blue-600" />,
-      title: "Phone Numbers",
-      details: ["+91 98765 43210", "+91 98765 43211", "Mon-Sat: 9AM-7PM"],
-    },
+    // {
+    //   icon: <Phone className="h-6 w-6 text-blue-600" />,
+    //   title: "Phone Numbers",
+    //   details: ["+91 98765 43210", "+91 98765 43211", "Mon-Sat: 9AM-7PM"],
+    // },
     {
       icon: <Mail className="h-6 w-6 text-orange-600" />,
       title: "Email Addresses",
@@ -299,7 +299,7 @@ export default function ContactPage() {
               Visit Our Office
             </h2>
             <p className="text-xl text-slate-600">
-              Located in the heart of Mumbai&#39;s business district
+              Located in the heart of Surat&#39;s business district
             </p>
           </div>
 
@@ -310,9 +310,7 @@ export default function ContactPage() {
                 <h3 className="text-2xl font-bold text-slate-800 mb-2">
                   Interactive Map
                 </h3>
-                <p className="text-slate-600">
-                  123 Business District, Mumbai, Maharashtra 400001
-                </p>
+                <p className="text-slate-600">Surat, Gujarat, 395003, India</p>
                 <Button className="mt-4 bg-emerald-600 hover:bg-emerald-700">
                   Get Directions
                 </Button>
