@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
 import { FeaturedProperties } from "@/components/FeaturedProperties";
+import FaqAccordion from "@/components/common/FaqAccordion";
 
 export default function Home() {
   return (
@@ -19,6 +20,10 @@ export default function Home() {
       <FeaturedProperties />
       <HowItWorks />
       <MarketInsights />
+      <FaqAccordion
+        title="Frequently Asked Questions"
+        subtitle="Quick answers to common questions about our services"
+      />
       <Footer />
     </div>
   );

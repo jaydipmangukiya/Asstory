@@ -14,6 +14,9 @@ export interface ValuationReport {
   is_verified: boolean;
   is_active: boolean;
   createdAt: string;
+  latitude: number;
+  longitude?: number;
+  nearest_landmark?: string;
 }
 
 export interface ReportsResponse {

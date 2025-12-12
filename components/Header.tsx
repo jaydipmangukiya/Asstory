@@ -22,10 +22,10 @@ export function Header() {
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Contact Us", href: "/contact" },
     { name: "Auction Property", href: "/property-auction-list" },
+    { name: "Services", href: "/services" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   useEffect(() => {

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import SubscriptionPlans from "../views/subscription/SubscriptionPlans";
+import Link from "next/link";
 
 export default function ServicesPage() {
   const additionalServices = [
@@ -238,19 +239,23 @@ export default function ServicesPage() {
             property valuation today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Start Free Valuation
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-slate-800 hover:bg-white hover:text-slate-800 font-semibold px-8 py-4 rounded-xl transition-all duration-300"
-            >
-              Contact Sales
-            </Button>
+            <Link href="/">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Start Free Valuation
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-slate-800 hover:bg-white hover:text-slate-800 font-semibold px-8 py-4 rounded-xl transition-all duration-300"
+              >
+                Contact Sales
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

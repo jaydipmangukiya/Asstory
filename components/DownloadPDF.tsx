@@ -11,6 +11,20 @@ const remarksText = [
   "5. The predicted valuation is based on market survey data and system-generated algorithmic calculations. Actual fair market valuation may vary.",
 ];
 
+/** -------------------------------
+ * HELPERS
+ * ------------------------------- */
+const loadImage = (url: string) =>
+  new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.src = url;
+  });
+
+const format = (value: any) =>
+  new Intl.NumberFormat("en-IN").format(Number(value || 0));
+
 const addCenteredImage = (doc, img, startY, maxWidth, maxHeight) => {
   const imgWidth = img.width;
   const imgHeight = img.height;
@@ -54,176 +68,163 @@ const addFooter = (doc) => {
   }
 };
 
-export default function DownloadPDF({ reportData, mapUrls }) {
-  const generatePDF = async () => {
-    const doc = new jsPDF("p", "mm", "a4");
+export async function generateReportPDF(
+  reportData: any,
+  mapUrls?: { normal: string; satellite: string }
+) {
+  const doc = new jsPDF("p", "mm", "a4");
 
-    /** ---------------------------------
-     * PAGE 1 → REPORT SUMMARY
-     * ---------------------------------- */
-    doc.setFontSize(20);
-    doc.text("Property Valuation Report", 14, 20);
+  /** ---------------------------------
+   * PAGE 1 → REPORT SUMMARY
+   * ---------------------------------- */
+  doc.setFontSize(20);
+  doc.text("Property Valuation Report", 14, 20);
 
-    doc.setFontSize(12);
-    autoTable(doc, {
-      startY: 30,
-      head: [["Field", "Details"]],
-      body: [
-        ["Owner Name", reportData.owner_name || "-"],
-        ["Owner Address", reportData.owner_address || "-"],
-        ["Report Date", reportData.report_date || "-"],
-        ["Case Ref No", reportData.case_ref_no || "-"],
-        ["Property Address", reportData.property_address || "-"],
-        ["Nearest Landmark", reportData.nearest_landmark || "-"],
-        ["Type of Property", reportData.type_of_property || "-"],
+  doc.setFontSize(12);
+  autoTable(doc, {
+    startY: 30,
+    head: [["Field", "Details"]],
+    body: [
+      ["Owner Name", reportData.owner_name || "-"],
+      ["Owner Address", reportData.owner_address || "-"],
+      ["Report Date", reportData.report_date || "-"],
+      ["Case Ref No", reportData.case_ref_no || "-"],
+      ["Property Address", reportData.property_address || "-"],
+      ["Nearest Landmark", reportData.nearest_landmark || "-"],
+      ["Type of Property", reportData.type_of_property || "-"],
+    ],
+    headStyles: {
+      fillColor: [4, 120, 87],
+      textColor: 255,
+      fontStyle: "bold",
+    },
+  });
+
+  autoTable(doc, {
+    startY: doc.lastAutoTable.finalY + 10,
+    head: [["Valuation", "Amount (INR)"]],
+    body: [
+      ["Final Valuation", `Rs. ${format(reportData.final_valuation)}`],
+      ["Final Valuation in Word", `${reportData?.final_valuation_in_word}`],
+      ["Realizable Value (RV)", `Rs. ${format(reportData.RV)}`],
+      ["Distress Value (DV)", `Rs. ${format(reportData.DV)}`],
+    ],
+    headStyles: {
+      fillColor: [4, 120, 87],
+      textColor: 255,
+      fontStyle: "bold",
+    },
+  });
+  const unitRateLabel =
+    reportData?.type_of_property !== "Independent"
+      ? "Unit Rate considered for CA / SBA"
+      : "Unit Rate considered for CA / BUA";
+
+  autoTable(doc, {
+    startY: doc.lastAutoTable.finalY + 10,
+    head: [["Specification", "Value"]],
+    body: [
+      [
+        "Property Land Area",
+        reportData.property_land_area
+          ? `${reportData.property_land_area} sqft`
+          : "-",
       ],
-      headStyles: {
-        fillColor: [4, 120, 87],
-        textColor: 255,
-        fontStyle: "bold",
-      },
-    });
-
-    autoTable(doc, {
-      startY: doc.lastAutoTable.finalY + 10,
-      head: [["Valuation", "Amount (INR)"]],
-      body: [
-        ["Final Valuation", `Rs. ${format(reportData.final_valuation)}`],
-        ["Final Valuation in Word", `${reportData?.final_valuation_in_word}`],
-        ["Realizable Value (RV)", `Rs. ${format(reportData.RV)}`],
-        ["Distress Value (DV)", `Rs. ${format(reportData.DV)}`],
+      ["Carpet Area", reportData.carpet_area || "0"],
+      ["Super Built Up Area", reportData.super_built_up_area || "0"],
+      [
+        "Property Age",
+        reportData.age_of_property
+          ? `${reportData.age_of_property} years`
+          : "-",
       ],
-      headStyles: {
-        fillColor: [4, 120, 87],
-        textColor: 255,
-        fontStyle: "bold",
-      },
-    });
-    const unitRateLabel =
-      reportData?.type_of_property !== "Independent"
-        ? "Unit Rate considered for CA / SBA"
-        : "Unit Rate considered for CA / BUA";
-
-    autoTable(doc, {
-      startY: doc.lastAutoTable.finalY + 10,
-      head: [["Specification", "Value"]],
-      body: [
-        [
-          "Property Land Area",
-          reportData.property_land_area
-            ? `${reportData.property_land_area} sqft`
-            : "-",
-        ],
-        ["Carpet Area", reportData.carpet_area || "0"],
-        ["Super Built Up Area", reportData.super_built_up_area || "0"],
-        [
-          "Property Age",
-          reportData.age_of_property
-            ? `${reportData.age_of_property} years`
-            : "-",
-        ],
-        [
-          "Land Area",
-          reportData.land_area ? `${reportData.land_area} sqft` : "-",
-        ],
-        ["Land Value", reportData.land_value || "0"],
-        [
-          "Unit Rate considered for Land",
-          reportData?.unit_rate_considered_for_land || "-",
-        ],
-        ["Building Value", reportData?.building_value || "-"],
-        ["Loading", reportData.loading || "N/A"],
-        [
-          unitRateLabel,
-          reportData.unit_rate_considered_for_ca_bua_sba
-            ? `Rs. ${reportData.unit_rate_considered_for_ca_bua_sba}/-`
-            : "-",
-        ],
+      [
+        "Land Area",
+        reportData.land_area ? `${reportData.land_area} sqft` : "-",
       ],
-      headStyles: {
-        fillColor: [4, 120, 87],
-        textColor: 255,
-        fontStyle: "bold",
-      },
-    });
+      ["Land Value", reportData.land_value || "0"],
+      [
+        "Unit Rate considered for Land",
+        reportData?.unit_rate_considered_for_land || "-",
+      ],
+      ["Building Value", reportData?.building_value || "-"],
+      ["Loading", reportData.loading || "N/A"],
+      [
+        unitRateLabel,
+        reportData.unit_rate_considered_for_ca_bua_sba
+          ? `Rs. ${reportData.unit_rate_considered_for_ca_bua_sba}/-`
+          : "-",
+      ],
+    ],
+    headStyles: {
+      fillColor: [4, 120, 87],
+      textColor: 255,
+      fontStyle: "bold",
+    },
+  });
 
-    doc.addPage();
+  doc.addPage();
 
-    /** ---------------------------------
-     * PAGE 2 → MAPS PAGE
-     * ---------------------------------- */
-    doc.setFontSize(18);
-    doc.text("Location Maps", 14, 15);
-    const pageWidth = doc.internal.pageSize.getWidth();
+  /** ---------------------------------
+   * PAGE 2 → MAPS PAGE
+   * ---------------------------------- */
+  doc.setFontSize(18);
+  doc.text("Location Maps", 14, 15);
+  const pageWidth = doc.internal.pageSize.getWidth();
 
-    // ROAD MAP
-    doc.text("Road Map", pageWidth / 2, 25, { align: "center" });
-    const road = await loadImage(mapUrls.normal);
-    addCenteredImage(doc, road, 30, 170, 100);
+  // ROAD MAP
+  doc.text("Road Map", pageWidth / 2, 25, { align: "center" });
+  const road = await loadImage(mapUrls.normal);
+  addCenteredImage(doc, road, 30, 170, 100);
 
-    // SATELLITE MAP
-    doc.text("Satellite Map", pageWidth / 2, 140, { align: "center" });
-    const sat = await loadImage(mapUrls.satellite);
-    addCenteredImage(doc, sat, 150, 170, 100);
+  // SATELLITE MAP
+  doc.text("Satellite Map", pageWidth / 2, 140, { align: "center" });
+  const sat = await loadImage(mapUrls.satellite);
+  addCenteredImage(doc, sat, 150, 170, 100);
 
-    doc.addPage();
+  doc.addPage();
 
-    /** ---------------------------------
-     * PAGE 4 → REMARKS PAGE
-     * ---------------------------------- */
-    doc.setFontSize(14);
-    doc.text("Remarks", 14, 20);
-    const boxX = 12;
-    const boxY = 30;
-    const boxWidth = pageWidth - 24; // consistent margins
-    const padding = 6;
+  /** ---------------------------------
+   * PAGE 4 → REMARKS PAGE
+   * ---------------------------------- */
+  doc.setFontSize(14);
+  doc.text("Remarks", 14, 20);
+  const boxX = 12;
+  const boxY = 30;
+  const boxWidth = pageWidth - 24; // consistent margins
+  const padding = 6;
 
-    doc.setFontSize(11);
-    doc.setFont("helvetica", "normal");
-    let cursorY = boxY + padding + 4;
-    let totalHeight = 0;
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "normal");
+  let cursorY = boxY + padding + 4;
+  let totalHeight = 0;
 
-    remarksText.forEach((line) => {
-      const wrapped = doc.splitTextToSize(line, boxWidth - padding * 2);
-      totalHeight += wrapped.length * 6; // approx line height
-    });
+  remarksText.forEach((line) => {
+    const wrapped = doc.splitTextToSize(line, boxWidth - padding * 2);
+    totalHeight += wrapped.length * 6; // approx line height
+  });
 
-    const boxHeight = totalHeight + padding * 2 + 6;
+  const boxHeight = totalHeight + padding * 2 + 6;
 
-    doc.setDrawColor(120);
-    doc.setLineWidth(0.5);
-    doc.rect(boxX, boxY, boxWidth, boxHeight, "S");
-    cursorY = boxY + padding + 4;
+  doc.setDrawColor(120);
+  doc.setLineWidth(0.5);
+  doc.rect(boxX, boxY, boxWidth, boxHeight, "S");
+  cursorY = boxY + padding + 4;
 
-    remarksText.forEach((line, index) => {
-      const wrapped = doc.splitTextToSize(line, boxWidth - padding * 2);
-      doc.text(wrapped, boxX + padding, cursorY);
-      cursorY += wrapped.length * 6;
-    });
-    addFooter(doc);
-    doc.save(`Valuation_Report_${reportData.case_ref_no}.pdf`);
-  };
+  remarksText.forEach((line, index) => {
+    const wrapped = doc.splitTextToSize(line, boxWidth - padding * 2);
+    doc.text(wrapped, boxX + padding, cursorY);
+    cursorY += wrapped.length * 6;
+  });
+  addFooter(doc);
+  doc.save(`Valuation_Report_${reportData.case_ref_no}.pdf`);
 
-  /** -------------------------------
-   * HELPERS
-   * ------------------------------- */
-  const loadImage = (url: string) =>
-    new Promise((resolve) => {
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.onload = () => resolve(img);
-      img.src = url;
-    });
-
-  const format = (value: any) =>
-    new Intl.NumberFormat("en-IN").format(Number(value || 0));
-
-  return (
-    <button
-      onClick={generatePDF}
-      className="px-5 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
-    >
-      Download PDF
-    </button>
-  );
+  // return (
+  //   <button
+  //     onClick={generatePDF}
+  //     className="px-5 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+  //   >
+  //     Download PDF
+  //   </button>
+  // );
 }

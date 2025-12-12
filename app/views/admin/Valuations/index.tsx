@@ -11,13 +11,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Users, Loader2, UserCheck, UserX, Eye, FileText } from "lucide-react";
+import {
+  Users,
+  Loader2,
+  UserCheck,
+  UserX,
+  Eye,
+  FileText,
+  Download,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
 import { getReports, ValuationReport } from "@/app/api/valuationService";
 import ViewReportModal from "./View/ViewReportModal";
+import { generateReportPDF } from "@/components/DownloadPDF";
+import { getReportById } from "@/app/api/apartment";
 
 const ValuationsList = () => {
   const { toast } = useToast();
@@ -52,6 +62,25 @@ const ValuationsList = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleDownload = async (report: ValuationReport) => {
+    try {
+      let mapUrls = null;
+
+      if (report.latitude && report.longitude) {
+        const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+        mapUrls = {
+          normal: `https://maps.googleapis.com/maps/api/staticmap?center=${report.latitude},${report.longitude}&zoom=16&size=600x600&maptype=roadmap&key=${key}&markers=color:red%7C${report.latitude},${report.longitude}`,
+          satellite: `https://maps.googleapis.com/maps/api/staticmap?center=${report.latitude},${report.longitude}&zoom=16&size=600x600&maptype=satellite&key=${key}&markers=color:red%7C${report.latitude},${report.longitude}`,
+        };
+      }
+
+      await generateReportPDF(report, mapUrls);
+    } catch (err) {
+      console.error("PDF generation failed", err);
+    }
   };
 
   return (
@@ -160,6 +189,14 @@ const ValuationsList = () => {
                             onClick={() => setReportId(r._id)}
                           >
                             <Eye className="h-3 w-3" />
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="h-8 w-8 p-0"
+                            onClick={() => handleDownload(r)}
+                          >
+                            <Download className="h-3 w-3" />
                           </Button>
                         </div>
                       </TableCell>

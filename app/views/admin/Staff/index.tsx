@@ -15,7 +15,6 @@ import {
 import {
   Users,
   Plus,
-  CreditCard as Edit,
   Trash2,
   Mail,
   Phone,
@@ -23,6 +22,7 @@ import {
   UserCheck,
   UserX,
   Eye,
+  Pencil,
 } from "lucide-react";
 import { deleteStaff, getStaffs, Staff } from "@/app/api/staffService";
 import { useToast } from "@/hooks/use-toast";
@@ -246,7 +246,7 @@ const StaffList = () => {
                               setSelectedStaffId(member._id);
                             }}
                           >
-                            <Edit className="h-3 w-3" />
+                            <Pencil className="h-3 w-3" />
                           </Button>
                           <Button
                             size="sm"

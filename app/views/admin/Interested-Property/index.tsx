@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Users, CreditCard as Edit, Loader2, Eye } from "lucide-react";
+import { Users, Loader2, Eye, Pencil } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
@@ -133,7 +133,7 @@ const InterestedPropertyList = () => {
                             variant="outline"
                             className="h-8 w-8 p-0"
                           >
-                            <Edit className="h-3 w-3" />
+                            <Pencil className="h-3 w-3" />
                           </Button>
                         </div>
                       </TableCell>

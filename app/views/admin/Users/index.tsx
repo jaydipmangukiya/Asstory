@@ -13,14 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Users,
-  Plus,
-  CreditCard as Edit,
-  Trash2,
-  Eye,
-  Loader2,
-} from "lucide-react";
+import { Users, Plus, Trash2, Eye, Loader2, Pencil } from "lucide-react";
 import { deleteUser, getUsers, User } from "@/app/api/userService";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
@@ -332,7 +325,7 @@ const UsersList = () => {
                             variant="outline"
                             className="h-8 w-8 p-0"
                           >
-                            <Edit className="h-3 w-3" />
+                            <Pencil className="h-3 w-3" />
                           </Button>
                           <Button
                             size="sm"

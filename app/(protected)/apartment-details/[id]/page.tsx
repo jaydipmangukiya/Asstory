@@ -28,7 +28,7 @@ import MapComponent from "@/components/MapComponent";
 import { getReportById } from "@/app/api/apartment";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import DownloadPDF from "@/components/DownloadPDF";
+import { generateReportPDF } from "@/components/DownloadPDF";
 
 export default function ApartmentDetailsPage() {
   const { id } = useParams();
@@ -55,7 +55,6 @@ export default function ApartmentDetailsPage() {
       try {
         const res = await getReportById(`${id}`);
         const data = res.report;
-        console.log(data, "data");
         setReportData(data);
 
         if (data.latitude && data.longitude) {
@@ -144,7 +143,12 @@ export default function ApartmentDetailsPage() {
                   <p className="text-gray-600 mb-4">
                     Get detailed valuation, maps, market trends & more.
                   </p>
-                  <DownloadPDF reportData={reportData} mapUrls={mapUrls} />
+                  <button
+                    onClick={() => generateReportPDF(reportData, mapUrls)}
+                    className="px-5 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+                  >
+                    Download PDF
+                  </button>
                 </CardContent>
               </Card>
 

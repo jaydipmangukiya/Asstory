@@ -13,6 +13,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   MapPin,
   Phone,
   Mail,
@@ -22,6 +28,7 @@ import {
   FileText,
   Users,
 } from "lucide-react";
+import FaqAccordion from "@/components/common/FaqAccordion";
 
 export default function ContactPage() {
   const contactInfo = [
@@ -321,55 +328,10 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-slate-600">
-              Quick answers to common questions about our services
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            {[
-              {
-                question: "How accurate are your property valuations?",
-                answer:
-                  "Our AI-powered valuations have a 95% accuracy rate, validated against actual market transactions and expert assessments.",
-              },
-              {
-                question: "How long does it take to get a valuation report?",
-                answer:
-                  "Basic property valuations are instant. Detailed reports with market analysis are generated within 24 hours.",
-              },
-              {
-                question: "Do you cover all cities in India?",
-                answer:
-                  "We currently cover 50+ major cities across India, with plans to expand to more locations soon.",
-              },
-              {
-                question: "Is my property information secure?",
-                answer:
-                  "Yes, we use bank-level encryption and security measures to protect all your property and personal information.",
-              },
-            ].map((faq, index) => (
-              <Card
-                key={index}
-                className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md"
-              >
-                <CardContent>
-                  <h3 className="font-semibold text-slate-800 mb-3 text-lg">
-                    {faq.question}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FaqAccordion
+        title="Frequently Asked Questions"
+        subtitle="Quick answers to common questions about our services"
+      />
 
       <Footer />
     </div>

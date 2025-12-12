@@ -23,12 +23,11 @@ import {
 import {
   Building2,
   Plus,
-  CreditCard as Edit,
   Trash2,
   Eye,
   MapPin,
-  Upload,
   Loader2,
+  Pencil,
 } from "lucide-react";
 import {
   deleteProperty,
@@ -264,7 +263,7 @@ const PropertiesList = () => {
                               className="h-8 w-8 p-0"
                               onClick={() => setEditId(property._id)}
                             >
-                              <Edit className="h-3 w-3" />
+                              <Pencil className="h-3 w-3" />
                             </Button>
                             <Button
                               size="sm"
