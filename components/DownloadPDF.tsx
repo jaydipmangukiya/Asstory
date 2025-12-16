@@ -25,7 +25,13 @@ const loadImage = (url: string) =>
 const format = (value: any) =>
   new Intl.NumberFormat("en-IN").format(Number(value || 0));
 
-const addCenteredImage = (doc, img, startY, maxWidth, maxHeight) => {
+const addCenteredImage = (
+  doc: any,
+  img: HTMLImageElement,
+  startY: number,
+  maxWidth: number,
+  maxHeight: number
+) => {
   const imgWidth = img.width;
   const imgHeight = img.height;
 
@@ -42,7 +48,7 @@ const addCenteredImage = (doc, img, startY, maxWidth, maxHeight) => {
   return startY + displayHeight;
 };
 
-const addFooter = (doc) => {
+const addFooter = (doc: any) => {
   const pageCount = doc.internal.getNumberOfPages();
 
   for (let i = 1; i <= pageCount; i++) {
@@ -92,6 +98,8 @@ export async function generateReportPDF(
       ["Property Address", reportData.property_address || "-"],
       ["Nearest Landmark", reportData.nearest_landmark || "-"],
       ["Type of Property", reportData.type_of_property || "-"],
+      ["Latitude", reportData.latitude || "-"],
+      ["Longitude", reportData.longitude || "-"],
     ],
     headStyles: {
       fillColor: [4, 120, 87],

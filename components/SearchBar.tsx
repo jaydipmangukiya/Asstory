@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import { geocode, RequestType, setKey } from "react-geocode";
+// import { geocode, RequestType, setKey } from "react-geocode";
+import * as Geocode from "react-geocode";
 
 interface Suggestion {
   description: string;
@@ -53,7 +54,8 @@ export function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [placeId, setPlaceId] = useState("");
-  setKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
+  // setKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
+  Geocode.setKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
   const router = useRouter();
 
   useEffect(() => {
@@ -83,7 +85,8 @@ export function SearchBar() {
 
   const fetchPlaceId = async (address: string) => {
     try {
-      const response = await geocode(RequestType.ADDRESS, address);
+      // const response = await geocode(RequestType.ADDRESS, address);
+      const response = await Geocode.fromAddress(address);
       const id = response?.results?.[0]?.place_id || "";
       setPlaceId(id);
     } catch (err) {

@@ -11,6 +11,7 @@ type MapComponentProps = {
   initialLongitude: number;
   isDraggable: boolean;
   setOpen: (open: boolean) => void;
+  readonly?: boolean;
   setIsDraggable: (value: boolean) => void;
 };
 
@@ -20,6 +21,7 @@ const MapComponent = ({
   isDraggable,
   setOpen,
   setIsDraggable,
+  readonly = false,
 }: MapComponentProps) => {
   const [markerPosition, setMarkerPosition] = useState({
     lat: initialLatitude,
@@ -32,15 +34,19 @@ const MapComponent = ({
   });
 
   const handleMarkerDrag = (e: google.maps.MapMouseEvent) => {
-    if (!e.latLng) return;
+    if (readonly || !e.latLng) return;
     setMarkerPosition({
       lat: e.latLng.lat(),
       lng: e.latLng.lng(),
     });
   };
 
-  const handleMarkerDragEnd = () => {
-    setIsInfoWindowOpen(true);
+  const handleMapClick = (e: google.maps.MapMouseEvent) => {
+    if (readonly || !e.latLng) return;
+    setMarkerPosition({
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng(),
+    });
   };
 
   return isLoaded ? (
@@ -48,20 +54,22 @@ const MapComponent = ({
       mapContainerStyle={{ width: "100%", height: "100%" }}
       zoom={17}
       center={markerPosition}
-      onClick={(e) => {
-        if (!e.latLng) return;
-        setMarkerPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-      }}
+      onClick={handleMapClick}
       mapTypeId="roadmap"
+      options={{
+        clickableIcons: !readonly,
+        disableDefaultUI: readonly,
+        draggableCursor: readonly ? "default" : "grab",
+      }}
     >
       <Marker
         position={markerPosition}
-        draggable={isDraggable}
+        draggable={!readonly && isDraggable}
         onDrag={handleMarkerDrag}
-        onDragEnd={handleMarkerDragEnd}
+        onDragEnd={() => !readonly && setIsInfoWindowOpen(true)}
       />
 
-      {isInfoWindowOpen && (
+      {!readonly && isInfoWindowOpen && (
         <InfoWindow
           position={markerPosition}
           onCloseClick={() => setIsInfoWindowOpen(false)}

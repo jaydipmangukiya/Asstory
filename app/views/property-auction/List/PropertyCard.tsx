@@ -154,7 +154,7 @@ export default function PropertyCard({ data }: any) {
               />
               <Info label="State" value={data.state} icon={<MapPin />} />
               <Info label="City" value={data.city} icon={<MapPin />} />
-              <Info label="Bank" value={data.bankName} icon={<Building />} />
+              {/* <Info label="Bank" value={data.bankName} icon={<Building />} /> */}
               <Info
                 label="Auction Start"
                 value={formatDate(data?.auctionDetails?.auctionStart)}

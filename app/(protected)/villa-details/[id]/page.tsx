@@ -277,6 +277,14 @@ export default function VillaDetailsPage() {
                       {reportData.nearest_landmark}
                     </p>
                   </div>
+                  <div>
+                    <p className="text-sm text-gray-600 mb-1">Latitude</p>
+                    <p className="font-semibold">{reportData.latitude}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 mb-1">Longitude</p>
+                    <p className="font-semibold">{reportData.longitude}</p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -299,6 +307,7 @@ export default function VillaDetailsPage() {
                         isDraggable={false}
                         setIsDraggable={() => {}}
                         setOpen={() => {}}
+                        readonly={true}
                       />
                     </div>
                   )}

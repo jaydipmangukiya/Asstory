@@ -176,7 +176,7 @@ export default function LocationConfirmationPage({
           </Card>
         </div>
 
-        {open && (
+        {open && latitude != null && longitude != null && (
           <UnitsModal
             open={open}
             handleClose={handleClose}

@@ -155,7 +155,7 @@ const AuctionPropertyForm = ({
           );
         }
 
-        if (values.saleNoticePdf instanceof File) {
+        if (values.saleNoticePdf) {
           formData.append("saleNoticePdf", values.saleNoticePdf);
         }
 
@@ -875,13 +875,13 @@ const AuctionPropertyForm = ({
                 )}
 
                 {/* New PDF file info */}
-                {values.saleNoticePdf instanceof File && (
+                {values.saleNoticePdf && (
                   <div className="flex items-center justify-between bg-gray-100 p-3 rounded border">
                     <div className="flex items-center gap-3">
                       <div className="bg-red-600 text-white text-sm px-2 py-1 rounded">
                         PDF
                       </div>
-                      <span>{values.saleNoticePdf.name}</span>
+                      <span>{values.saleNoticePdf?.name}</span>
                     </div>
                     <button
                       type="button"

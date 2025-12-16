@@ -5,6 +5,7 @@ import {
   incrementAuctionPropertyView,
 } from "@/app/api/auctionProperty";
 import InterestedModal from "@/app/views/property-auction/Form/InterestedModal";
+import QRCodeBox from "@/components/common/QRCodeBox";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { getBrowserFingerprint } from "@/lib/getFingerprint";
@@ -59,6 +60,8 @@ export default function PropertyDetailsPage({ params }: any) {
     }
   };
   const hasImages = property?.images && property.images.length > 0;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const propertyUrl = `${baseUrl}/property-auction-list/${id}`;
 
   return (
     <div className="w-full">
@@ -184,11 +187,11 @@ export default function PropertyDetailsPage({ params }: any) {
                       value={property.city}
                       icon={<MapPin />}
                     />
-                    <Info
+                    {/* <Info
                       label="Bank"
                       value={property.bankName}
                       icon={<Building />}
-                    />
+                    /> */}
                     <Info
                       label="Auction Start"
                       value={formatDate(property?.auctionDetails?.auctionStart)}
@@ -214,9 +217,6 @@ export default function PropertyDetailsPage({ params }: any) {
                   </p>
 
                   <div className="flex flex-wrap gap-4 pt-2">
-                    <button className="px-6 py-2.5 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 shadow">
-                      Contact Us
-                    </button>
                     <button
                       className="px-6 py-2.5 border border-emerald-500 text-emerald-600 rounded-xl hover:bg-emerald-50"
                       onClick={() => setOpenModal(true)}
@@ -347,6 +347,9 @@ export default function PropertyDetailsPage({ params }: any) {
                     {property?.views}
                   </p>
                 </div>
+                <Section title="Scan to View Property">
+                  <QRCodeBox value={propertyUrl} />
+                </Section>
               </div>
             </div>
           </>
