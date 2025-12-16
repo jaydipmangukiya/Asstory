@@ -13,49 +13,6 @@ import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { formatPriceINR } from "@/lib/utils";
 
-const propertiess = [
-  {
-    id: 1,
-    title: "Luxury Apartment in Bandra West",
-    location: "Bandra West, Mumbai",
-    price: "₹2.5 Cr",
-    area: "1200 sq ft",
-    type: "3 BHK",
-    image:
-      "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-  {
-    id: 2,
-    title: "Modern Villa in Whitefield",
-    location: "Whitefield, Bangalore",
-    price: "₹1.8 Cr",
-    area: "2500 sq ft",
-    type: "4 BHK Villa",
-    image:
-      "https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-  {
-    id: 3,
-    title: "Premium Flat in Cyber City",
-    location: "Gurgaon, Delhi NCR",
-    price: "₹1.2 Cr",
-    area: "950 sq ft",
-    type: "2 BHK",
-    image:
-      "https://images.pexels.com/photos/1396125/pexels-photo-1396125.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-  {
-    id: 4,
-    title: "Spacious House in Jubilee Hills",
-    location: "Jubilee Hills, Hyderabad",
-    price: "₹95 L",
-    area: "1800 sq ft",
-    type: "3 BHK",
-    image:
-      "https://images.pexels.com/photos/1396128/pexels-photo-1396128.jpeg?auto=compress&cs=tinysrgb&w=400",
-  },
-];
-
 export function FeaturedProperties() {
   const [properties, setProperties] = useState<ValuationReport[]>([]);
   const [loading, setLoading] = useState(false);

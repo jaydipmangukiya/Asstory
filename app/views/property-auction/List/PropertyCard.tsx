@@ -11,6 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InterestedModal from "../Form/InterestedModal";
+import { formatPriceINR } from "@/lib/utils";
 
 export default function PropertyCard({ data }: any) {
   const router = useRouter();
@@ -91,7 +92,7 @@ export default function PropertyCard({ data }: any) {
             )}
           </div>
 
-          <div className="md:w-2/3 p-6 space-y-4">
+          <div className="md:w-2/3 md:p-6 p-3 space-y-4">
             <div className="flex justify-between items-start">
               <h2 className="text-xl font-bold text-slate-800 leading-snug">
                 {data.title}
@@ -131,7 +132,7 @@ export default function PropertyCard({ data }: any) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 p-4 rounded-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 md:p-4 p-3 rounded-xl">
               <Info
                 label="Carpet Area"
                 value={data.carpetArea}
@@ -174,7 +175,7 @@ export default function PropertyCard({ data }: any) {
 
             <div>
               <p className="text-2xl font-bold text-emerald-600">
-                {`₹ ${data.price?.toLocaleString()}`}
+                {formatPriceINR(data.price)}
                 <span className="text-red-600 font-semibold text-sm align-super">
                   **
                 </span>
@@ -189,9 +190,6 @@ export default function PropertyCard({ data }: any) {
                 className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-sm"
               >
                 View Details
-              </button>
-              <button className="px-5 py-2.5 border border-slate-300 rounded-xl hover:bg-slate-100">
-                Contact Us
               </button>
               <button
                 className="px-5 py-2.5 border border-emerald-500 text-emerald-600 hover:bg-emerald-50 rounded-xl"

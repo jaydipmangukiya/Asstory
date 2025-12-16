@@ -9,6 +9,7 @@ import QRCodeBox from "@/components/common/QRCodeBox";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { getBrowserFingerprint } from "@/lib/getFingerprint";
+import { formatPriceINR } from "@/lib/utils";
 import {
   Calendar,
   MapPin,
@@ -79,9 +80,9 @@ export default function PropertyDetailsPage({ params }: any) {
         )}
         {!loading && property && (
           <>
-            <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-6 mb-10">
+            <div className="bg-white rounded-2xl shadow-md border border-slate-100 md:p-6 p-3 mb-10">
               <div className="flex flex-col md:flex-row gap-8">
-                <div className="md:w-1/3 relative">
+                <div className="md:w-1/3 relative h-64 md:h-auto">
                   {hasImages ? (
                     <div
                       onClick={() => {
@@ -125,9 +126,6 @@ export default function PropertyDetailsPage({ params }: any) {
                     </h1>
 
                     <div className="flex items-center gap-3">
-                      {/* <button className="p-2 rounded-full border border-slate-200 hover:bg-slate-100">
-                        <Heart className="h-5 w-5 text-slate-600" />
-                      </button> */}
                       <button
                         className="p-2 rounded-full border border-slate-200 hover:bg-slate-100"
                         onClick={async () => {
@@ -156,7 +154,7 @@ export default function PropertyDetailsPage({ params }: any) {
                   </div>
 
                   {/* FIELD GRID */}
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 rounded-xl p-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 rounded-xl md:p-5 p-4">
                     <Info
                       label="Carpet Area"
                       value={property.carpetArea}
@@ -187,11 +185,6 @@ export default function PropertyDetailsPage({ params }: any) {
                       value={property.city}
                       icon={<MapPin />}
                     />
-                    {/* <Info
-                      label="Bank"
-                      value={property.bankName}
-                      icon={<Building />}
-                    /> */}
                     <Info
                       label="Auction Start"
                       value={formatDate(property?.auctionDetails?.auctionStart)}
@@ -210,7 +203,7 @@ export default function PropertyDetailsPage({ params }: any) {
                   </div>
 
                   <p className="text-xl font-bold text-emerald-600">
-                    {`₹ ${property.price?.toLocaleString()}`}
+                    {formatPriceINR(property.price)}
                     <span className="text-red-600 text-sm align-super font-semibold">
                       **
                     </span>
@@ -439,23 +432,27 @@ export default function PropertyDetailsPage({ params }: any) {
 
 const Info = ({ label, value, icon }: any) => (
   <div className="flex items-start gap-2">
-    <div className="text-emerald-600">{icon}</div>
+    <div className="text-emerald-600 mt-0.5">{icon}</div>
     <div>
       <p className="text-xs text-slate-500">{label}</p>
-      <p className="font-semibold text-slate-700 leading-tight">{value}</p>
+      <p className="font-semibold text-slate-700 leading-snug break-words">
+        {value || "-"}
+      </p>
     </div>
   </div>
 );
 
 const Details = ({ label, value }: any) => (
-  <div className="flex justify-between py-2 border-b border-slate-100 text-sm">
-    <span className="font-medium text-slate-600">{label}</span>
-    <span className="text-slate-800">{value}</span>
+  <div className="flex flex-col md:flex-row md:justify-between gap-1 md:gap-4 py-3 border-b border-slate-100 text-sm">
+    <span className="font-medium text-slate-600 md:w-[45%]">{label}</span>
+    <span className="text-slate-900 md:w-[55%] break-words">
+      {value || "-"}
+    </span>
   </div>
 );
 
 const Section = ({ title, children }: any) => (
-  <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-6">
+  <div className="bg-white rounded-2xl shadow-md border border-slate-100 md:p-6 p-3">
     <h3 className="text-lg font-bold text-slate-800 mb-4">{title}</h3>
     {children}
   </div>
