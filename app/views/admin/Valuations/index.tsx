@@ -66,7 +66,7 @@ const ValuationsList = () => {
 
   const handleDownload = async (report: ValuationReport) => {
     try {
-      let mapUrls = null;
+      let mapUrls: { normal: string; satellite: string } | undefined;
 
       if (report.latitude && report.longitude) {
         const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;

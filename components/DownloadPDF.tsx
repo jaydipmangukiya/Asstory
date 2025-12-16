@@ -11,14 +11,23 @@ const remarksText = [
   "5. The predicted valuation is based on market survey data and system-generated algorithmic calculations. Actual fair market valuation may vary.",
 ];
 
+declare module "jspdf" {
+  interface jsPDF {
+    lastAutoTable?: {
+      finalY: number;
+    };
+  }
+}
+
 /** -------------------------------
  * HELPERS
  * ------------------------------- */
-const loadImage = (url: string) =>
-  new Promise((resolve) => {
+const loadImage = (url: string): Promise<HTMLImageElement> =>
+  new Promise<HTMLImageElement>((resolve, reject) => {
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error("Image failed to load"));
     img.src = url;
   });
 
@@ -109,7 +118,7 @@ export async function generateReportPDF(
   });
 
   autoTable(doc, {
-    startY: doc.lastAutoTable.finalY + 10,
+    startY: (doc.lastAutoTable?.finalY ?? 30) + 10,
     head: [["Valuation", "Amount (INR)"]],
     body: [
       ["Final Valuation", `Rs. ${format(reportData.final_valuation)}`],
@@ -129,7 +138,7 @@ export async function generateReportPDF(
       : "Unit Rate considered for CA / BUA";
 
   autoTable(doc, {
-    startY: doc.lastAutoTable.finalY + 10,
+    startY: (doc.lastAutoTable?.finalY ?? 30) + 10,
     head: [["Specification", "Value"]],
     body: [
       [
@@ -181,14 +190,16 @@ export async function generateReportPDF(
   const pageWidth = doc.internal.pageSize.getWidth();
 
   // ROAD MAP
-  doc.text("Road Map", pageWidth / 2, 25, { align: "center" });
-  const road = await loadImage(mapUrls.normal);
-  addCenteredImage(doc, road, 30, 170, 100);
+  if (mapUrls?.normal && mapUrls?.satellite) {
+    doc.text("Road Map", pageWidth / 2, 25, { align: "center" });
+    const road = await loadImage(mapUrls.normal);
+    addCenteredImage(doc, road, 30, 170, 100);
 
-  // SATELLITE MAP
-  doc.text("Satellite Map", pageWidth / 2, 140, { align: "center" });
-  const sat = await loadImage(mapUrls.satellite);
-  addCenteredImage(doc, sat, 150, 170, 100);
+    // SATELLITE MAP
+    doc.text("Satellite Map", pageWidth / 2, 140, { align: "center" });
+    const sat = await loadImage(mapUrls.satellite);
+    addCenteredImage(doc, sat, 150, 170, 100);
+  }
 
   doc.addPage();
 
