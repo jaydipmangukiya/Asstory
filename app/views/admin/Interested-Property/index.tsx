@@ -157,7 +157,7 @@ const InterestedPropertyList = () => {
         <InterestStatusModal
           open={openStatusModal}
           interest={selectedInterest}
-          onClose={(updated) => {
+          onClose={(updated: any) => {
             setOpenStatusModal(false);
             if (updated) fetchInterests();
           }}
