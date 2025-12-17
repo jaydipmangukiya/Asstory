@@ -1,7 +1,7 @@
 export const rowPerPage = 10;
 
 export const roleOptions = [
-  { label: "Valuder", value: "VALUER" },
+  { label: "Valuer", value: "VALUER" },
   { label: "Admin", value: "ADMIN" },
   { label: "Banker", value: "BANKER" },
   { label: "Broker", value: "BROKER" },

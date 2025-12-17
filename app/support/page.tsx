@@ -1,3 +1,5 @@
+"use client";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,77 +24,131 @@ import {
   FileText,
   Users,
   Zap,
-  CircleCheck as CheckCircle,
 } from "lucide-react";
+import * as Yup from "yup";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { useFormik } from "formik";
+import { createSupportQuery } from "../api/support";
+
+const supportOptions = [
+  {
+    icon: <MessageSquare className="h-8 w-8 text-emerald-600" />,
+    title: "Live Chat",
+    description: "Get instant help from our support team",
+    availability: "24/7 Available",
+    action: "Start Chat",
+    response: "Immediate",
+  },
+  {
+    icon: <Mail className="h-8 w-8 text-blue-600" />,
+    title: "Email Support",
+    description: "Send us detailed queries via email",
+    availability: "Always Open",
+    action: "Send Email",
+    response: "Within 4 hours",
+  },
+  {
+    icon: <Phone className="h-8 w-8 text-orange-600" />,
+    title: "Phone Support",
+    description: "Speak directly with our experts",
+    availability: "Mon-Sat, 9 AM - 7 PM",
+    action: "Call Now",
+    response: "Immediate",
+  },
+  {
+    icon: <FileText className="h-8 w-8 text-purple-600" />,
+    title: "Help Center",
+    description: "Browse our comprehensive FAQ section",
+    availability: "Always Available",
+    action: "Browse FAQs",
+    response: "Self-service",
+  },
+];
+
+const faqs = [
+  {
+    question: "How accurate are your property valuations?",
+    answer:
+      "Our AI-powered valuations have a 95% accuracy rate, validated against actual market transactions and expert assessments. We continuously update our algorithms with the latest market data.",
+  },
+  {
+    question: "How long does it take to get a valuation report?",
+    answer:
+      "Basic property valuations are instant. Detailed PDF reports with comprehensive market analysis are generated within 2-3 minutes of form submission.",
+  },
+  {
+    question: "Can I get valuations for commercial properties?",
+    answer:
+      "Yes, we provide valuations for both residential and commercial properties including offices, retail spaces, warehouses, and industrial properties.",
+  },
+  {
+    question: "Do you cover all cities in India?",
+    answer:
+      "We currently cover 50+ major cities across India including Surat, Delhi, Bangalore, Hyderabad, Chennai, Pune, and more. We're continuously expanding our coverage.",
+  },
+  {
+    question: "Is my property information secure?",
+    answer:
+      "Absolutely. We use bank-level encryption and security measures to protect all your property and personal information. Your data is never shared with third parties.",
+  },
+  {
+    question: "Can I download my valuation report?",
+    answer:
+      "Yes, all valuation reports are available as downloadable PDFs with detailed analysis, comparable properties, and market insights.",
+  },
+];
+
+const validationSchema = Yup.object({
+  firstName: Yup.string().required("First name required"),
+  lastName: Yup.string().required("Last name required"),
+  email: Yup.string().email("Invalid email").required("Email required"),
+  phone: Yup.string().max(10, "Invalid phone").required("Phone required"),
+  subject: Yup.string().required("Subject required"),
+  message: Yup.string()
+    .max(1500, "Max 1500 characters")
+    .required("Message required"),
+});
 
 export default function SupportPage() {
-  const supportOptions = [
-    {
-      icon: <MessageSquare className="h-8 w-8 text-emerald-600" />,
-      title: "Live Chat",
-      description: "Get instant help from our support team",
-      availability: "24/7 Available",
-      action: "Start Chat",
-      response: "Immediate",
-    },
-    {
-      icon: <Mail className="h-8 w-8 text-blue-600" />,
-      title: "Email Support",
-      description: "Send us detailed queries via email",
-      availability: "Always Open",
-      action: "Send Email",
-      response: "Within 4 hours",
-    },
-    {
-      icon: <Phone className="h-8 w-8 text-orange-600" />,
-      title: "Phone Support",
-      description: "Speak directly with our experts",
-      availability: "Mon-Sat, 9 AM - 7 PM",
-      action: "Call Now",
-      response: "Immediate",
-    },
-    {
-      icon: <FileText className="h-8 w-8 text-purple-600" />,
-      title: "Help Center",
-      description: "Browse our comprehensive FAQ section",
-      availability: "Always Available",
-      action: "Browse FAQs",
-      response: "Self-service",
-    },
-  ];
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
 
-  const faqs = [
-    {
-      question: "How accurate are your property valuations?",
-      answer:
-        "Our AI-powered valuations have a 95% accuracy rate, validated against actual market transactions and expert assessments. We continuously update our algorithms with the latest market data.",
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      phone: "",
+      lastName: "",
+      email: "",
+      subject: "",
+      message: "",
     },
-    {
-      question: "How long does it take to get a valuation report?",
-      answer:
-        "Basic property valuations are instant. Detailed PDF reports with comprehensive market analysis are generated within 2-3 minutes of form submission.",
+    validationSchema,
+    onSubmit: async (values, { resetForm }) => {
+      setLoading(true);
+      try {
+        await createSupportQuery(values);
+
+        toast({
+          title: "Submitted ✅",
+          description: "Your support request has been sent successfully.",
+        });
+
+        resetForm();
+      } catch (err: any) {
+        toast({
+          title: "Failed ❌",
+          description: err.message,
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
+      }
     },
-    {
-      question: "Can I get valuations for commercial properties?",
-      answer:
-        "Yes, we provide valuations for both residential and commercial properties including offices, retail spaces, warehouses, and industrial properties.",
-    },
-    {
-      question: "Do you cover all cities in India?",
-      answer:
-        "We currently cover 50+ major cities across India including Surat, Delhi, Bangalore, Hyderabad, Chennai, Pune, and more. We're continuously expanding our coverage.",
-    },
-    {
-      question: "Is my property information secure?",
-      answer:
-        "Absolutely. We use bank-level encryption and security measures to protect all your property and personal information. Your data is never shared with third parties.",
-    },
-    {
-      question: "Can I download my valuation report?",
-      answer:
-        "Yes, all valuation reports are available as downloadable PDFs with detailed analysis, comparable properties, and market insights.",
-    },
-  ];
+  });
+
+  const { values, errors, touched, handleChange, handleSubmit, setFieldValue } =
+    formik;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -171,7 +227,7 @@ export default function SupportPage() {
 
           <Card className="shadow-2xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="firstName" className="text-slate-700">
@@ -181,8 +237,12 @@ export default function SupportPage() {
                       id="firstName"
                       placeholder="Enter your first name"
                       className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
-                      required
+                      value={values.firstName}
+                      onChange={handleChange}
                     />
+                    {touched.firstName && errors.firstName && (
+                      <p className="text-red-500 text-sm">{errors.firstName}</p>
+                    )}
                   </div>
                   <div>
                     <Label htmlFor="lastName" className="text-slate-700">
@@ -192,49 +252,81 @@ export default function SupportPage() {
                       id="lastName"
                       placeholder="Enter your last name"
                       className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
-                      required
+                      value={values.lastName}
+                      onChange={handleChange}
                     />
+                    {touched.lastName && errors.lastName && (
+                      <p className="text-red-500 text-sm">{errors.lastName}</p>
+                    )}
                   </div>
                 </div>
-
-                <div>
-                  <Label htmlFor="email" className="text-slate-700">
-                    Email Address *
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email address"
-                    className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
-                    required
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="email" className="text-slate-700">
+                      Email Address *
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email address"
+                      className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
+                      value={values.email}
+                      onChange={handleChange}
+                    />
+                    {touched.email && errors.email && (
+                      <p className="text-red-500 text-sm">{errors.email}</p>
+                    )}
+                  </div>
+                  <div className="div">
+                    <Label htmlFor="phone" className="text-slate-700">
+                      Phone Number *
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
+                      value={values.phone}
+                      onChange={handleChange}
+                    />
+                    {touched.phone && errors.phone && (
+                      <p className="text-red-500 text-sm">{errors.phone}</p>
+                    )}
+                  </div>
                 </div>
 
                 <div>
                   <Label htmlFor="subject" className="text-slate-700">
                     Subject *
                   </Label>
-                  <Select>
+                  <Select
+                    onValueChange={(val) => setFieldValue("subject", val)}
+                  >
                     <SelectTrigger className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500">
                       <SelectValue placeholder="Select a subject" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="valuation">
+                      <SelectItem value="Property Valuation Help">
                         Property Valuation Help
                       </SelectItem>
-                      <SelectItem value="technical">
+                      <SelectItem value="Technical Support">
                         Technical Support
                       </SelectItem>
-                      <SelectItem value="billing">
+                      <SelectItem value="Billing & Payments">
                         Billing & Payments
                       </SelectItem>
-                      <SelectItem value="account">Account Issues</SelectItem>
+                      <SelectItem value="Account Issues">
+                        Account Issues
+                      </SelectItem>
                       <SelectItem value="feedback">
                         Feedback & Suggestions
                       </SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>
                   </Select>
+                  {touched.subject && errors.subject && (
+                    <p className="text-red-500 text-sm">{errors.subject}</p>
+                  )}
                 </div>
 
                 <div>
@@ -246,15 +338,20 @@ export default function SupportPage() {
                     placeholder="Describe your issue or question in detail..."
                     rows={6}
                     className="mt-1 border-2 border-slate-200 focus:border-emerald-500 resize-none"
-                    required
+                    value={values.message}
+                    onChange={handleChange}
                   />
+                  {touched.message && errors.message && (
+                    <p className="text-red-500 text-sm">{errors.message}</p>
+                  )}
                 </div>
 
                 <Button
                   type="submit"
+                  disabled={loading}
                   className="w-full h-12 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  Send Message
+                  {loading ? "Submitting..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,14 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   MapPin,
-  Phone,
   Mail,
   Clock,
   MessageSquare,
@@ -29,6 +24,9 @@ import {
   Users,
 } from "lucide-react";
 import FaqAccordion from "@/components/common/FaqAccordion";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { sendContactMessage } from "../api/contact";
 
 export default function ContactPage() {
   const contactInfo = [
@@ -37,11 +35,6 @@ export default function ContactPage() {
       title: "Office Address",
       details: ["Surat, Gujarat, 395003", "India"],
     },
-    // {
-    //   icon: <Phone className="h-6 w-6 text-blue-600" />,
-    //   title: "Phone Numbers",
-    //   details: ["+91 98765 43210", "+91 98765 43211", "Mon-Sat: 9AM-7PM"],
-    // },
     {
       icon: <Mail className="h-6 w-6 text-orange-600" />,
       title: "Email Addresses",
@@ -88,6 +81,59 @@ export default function ContactPage() {
       action: "Book Now",
     },
   ];
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
+
+  const handleSubjectChange = (value: string) => {
+    setForm({ ...form, subject: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setLoading(true);
+    try {
+      await sendContactMessage(form);
+
+      toast({
+        title: "Message Sent ✅",
+        description:
+          "Thank you for contacting us. We’ll get back to you shortly.",
+      });
+
+      // Reset form
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err: any) {
+      toast({
+        title: "Failed ❌",
+        description: err.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -120,7 +166,7 @@ export default function ContactPage() {
                 </p>
               </CardHeader>
               <CardContent className="space-y-6">
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName" className="text-slate-700">
@@ -131,6 +177,8 @@ export default function ContactPage() {
                         placeholder="Enter your first name"
                         className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
                         required
+                        value={form.firstName}
+                        onChange={handleChange}
                       />
                     </div>
                     <div>
@@ -142,6 +190,8 @@ export default function ContactPage() {
                         placeholder="Enter your last name"
                         className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
                         required
+                        value={form.lastName}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -156,6 +206,8 @@ export default function ContactPage() {
                       placeholder="Enter your email address"
                       className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
                       required
+                      value={form.email}
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -168,6 +220,8 @@ export default function ContactPage() {
                       type="tel"
                       placeholder="Enter your phone number"
                       className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500"
+                      value={form.phone}
+                      onChange={handleChange}
                     />
                   </div>
 
@@ -175,7 +229,7 @@ export default function ContactPage() {
                     <Label htmlFor="subject" className="text-slate-700">
                       Subject *
                     </Label>
-                    <Select>
+                    <Select onValueChange={handleSubjectChange}>
                       <SelectTrigger className="mt-1 h-12 border-2 border-slate-200 focus:border-emerald-500">
                         <SelectValue placeholder="Select a subject" />
                       </SelectTrigger>
@@ -205,14 +259,17 @@ export default function ContactPage() {
                       rows={5}
                       className="mt-1 border-2 border-slate-200 focus:border-emerald-500 resize-none"
                       required
+                      value={form.message}
+                      onChange={handleChange}
                     />
                   </div>
 
                   <Button
                     type="submit"
+                    disabled={loading}
                     className="w-full h-12 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                   >
-                    Send Message
+                    {loading ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>

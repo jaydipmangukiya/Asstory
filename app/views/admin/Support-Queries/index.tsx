@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -11,37 +10,49 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Users, Loader2, Pencil } from "lucide-react";
+import {
+  Users,
+  Loader2,
+  Pencil,
+  HandHelping,
+  HandCoins,
+  HandshakeIcon,
+  HandMetal,
+  HandHelpingIcon,
+  HandMetalIcon,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
-import { getPropertyInterests } from "@/app/api/interestedProperty";
-import InterestStatusModal from "./Form/InterestStatusModal";
+import { getSupportQueries } from "@/app/api/support";
+import { Button } from "@/components/ui/button";
+import UpdateStatusModal from "./Form/UpdateStatusModal";
 
-const InterestedPropertyList = () => {
+const SupportQueriesList = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const [interests, setInterests] = useState<any[]>([]);
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [openStatusModal, setOpenStatusModal] = useState(false);
-  const [selectedInterest, setSelectedInterest] = useState(null);
+  const [supportQueries, setSupportQueries] = useState<any[]>([]);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedQuery, setSelectedQuery] = useState<any>(null);
 
   useEffect(() => {
-    fetchInterests();
+    fetchSupportQueries();
   }, [currentPage]);
 
-  const fetchInterests = async () => {
+  const fetchSupportQueries = async () => {
     setLoading(true);
     try {
       const skip = (currentPage - 1) * rowPerPage;
-      const response = await getPropertyInterests(rowPerPage, skip);
-      setInterests(response.data || []);
-      setTotalItems(response?.pagination?.totalCount || 0);
+      const response = await getSupportQueries(rowPerPage, skip);
+      setSupportQueries(response.data || []);
+      setTotalItems(response?.total || 0);
     } catch (err: any) {
       toast({
-        title: "Failed to load interests ❌",
+        title: "Failed to load support queries ❌",
         description: err?.message,
         variant: "destructive",
       });
@@ -59,15 +70,15 @@ const InterestedPropertyList = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">
-            Interested Properties (User Requests)
+            Support Queries (User Requests)
           </h1>
         </div>
       </div>
 
-      {/* Interest Property Table */}
+      {/* Support Queries Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Interest Property Requests</CardTitle>
+          <CardTitle> Support Queries Requests</CardTitle>
         </CardHeader>
         <CardContent>
           {/* Table */}
@@ -76,13 +87,13 @@ const InterestedPropertyList = () => {
               <div className="flex items-center justify-center min-h-[200px]">
                 <div className="text-center">
                   <Loader2 className="h-12 w-12 animate-spin text-emerald-600 mx-auto mb-4" />
-                  <p className="text-slate-600">Loading interests..</p>
+                  <p className="text-slate-600">Loading Support Queries..</p>
                 </div>
               </div>
-            ) : interests.length === 0 ? (
+            ) : supportQueries.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 text-slate-500">
-                <Users className="h-10 w-10 mb-2" />
-                <p>No interested user data found.</p>
+                <HandshakeIcon className="h-10 w-10 mb-2" />
+                <p>No Support Queries data found.</p>
               </div>
             ) : (
               <Table>
@@ -91,10 +102,8 @@ const InterestedPropertyList = () => {
                     <TableHead>Name</TableHead>
                     <TableHead>Email</TableHead>
                     <TableHead>Mobile</TableHead>
+                    <TableHead>Subject</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead className="hidden md:table-cell">
-                      Company
-                    </TableHead>
                     <TableHead className="hidden md:table-cell">
                       Submitted On
                     </TableHead>
@@ -102,19 +111,28 @@ const InterestedPropertyList = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {interests?.map((item) => (
+                  {supportQueries?.map((item) => (
                     <TableRow key={item._id}>
                       <TableCell className="font-semibold">
-                        {item.name}
+                        {item.firstName} {item.lastName}
                       </TableCell>
                       <TableCell>{item.email}</TableCell>
-                      <TableCell>{item.mobile}</TableCell>
-                      <TableCell>{item.status}</TableCell>
-                      <TableCell>{item.companyName || "-"}</TableCell>
+                      <TableCell>{item.phone}</TableCell>
+                      <TableCell>{item.subject}</TableCell>
+                      <TableCell>
+                        <span
+                          className={`px-2 py-1 rounded text-xs font-medium ${
+                            item.status === "resolved"
+                              ? "bg-green-100 text-green-700"
+                              : "bg-yellow-100 text-yellow-700"
+                          }`}
+                        >
+                          {item.status}
+                        </span>
+                      </TableCell>
                       <TableCell>
                         {new Date(item.createdAt).toLocaleString()}
                       </TableCell>
-
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
                           <Button
@@ -122,8 +140,8 @@ const InterestedPropertyList = () => {
                             variant="outline"
                             className="h-8 w-8 p-0"
                             onClick={() => {
-                              setSelectedInterest(item);
-                              setOpenStatusModal(true);
+                              setSelectedQuery(item);
+                              setOpenModal(true);
                             }}
                           >
                             <Pencil className="h-3 w-3" />
@@ -146,17 +164,18 @@ const InterestedPropertyList = () => {
           />
         </CardContent>
       </Card>
-      {openStatusModal && (
-        <InterestStatusModal
-          open={openStatusModal}
-          interest={selectedInterest}
+      {openModal && selectedQuery && (
+        <UpdateStatusModal
+          open={openModal}
+          query={selectedQuery}
           onClose={(updated: any) => {
-            setOpenStatusModal(false);
-            if (updated) fetchInterests();
+            setOpenModal(false);
+            setSelectedQuery(null);
+            if (updated) fetchSupportQueries();
           }}
         />
       )}
     </div>
   );
 };
-export default InterestedPropertyList;
+export default SupportQueriesList;

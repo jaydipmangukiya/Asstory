@@ -15,6 +15,7 @@ import {
   X,
   UserCheck,
   EyeOff,
+  HandshakeIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -47,6 +48,11 @@ export default function AdminLayout({
       icon: Building2,
     },
     { name: "Staff", href: "/admin/staff", icon: UserCheck },
+    {
+      name: "Support Queries",
+      href: "/admin/support-queries",
+      icon: HandshakeIcon,
+    },
     { name: "Settings", href: "/admin/settings", icon: Settings },
   ];
 

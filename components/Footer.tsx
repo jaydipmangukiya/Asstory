@@ -91,22 +91,22 @@ export function Footer() {
             <p className="text-gray-400 text-sm">
               © 2025 PropValuer. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
+            <div className="flex space-x-4 sm:space-x-6 mt-4 md:mt-0">
               <Link
                 href="/privacy-policy"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
+                className="text-gray-400 hover:text-white sm:text-sm text-[11px] transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
+                className="text-gray-400 hover:text-white sm:text-sm text-[11px] transition-colors"
               >
                 Terms & Conditions
               </Link>
               <Link
                 href="/refund-policy"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
+                className="text-gray-400 hover:text-white sm:text-sm text-[11px] transition-colors"
               >
                 Refund Policy
               </Link>
