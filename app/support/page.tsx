@@ -217,7 +217,7 @@ export default function SupportPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Send Us a Message
+              Send Us a Queries
             </h2>
             <p className="text-xl text-slate-600">
               Fill out the form below and we&#39;ll get back to you within 4
@@ -331,7 +331,7 @@ export default function SupportPage() {
 
                 <div>
                   <Label htmlFor="message" className="text-slate-700">
-                    Message *
+                    Queries Message *
                   </Label>
                   <Textarea
                     id="message"
@@ -351,7 +351,7 @@ export default function SupportPage() {
                   disabled={loading}
                   className="w-full h-12 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  {loading ? "Submitting..." : "Send Message"}
+                  {loading ? "Submitting..." : "Send Queries"}
                 </Button>
               </form>
             </CardContent>

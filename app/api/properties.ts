@@ -80,3 +80,20 @@ export const updateProperty = async (propertyId: string, payload: any) => {
     throw new Error(error?.message || "Failed to update property");
   }
 };
+
+export const uploadBulkProperty = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  try {
+    const res = await axiosInstance.post("/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return res.data;
+  } catch (err: any) {
+    throw new Error(
+      err?.response?.data?.message || "Failed to upload bulk property file"
+    );
+  }
+};

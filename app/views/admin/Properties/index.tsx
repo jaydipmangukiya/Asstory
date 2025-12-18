@@ -33,6 +33,7 @@ import {
   deleteProperty,
   getProperties,
   Properties,
+  uploadBulkProperty,
 } from "@/app/api/properties";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
@@ -41,6 +42,7 @@ import StatusBadge from "@/components/common/StatusBadge";
 import DeleteDialog from "@/components/common/DeleteDialog";
 import PropertyForm from "./Form/PropertyForm";
 import ViewPropertyModal from "./View/PropertyDetails";
+import BulkPropertyUpload from "../Auction-Property/Form/BulkPropertyUpload";
 
 const PropertiesList = () => {
   const { toast } = useToast();
@@ -55,6 +57,10 @@ const PropertiesList = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [viewId, setViewId] = useState<string | null>(null);
+
+  const [bulkModalOpen, setBulkModalOpen] = useState(false);
+  const [bulkFile, setBulkFile] = useState<File | null>(null);
+  const [bulkUploading, setBulkUploading] = useState(false);
 
   useEffect(() => {
     fetchProperties();
@@ -113,6 +119,44 @@ const PropertiesList = () => {
     setCurrentPage(page);
   };
 
+  const handleBulkUpload = async () => {
+    if (!bulkFile) {
+      toast({
+        title: "File required",
+        description: "Please select an Excel (.xlsx) file",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setBulkUploading(true);
+      await uploadBulkProperty(bulkFile);
+
+      toast({
+        title: "Upload Started ✅",
+        description: "File is processing in background",
+      });
+
+      setBulkModalOpen(false);
+      setBulkFile(null);
+      fetchProperties();
+    } catch (err: any) {
+      toast({
+        title: "Upload Failed ❌",
+        description: err.message,
+        variant: "destructive",
+      });
+    } finally {
+      setBulkUploading(false);
+    }
+  };
+
+  const handleBulkModalClose = () => {
+    setBulkModalOpen(false);
+    setBulkFile(null);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -122,13 +166,22 @@ const PropertiesList = () => {
           </h1>
           <p className="text-slate-600">Manage property listings and uploads</p>
         </div>
-        <Button
-          className="bg-emerald-600 hover:bg-emerald-700"
-          onClick={() => setIsAddModalOpen(true)}
-        >
-          <Plus className="h-4 w-4 mr-2" />
-          Add Property
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            className="bg-emerald-600 hover:bg-emerald-700"
+            onClick={() => setBulkModalOpen(true)}
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add Bulk Property
+          </Button>
+          <Button
+            className="bg-emerald-600 hover:bg-emerald-700"
+            onClick={() => setIsAddModalOpen(true)}
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add Property
+          </Button>
+        </div>
       </div>
 
       {/* Stats */}
@@ -307,6 +360,13 @@ const PropertiesList = () => {
         open={!!viewId}
         onClose={() => setViewId(null)}
         propertyId={viewId}
+      />
+      <BulkPropertyUpload
+        open={bulkModalOpen}
+        onClose={handleBulkModalClose}
+        onUpload={handleBulkUpload}
+        loading={bulkUploading}
+        onFileSelect={setBulkFile}
       />
     </div>
   );
