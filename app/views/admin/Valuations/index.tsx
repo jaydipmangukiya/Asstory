@@ -87,10 +87,12 @@ const ValuationsList = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
             Valuation Reports
           </h1>
-          <p className="text-slate-600">Manage all valuation requests</p>
+          <p className="text-sm sm:text-base text-slate-600">
+            Manage all valuation requests
+          </p>
         </div>
       </div>
 

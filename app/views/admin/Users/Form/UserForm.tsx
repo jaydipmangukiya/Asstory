@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { createUser } from "@/app/api/userService";
-import { Loader2, Plus, Mail, User, Phone, Shield } from "lucide-react";
+import { Loader2, Plus, Mail, User, Phone } from "lucide-react";
 import { UserFormData } from "@/app/api/userService";
 
 interface AddUserModalProps {

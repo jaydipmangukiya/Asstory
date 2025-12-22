@@ -110,9 +110,9 @@ const AuctionPropertyList = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
             Auction Property Management
           </h1>
         </div>
@@ -156,7 +156,9 @@ const AuctionPropertyList = () => {
                     <TableHead className="hidden lg:table-cell">City</TableHead>
                     <TableHead>Bank</TableHead>
                     <TableHead>Price</TableHead>
-                    <TableHead>Views</TableHead>
+                    <TableHead className="hidden md:table-cell">
+                      Views
+                    </TableHead>
                     <TableHead>Auction Start</TableHead>
                     <TableHead>Auction End</TableHead>
                     <TableHead>Images</TableHead>
@@ -169,13 +171,19 @@ const AuctionPropertyList = () => {
                       <TableCell className="font-medium">
                         <div className="font-semibold">{properties.title}</div>
                       </TableCell>
-                      <TableCell>{properties.state}</TableCell>
-                      <TableCell>{properties.city}</TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {properties.state}
+                      </TableCell>
+                      <TableCell className="hidden lg:table-cell">
+                        {properties.city}
+                      </TableCell>
                       <TableCell>{properties.bankName}</TableCell>
                       <TableCell>
                         ₹ {properties.price?.toLocaleString()}
                       </TableCell>
-                      <TableCell>{properties.views ?? 0}</TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {properties.views ?? 0}
+                      </TableCell>
                       <TableCell>
                         {properties.auctionDetails?.auctionStart
                           ? new Date(

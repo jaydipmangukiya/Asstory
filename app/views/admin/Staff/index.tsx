@@ -114,12 +114,14 @@ const StaffList = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
             Staff Management
           </h1>
-          <p className="text-slate-600">Manage team members and their roles</p>
+          <p className="text-sm sm:text-base text-slate-600">
+            Manage team members and their roles
+          </p>
         </div>
         <Button
           className="bg-emerald-600 hover:bg-emerald-700"

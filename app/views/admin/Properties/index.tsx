@@ -167,14 +167,16 @@ const PropertiesList = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
             Property Management
           </h1>
-          <p className="text-slate-600">Manage property listings and uploads</p>
+          <p className="text-sm sm:text-base text-slate-600">
+            Manage property listings and uploads
+          </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
           <Button
             className="bg-emerald-600 hover:bg-emerald-700"
             onClick={() => setBulkModalOpen(true)}
@@ -267,7 +269,9 @@ const PropertiesList = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Address</TableHead>
+                    <TableHead className="hidden md:table-cell">
+                      Address
+                    </TableHead>
                     <TableHead>Property Type</TableHead>
                     <TableHead>Longitude</TableHead>
                     <TableHead>Latitude</TableHead>
@@ -289,9 +293,7 @@ const PropertiesList = () => {
                             <span className="text-sm">{property.address}</span>
                           </div>
                         </TableCell>
-                        <TableCell className="sm:table-cell">
-                          {property.type_of_property}
-                        </TableCell>
+                        <TableCell>{property.type_of_property}</TableCell>
                         <TableCell>{longitude}</TableCell>
                         <TableCell>{latitude}</TableCell>
                         <TableCell>

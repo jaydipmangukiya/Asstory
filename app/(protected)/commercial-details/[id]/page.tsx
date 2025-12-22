@@ -5,8 +5,6 @@ import { useParams, useRouter } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import {
   IndianRupee,
   TrendingUp,
@@ -15,10 +13,8 @@ import {
   Calendar,
   MapPin,
   ArrowLeft,
-  Download,
   FileText,
   BarChart3,
-  Loader,
   Building,
   User,
   AlertTriangle,
@@ -55,7 +51,6 @@ export default function CommercialDetails() {
       try {
         const res = await getReportById(`${id}`);
         const data = res.report;
-        console.log(data, "data");
         setReportData(data);
 
         if (data.latitude && data.longitude) {

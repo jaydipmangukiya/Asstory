@@ -3,23 +3,23 @@
 import { useContext } from "react";
 import { UserContext } from "@/components/authentication/UserProvider";
 import {
-  Loader,
-  User,
   Phone,
   Mail,
   ShieldCheck,
   CheckCircle,
   AlertTriangle,
-  FileText,
   CreditCard,
   Crown,
   Loader2,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 export default function ProfilePage() {
   const { userData, loading } = useContext(UserContext)!;
+  const router = useRouter();
 
   if (loading || !userData) {
     return (
@@ -117,6 +117,15 @@ export default function ProfilePage() {
                   </p>
                 </div>
               </div>
+            </div>
+            <div className="bg-white shadow-xl rounded-xl p-6 border border-slate-200">
+              <h3 className="text-lg font-semibold mb-4">Login to Dashboard</h3>
+              <Button
+                onClick={() => router.push("/admin")}
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition"
+              >
+                Go to Admin Dashboard
+              </Button>
             </div>
           </div>
 

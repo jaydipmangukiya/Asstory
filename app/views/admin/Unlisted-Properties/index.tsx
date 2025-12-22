@@ -115,10 +115,10 @@ const UnlistedPropertiesList = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
             Unlisted Properties
           </h1>
-          <p className="text-slate-600">
+          <p className="text-sm sm:text-base text-slate-600">
             Manage properties that are not publicly listed
           </p>
         </div>
@@ -246,10 +246,7 @@ const UnlistedPropertiesList = () => {
                         </div>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        <div className="flex items-center space-x-1">
-                          <MapPin className="h-3 w-3 text-slate-400" />
-                          <span className="text-sm">{property.address}</span>
-                        </div>
+                        <span className="text-sm">{property.address}</span>
                       </TableCell>
                       <TableCell className="hidden lg:table-cell">
                         <div className="flex items-center space-x-1">

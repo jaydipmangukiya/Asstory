@@ -24,7 +24,7 @@ axiosInstance.interceptors.response.use(
     if (status === 401) {
       if (typeof window !== "undefined") {
         localStorage.removeItem("token");
-        // window.location.href = "/";
+        window.location.href = "/";
       }
     }
 

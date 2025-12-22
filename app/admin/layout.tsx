@@ -18,6 +18,7 @@ import {
   HandshakeIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import LogoutButton from "@/components/authentication/LogoutButton";
 
 export default function AdminLayout({
   children,
@@ -147,6 +148,10 @@ export default function AdminLayout({
                   </span>
                 </div>
               </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-slate-700 font-medium">Admin</span>
+              <LogoutButton />
             </div>
           </div>
         </header>

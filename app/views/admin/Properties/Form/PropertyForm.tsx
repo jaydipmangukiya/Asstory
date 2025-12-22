@@ -196,7 +196,11 @@ export default function PropertyForm({
             <p className="text-slate-600">Loading property data...</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit}>
+          <form
+            id="auctionForm"
+            onSubmit={handleSubmit}
+            className="max-h-[70vh] overflow-y-auto"
+          >
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Type of Property */}
@@ -454,33 +458,33 @@ export default function PropertyForm({
                 </Button>{" "}
               </div>{" "}
             </div> */}
-
-              <DialogFooter>
-                <Button
-                  type="submit"
-                  className="bg-[#003f32] text-white"
-                  disabled={loading}
-                >
-                  {loading
-                    ? isEditMode
-                      ? "Updating..."
-                      : "Adding..."
-                    : isEditMode
-                    ? "Update Property"
-                    : "Add Property"}
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={onClose}
-                  disabled={loading}
-                >
-                  Cancel
-                </Button>
-              </DialogFooter>
             </div>
           </form>
         )}
+        <DialogFooter className="gap-2">
+          <Button
+            type="submit"
+            form="auctionForm"
+            className="bg-[#003f32] text-white"
+            disabled={loading}
+          >
+            {loading
+              ? isEditMode
+                ? "Updating..."
+                : "Adding..."
+              : isEditMode
+              ? "Update Property"
+              : "Add Property"}
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onClose}
+            disabled={loading}
+          >
+            Cancel
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

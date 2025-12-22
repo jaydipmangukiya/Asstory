@@ -10,17 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Users,
-  Loader2,
-  Pencil,
-  HandHelping,
-  HandCoins,
-  HandshakeIcon,
-  HandMetal,
-  HandHelpingIcon,
-  HandMetalIcon,
-} from "lucide-react";
+import { Loader2, Pencil, HandshakeIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
@@ -69,7 +59,7 @@ const SupportQueriesList = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
             Support Queries (User Requests)
           </h1>
         </div>
@@ -130,7 +120,7 @@ const SupportQueriesList = () => {
                           {item.status}
                         </span>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="hidden md:table-cell">
                         {new Date(item.createdAt).toLocaleString()}
                       </TableCell>
                       <TableCell className="text-right">

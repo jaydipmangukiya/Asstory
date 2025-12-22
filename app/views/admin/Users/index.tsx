@@ -154,10 +154,12 @@ const UsersList = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">User Management</h1>
-          <p className="text-slate-600">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
+            User Management
+          </h1>
+          <p className="text-sm sm:text-base text-slate-600">
             Manage registered users and their accounts
           </p>
         </div>
@@ -260,9 +262,9 @@ const UsersList = () => {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Email</TableHead>
-                    <TableHead className="hidden sm:table-cell">Role</TableHead>
+                    <TableHead className="hidden md:table-cell">Role</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead className="hidden sm:table-cell">
+                    <TableHead className="hidden lg:table-cell">
                       Subscription
                     </TableHead>
                     <TableHead className="hidden lg:table-cell">

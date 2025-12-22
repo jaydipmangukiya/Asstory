@@ -67,12 +67,12 @@ export function Pagination({
   };
 
   return (
-    <div className="flex items-center justify-between space-x-2 py-4">
-      <div className="text-sm text-slate-600">
+    <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div className="text-sm text-slate-600 text-center md:text-left">
         Showing {startIndex + 1} to {endIndex} of {totalItems} entries
       </div>
 
-      <div className="flex items-center space-x-2">
+      <div className="flex flex-wrap items-center justify-center gap-2">
         <Button
           variant="outline"
           size="sm"

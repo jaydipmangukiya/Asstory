@@ -8,7 +8,7 @@ import { getSubscription } from "@/app/api/subscription";
 import { Loader } from "lucide-react";
 import axiosInstance from "@/lib/axiosInstance";
 import { UserContext } from "@/components/authentication/UserProvider";
-import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
+import { RazorpayOrderOptions } from "react-razorpay";
 import { useRouter } from "next/navigation";
 
 interface SubscriptionPlansProps {
@@ -19,7 +19,6 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
   const [plans, setPlans] = useState<any[]>([]);
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  // const Razorpay = useRazorpay();
   const router = useRouter();
   const { userData, refetchUserData } = useContext(UserContext)!;
 
