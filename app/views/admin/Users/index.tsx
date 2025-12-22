@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -19,9 +20,18 @@ import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
-import UserDetailsModal from "./View/UserDetails";
-import UserForm from "./Form/UserForm";
 import DeleteDialog from "@/components/common/DeleteDialog";
+
+// Dynamically import modals to reduce initial bundle size
+const UserDetailsModal = dynamic(() => import("./View/UserDetails"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false,
+});
+
+const UserForm = dynamic(() => import("./Form/UserForm"), {
+  loading: () => <div>Loading form...</div>,
+  ssr: false,
+});
 
 const UsersList = () => {
   const { toast } = useToast();
@@ -319,13 +329,6 @@ const UsersList = () => {
                             onClick={() => handleViewUser(user._id)}
                           >
                             <Eye className="h-3 w-3" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="h-8 w-8 p-0"
-                          >
-                            <Pencil className="h-3 w-3" />
                           </Button>
                           <Button
                             size="sm"

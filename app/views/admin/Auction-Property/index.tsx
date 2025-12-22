@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +17,15 @@ import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
 import DeleteDialog from "@/components/common/DeleteDialog";
-import AuctionPropertyForm from "./Form/AuctionPropertyForm";
+
+// Dynamically import AuctionPropertyForm to reduce initial bundle size
+const AuctionPropertyForm = dynamic(
+  () => import("./Form/AuctionPropertyForm"),
+  {
+    loading: () => <div>Loading form...</div>,
+    ssr: false,
+  }
+);
 import {
   AuctionProperty,
   deleteAuctionProperty,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,8 +31,17 @@ import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
 import DeleteDialog from "@/components/common/DeleteDialog";
-import StaffForm from "./Form/StaffForm";
-import ViewStaffModal from "./View/StaffDetails";
+
+// Dynamically import forms to reduce initial bundle size
+const StaffForm = dynamic(() => import("./Form/StaffForm"), {
+  loading: () => <div>Loading form...</div>,
+  ssr: false,
+});
+
+const ViewStaffModal = dynamic(() => import("./View/StaffDetails"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false,
+});
 
 const StaffList = () => {
   const { toast } = useToast();

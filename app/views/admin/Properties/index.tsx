@@ -1,17 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   Table,
   TableBody,
@@ -40,9 +32,25 @@ import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
 import DeleteDialog from "@/components/common/DeleteDialog";
-import PropertyForm from "./Form/PropertyForm";
-import ViewPropertyModal from "./View/PropertyDetails";
-import BulkPropertyUpload from "../Auction-Property/Form/BulkPropertyUpload";
+
+// Dynamically import forms to reduce initial bundle size
+const PropertyForm = dynamic(() => import("./Form/PropertyForm"), {
+  loading: () => <div>Loading form...</div>,
+  ssr: false,
+});
+
+const ViewPropertyModal = dynamic(() => import("./View/PropertyDetails"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false,
+});
+
+const BulkPropertyUpload = dynamic(
+  () => import("../Auction-Property/Form/BulkPropertyUpload"),
+  {
+    loading: () => <div>Loading...</div>,
+    ssr: false,
+  }
+);
 
 const PropertiesList = () => {
   const { toast } = useToast();
