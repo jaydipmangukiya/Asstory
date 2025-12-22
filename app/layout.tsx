@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     "Get instant, accurate property valuations powered by advanced market analysis and comprehensive data insights. Know your property's true worth with PropValuer.",
   keywords:
     "property valuation, real estate, property price, market analysis, property worth",
+  icons: {
+    icon: "/assets/images/logo.svg",
+  },
 };
 
 export default function RootLayout({

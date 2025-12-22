@@ -2,14 +2,12 @@
 
 import { useContext, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Building2, Menu, X, User, LogOut, History } from "lucide-react";
+import { Building2, Menu, X, User, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import LogoutButton from "./authentication/LogoutButton";
 import { UserContext } from "./authentication/UserProvider";
 
 export function Header() {
-  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
