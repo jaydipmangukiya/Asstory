@@ -180,7 +180,7 @@ export default function ProfilePage() {
                   <div className="mt-4">
                     <h4 className="font-bold text-slate-700 mb-2">Features</h4>
                     <ul className="list-disc ml-6 text-slate-600">
-                      {subscription.specification.map(
+                      {subscription?.specification?.map(
                         (spec: string, i: number) => (
                           <li key={i}>{spec}</li>
                         )
