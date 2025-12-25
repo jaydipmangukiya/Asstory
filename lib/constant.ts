@@ -7,7 +7,7 @@ export const roleOptions = [
   { label: "Individual", value: "INDIVIDUAL" },
 ];
 
-export const DASHBOARD_ROLES = ["SUPER_ADMIN", "MANAGER", "VALUER"];
+export const DASHBOARD_ROLES = ["SUPER_ADMIN", "MANAGER", "VALUER", "BANKER"];
 
 export const PERMISSIONS = {
   DASHBOARD: {
