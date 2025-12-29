@@ -33,6 +33,9 @@ export default function PropertyDetailsPage({ params }: any) {
   const [imageModalOpen, setImageModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
 
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
   useEffect(() => {
     if (!id) return;
     fetchDetails();
@@ -63,6 +66,35 @@ export default function PropertyDetailsPage({ params }: any) {
   const hasImages = property?.images && property.images.length > 0;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const propertyUrl = `${baseUrl}/property-auction-list/${id}`;
+
+  const handleModalTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleModalTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleModalTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+
+    const distance = touchStartX - touchEndX;
+    const minSwipeDistance = 50;
+
+    if (distance > minSwipeDistance) {
+      // swipe left → next
+      setModalIndex((prev) =>
+        prev === property.images.length - 1 ? 0 : prev + 1
+      );
+    } else if (distance < -minSwipeDistance) {
+      // swipe right → previous
+      setModalIndex((prev) =>
+        prev === 0 ? property.images.length - 1 : prev - 1
+      );
+    }
+  };
+
 
   return (
     <div className="w-full">
@@ -376,10 +408,14 @@ export default function PropertyDetailsPage({ params }: any) {
             </button>
 
             {/* SLIDER WRAPPER */}
-            <div className="relative w-full h-[70vh] overflow-hidden bg-white">
+            <div className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-white flex items-center justify-center"
+              onTouchStart={handleModalTouchStart}
+              onTouchMove={handleModalTouchMove}
+              onTouchEnd={handleModalTouchEnd}
+            >
               {/* IMAGES */}
               <div
-                className="whitespace-nowrap transition-transform duration-500 h-full"
+                className="whitespace-nowrap transition-transform duration-500 h-full max-h-60 md:max-h-[500px]"
                 style={{ transform: `translateX(-${modalIndex * 100}%)` }}
               >
                 {property.images.map((img: any, idx: number) => (
@@ -389,7 +425,7 @@ export default function PropertyDetailsPage({ params }: any) {
                     alt={`Slide ${idx + 1}`}
                     width={800}
                     height={600}
-                    className="inline-block w-full h-full object-contain"
+                    className="inline-block w-full h-full object-cover"
                   />
                 ))}
               </div>

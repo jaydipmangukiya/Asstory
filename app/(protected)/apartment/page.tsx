@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Loader } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,7 +19,6 @@ import { areaMeasurementOptions } from "@/lib/constant";
 
 const Apartment = () => {
   const router = useRouter();
-  const inputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const { user: userData } = useAuth();
 

@@ -11,27 +11,68 @@ export default function PropertyCard({ data }: any) {
   const [openModal, setOpenModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50;
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) =>
+      prev === data.images.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? data.images.length - 1 : prev - 1
+    );
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+
+    if (distance > minSwipeDistance) nextSlide();
+    if (distance < -minSwipeDistance) prevSlide();
+  };
+
   return (
     <>
       <div className="w-full bg-white rounded-2xl shadow-md hover:shadow-lg transition-all border border-slate-100 overflow-hidden">
         <div className="flex flex-col md:flex-row">
-          <div className="md:w-1/3 relative">
+          <div className="md:w-1/3 relative flex items-center">
             {data.images?.length > 0 ? (
-              <div className="relative w-full h-full overflow-hidden rounded-xl">
+              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}>
                 {/* SLIDER IMAGES */}
                 <div
-                  className="whitespace-nowrap transition-transform duration-500 h-full"
+                  className="flex h-full transition-transform duration-500"
                   style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                   {data.images.map((img: any, idx: number) => (
-                    <Image
+                    <div
                       key={idx}
-                      src={img.url}
-                      fill
-                      className="w-full object-cover rounded-xl"
-                      alt={`Property Image ${idx + 1}`}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
-                    />
+                      className="relative w-full flex-shrink-0"
+                    >
+                      <Image
+                        src={img.url}
+                        fill
+                        className="w-full object-cover rounded-xl"
+                        alt={`Property Image ${idx + 1}`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+                      />
+                    </div>
                   ))}
                 </div>
 
@@ -40,22 +81,14 @@ export default function PropertyCard({ data }: any) {
                   <>
                     <button
                       className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white px-2 py-1 rounded-full"
-                      onClick={() =>
-                        setCurrentIndex((prev) =>
-                          prev === 0 ? data.images.length - 1 : prev - 1
-                        )
-                      }
+                      onClick={prevSlide}
                     >
                       ‹
                     </button>
 
                     <button
                       className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white px-2 py-1 rounded-full"
-                      onClick={() =>
-                        setCurrentIndex((prev) =>
-                          prev === data.images.length - 1 ? 0 : prev + 1
-                        )
-                      }
+                      onClick={nextSlide}
                     >
                       ›
                     </button>
@@ -199,14 +232,15 @@ export default function PropertyCard({ data }: any) {
             </div>
           </div>
         </div>
-      </div>
+      </div >
       {openModal && (
         <InterestedModal
           open={openModal}
           onClose={() => setOpenModal(false)}
           propertyId={data._id}
         />
-      )}
+      )
+      }
     </>
   );
 }
