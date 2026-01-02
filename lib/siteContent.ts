@@ -21,6 +21,10 @@ import {
   Lock,
   TriangleAlert as AlertTriangle,
   Scale,
+  Gavel,
+  Download,
+  Building,
+  Landmark,
 } from "lucide-react";
 
 // ============================================================================
@@ -54,8 +58,40 @@ export const howItWorksSteps = [
   },
 ];
 
+// export const marketInsightsData = [
+//   {
+//     location: "Vesu",
+//     avgPrice: "₹7,200",
+//     trend: "+9%",
+//     trendUp: true,
+//     icon: Home,
+//   },
+//   {
+//     location: "Adajan",
+//     avgPrice: "₹6,800",
+//     trend: "+7%",
+//     trendUp: true,
+//     icon: MapPin,
+//   },
+//   {
+//     location: "Mota Varachha",
+//     avgPrice: "₹5000",
+//     trend: "+12%",
+//     trendUp: true,
+//     icon: TrendingUp,
+//   },
+//   {
+//     location: "Pal",
+//     avgPrice: "₹5,600",
+//     trend: "+6%",
+//     trendUp: true,
+//     icon: BarChart3,
+//   },
+// ];
+
 export const marketInsightsData = [
   {
+    type: "valuation",
     location: "Vesu",
     avgPrice: "₹7,200",
     trend: "+9%",
@@ -63,6 +99,7 @@ export const marketInsightsData = [
     icon: Home,
   },
   {
+    type: "valuation",
     location: "Adajan",
     avgPrice: "₹6,800",
     trend: "+7%",
@@ -70,17 +107,13 @@ export const marketInsightsData = [
     icon: MapPin,
   },
   {
+    type: "auction",
     location: "Mota Varachha",
-    avgPrice: "₹5000",
-    trend: "+12%",
-    trendUp: true,
-    icon: TrendingUp,
+    icon: Gavel,
   },
   {
+    type: "auction",
     location: "Pal",
-    avgPrice: "₹5,600",
-    trend: "+6%",
-    trendUp: true,
     icon: BarChart3,
   },
 ];
@@ -447,6 +480,80 @@ export const termsSections = [
       "Our liability is limited to the amount paid for the specific service.",
       "We are not responsible for losses due to market fluctuations or external factors.",
       "Users assume full responsibility for their property investment decisions.",
+    ],
+  },
+];
+
+export const benefits = [
+  {
+    icon: FileText,
+    title: "Bank-Grade PDF Reports",
+    description:
+      "Professional reports accepted by all major financial institutions for lending and mortgage purposes.",
+  },
+  {
+    icon: TrendingUp,
+    title: "RV & DV Insights",
+    description:
+      "Get both Rateable Value and Desktop Valuation insights for comprehensive property understanding.",
+  },
+  {
+    icon: BarChart3,
+    title: "Market Analysis",
+    description:
+      "Detailed market trends and comparable property analysis to support your valuation.",
+  },
+  {
+    icon: Shield,
+    title: "Trusted & Compliant",
+    description:
+      "Valuations that meet regulatory standards and are trusted for legal and compliance purposes.",
+  },
+];
+
+export const valuationTypes = [
+  {
+    icon: Home,
+    title: "Residential Valuation",
+    description:
+      "Accurate market valuation for houses, apartments, and residential properties.",
+    features: [
+      "Market comparison analysis",
+      "Location-based insights",
+      "Bank-ready reports",
+    ],
+  },
+  {
+    icon: Building,
+    title: "Commercial Valuation",
+    description:
+      "Professional valuation for office spaces, retail, and commercial real estate.",
+    features: [
+      "Income capitalization method",
+      "Rental yield analysis",
+      "Investment grade reports",
+    ],
+  },
+  {
+    icon: Building2,
+    title: "Industrial Valuation",
+    description:
+      "Specialized valuation for warehouses, factories, and industrial facilities.",
+    features: [
+      "Asset-based valuation",
+      "Depreciation analysis",
+      "Compliance documentation",
+    ],
+  },
+  {
+    icon: Landmark,
+    title: "Land Valuation",
+    description:
+      "Comprehensive land valuation for development and investment purposes.",
+    features: [
+      "Zoning analysis",
+      "Development potential",
+      "Comparable sales data",
     ],
   },
 ];

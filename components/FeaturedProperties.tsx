@@ -97,7 +97,7 @@ export function FeaturedProperties() {
                     <div className="flex items-center text-slate-600">
                       <Home className="h-4 w-4 mr-1" />
                       <span className="text-sm">
-                        {property.type_of_property}f
+                        {property.type_of_property}
                       </span>
                     </div>
                     <div className="flex items-center text-slate-600">

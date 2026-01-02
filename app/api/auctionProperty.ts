@@ -174,3 +174,22 @@ export const incrementAuctionPropertyView = async (id: string, data: any) => {
     throw new Error(err?.message || "Failed to view property");
   }
 };
+
+export const bulkUploadAuctionProperties = async (formData: FormData) => {
+  try {
+    const res = await axiosInstance.post(
+      "/auction-property/bulk-upload",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return res.data;
+  } catch (err: any) {
+    throw new Error(
+      err?.response?.data?.message || "Failed to upload bulk property file"
+    );
+  }
+};

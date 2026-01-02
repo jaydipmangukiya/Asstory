@@ -25,6 +25,22 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
+                  href="/property-valuation"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Property Valuation
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/property-auction-list"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Auction Properties
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="text-gray-400 hover:text-white transition-colors"
                 >

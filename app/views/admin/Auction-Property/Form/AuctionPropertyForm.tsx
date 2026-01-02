@@ -36,8 +36,15 @@ const validationSchema = Yup.object({
   auctionEnd: Yup.string().required("Auction end date required"),
   emdEnd: Yup.string().required("EMD end date required"),
   auctionId: Yup.string().required("Auction ID is required"),
-  builtUpArea: Yup.number().typeError("Invalid").nullable(),
-  carpetArea: Yup.number().typeError("Invalid").nullable(),
+  builtUpArea: Yup.number()
+    .typeError("Built-Up Area must be a number")
+    .required("Built-Up Area is required")
+    .min(1, "Built-Up Area must be greater than 0"),
+
+  carpetArea: Yup.number()
+    .typeError("Carpet Area must be a number")
+    .required("Carpet Area is required")
+    .min(1, "Carpet Area must be greater than 0"),
 
   bankName: Yup.string().required("Bank Name required"),
   propertyArea: Yup.string().required("Property area is required"),
@@ -313,6 +320,13 @@ const AuctionPropertyForm = () => {
     );
   };
 
+  const RequiredLabel = ({ children }: { children: string }) => (
+    <Label className="mb-2 flex gap-1">
+      {children}
+      <span className="text-red-500">*</span>
+    </Label>
+  );
+
   return (
     <Card>
       <div className="px-4 py-8">
@@ -337,9 +351,9 @@ const AuctionPropertyForm = () => {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="title" className="mb-2 flex">
+                  <RequiredLabel>
                     Title
-                  </Label>
+                  </RequiredLabel>
                   <Input
                     id="title"
                     name="title"
@@ -352,7 +366,7 @@ const AuctionPropertyForm = () => {
                   )}
                 </div>
                 <div>
-                  <Label className="mb-2 flex">Possession Status</Label>
+                  <RequiredLabel>Possession Status</RequiredLabel>
                   <select
                     id="possessionStatus"
                     name="possessionStatus"
@@ -373,7 +387,7 @@ const AuctionPropertyForm = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <Label className="mb-2 flex">Type of Action</Label>
+                  <RequiredLabel>Type of Action</RequiredLabel>
                   <Input
                     id="actionType"
                     name="actionType"
@@ -389,7 +403,7 @@ const AuctionPropertyForm = () => {
                 </div>
 
                 <div>
-                  <Label className="mb-2 flex">State</Label>
+                  <RequiredLabel>State</RequiredLabel>
                   <select
                     className="border rounded p-2 w-full"
                     value={values.stateId}
@@ -419,7 +433,7 @@ const AuctionPropertyForm = () => {
                   )}
                 </div>
                 <div>
-                  <Label className="mb-2 flex">City</Label>
+                  <RequiredLabel>City</RequiredLabel>
                   <select
                     className="border rounded p-2 w-full"
                     value={values.cityId}
@@ -446,7 +460,7 @@ const AuctionPropertyForm = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <Label>Auction ID</Label>
+                  <RequiredLabel>Auction ID</RequiredLabel>
                   <Input
                     id="auctionId"
                     name="auctionId"
@@ -462,7 +476,7 @@ const AuctionPropertyForm = () => {
                   )}
                 </div>
                 <div>
-                  <Label className="mb-2 flex">Auction Start Date</Label>
+                  <RequiredLabel>Auction Start Date</RequiredLabel>
                   <Input
                     id="auctionStart"
                     type="datetime-local"
@@ -478,7 +492,7 @@ const AuctionPropertyForm = () => {
                   )}
                 </div>
                 <div>
-                  <Label className="mb-2 flex">Auction End Date</Label>
+                  <RequiredLabel>Auction End Date</RequiredLabel>
                   <Input
                     id="auctionEnd"
                     type="datetime-local"
@@ -496,7 +510,7 @@ const AuctionPropertyForm = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <Label className="mb-2 flex">EMD End Date</Label>
+                  <RequiredLabel>EMD End Date</RequiredLabel>
                   <Input
                     id="emdEnd"
                     type="datetime-local"
@@ -510,28 +524,34 @@ const AuctionPropertyForm = () => {
                   )}
                 </div>
                 <div>
-                  <Label>Built-Up Area (sqft)</Label>
+                  <RequiredLabel>Built-Up Area (sqft)</RequiredLabel>
                   <Input
                     type="number"
                     name="builtUpArea"
                     value={values.builtUpArea}
                     onChange={handleChange}
                   />
+                  {touched.builtUpArea && errors.builtUpArea && (
+                    <p className="text-red-500 text-sm mt-1">{errors.builtUpArea}</p>
+                  )}
                 </div>
 
                 <div>
-                  <Label>Carpet Area (sqft)</Label>
+                  <RequiredLabel>Carpet Area (sqft)</RequiredLabel>
                   <Input
                     type="number"
                     name="carpetArea"
                     value={values.carpetArea}
                     onChange={handleChange}
                   />
+                  {touched.carpetArea && errors.carpetArea && (
+                    <p className="text-red-500 text-sm mt-1">{errors.carpetArea}</p>
+                  )}
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <Label>Property Area</Label>
+                  <RequiredLabel>Property Area</RequiredLabel>
                   <Input
                     type="text"
                     name="propertyArea"
@@ -546,9 +566,9 @@ const AuctionPropertyForm = () => {
                   )}
                 </div>
                 <div>
-                  <Label htmlFor="type_of_property" className="mb-2 flex">
+                  <RequiredLabel>
                     Type of Property
-                  </Label>
+                  </RequiredLabel>
                   <select
                     id="type_of_property"
                     name="type_of_property"
@@ -585,11 +605,6 @@ const AuctionPropertyForm = () => {
                       </option>
                     ))}
                   </select>
-                  {touched.areaMesurment && errors.areaMesurment && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {errors.areaMesurment}
-                    </p>
-                  )}
                 </div>
 
               </div>
@@ -597,7 +612,7 @@ const AuctionPropertyForm = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* State */}
                 <div>
-                  <Label className="mb-2 flex">Bank Name</Label>
+                  <RequiredLabel>Bank Name</RequiredLabel>
                   <select
                     id="bankName"
                     name="bankName"
@@ -621,7 +636,7 @@ const AuctionPropertyForm = () => {
                   )}
                 </div>
                 <div>
-                  <Label className="mb-2 flex">Price</Label>
+                  <RequiredLabel>Price</RequiredLabel>
                   <Input
                     type="number"
                     id="price"

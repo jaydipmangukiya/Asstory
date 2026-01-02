@@ -26,6 +26,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/authentication/AuthProvider";
 import { hasAccess } from "@/lib/permissions";
+import BulkAuctionUploadModal from "./Form/BulkAuctionUploadModal";
 
 const AuctionPropertyList = () => {
   const { toast } = useToast();
@@ -33,6 +34,7 @@ const AuctionPropertyList = () => {
   const { user: userData } = useAuth();
   const perms = userData?.permissions || [];
   const role = userData?.role;
+  const [bulkModalOpen, setBulkModalOpen] = useState(false);
 
   const canAdd = hasAccess(
     perms,
@@ -125,14 +127,24 @@ const AuctionPropertyList = () => {
             Auction Property Management
           </h1>
         </div>
-        <Button
-          disabled={!canAdd}
-          className="bg-emerald-600 hover:bg-emerald-700"
-          onClick={() => router.push("/admin/add-edit-auction-property")}
-        >
-          <Plus className="h-4 w-4 mr-2" />
-          Add Auction Property
-        </Button>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+          <Button
+            disabled={!canAdd}
+            className="bg-emerald-600 hover:bg-emerald-700"
+            onClick={() => setBulkModalOpen(true)}
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add Bulk Action Property
+          </Button>
+          <Button
+            disabled={!canAdd}
+            className="bg-emerald-600 hover:bg-emerald-700"
+            onClick={() => router.push("/admin/add-edit-auction-property")}
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Add Auction Property
+          </Button>
+        </div>
       </div>
 
       {/* Auction Property Table */}
@@ -197,16 +209,16 @@ const AuctionPropertyList = () => {
                       <TableCell>
                         {properties.auctionDetails?.auctionStart
                           ? new Date(
-                            properties.auctionDetails.auctionStart
-                          ).toLocaleString()
+                              properties.auctionDetails.auctionStart
+                            ).toLocaleString()
                           : "--"}
                       </TableCell>
 
                       <TableCell>
                         {properties.auctionDetails?.auctionEnd
                           ? new Date(
-                            properties.auctionDetails.auctionEnd
-                          ).toLocaleString()
+                              properties.auctionDetails.auctionEnd
+                            ).toLocaleString()
                           : "--"}
                       </TableCell>
                       <TableCell>
@@ -242,7 +254,9 @@ const AuctionPropertyList = () => {
                             variant="outline"
                             className="h-8 w-8 p-0"
                             onClick={() =>
-                              router.push(`/admin/add-edit-auction-property/${properties._id}`)
+                              router.push(
+                                `/admin/add-edit-auction-property/${properties._id}`
+                              )
                             }
                           >
                             <Pencil className="h-3 w-3" />
@@ -281,6 +295,14 @@ const AuctionPropertyList = () => {
         onConfirm={handleDeleteConfirm}
         title="Are you sure want to Delete?"
         description="Are you sure want to delete this Auction Property? This action cannot be undone."
+      />
+
+      <BulkAuctionUploadModal
+        open={bulkModalOpen}
+        onClose={() => setBulkModalOpen(false)}
+        onSuccess={() => {
+          fetchProperties();
+        }}
       />
     </div>
   );

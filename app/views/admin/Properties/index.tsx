@@ -49,7 +49,7 @@ const ViewPropertyModal = dynamic(() => import("./View/PropertyDetails"), {
 });
 
 const BulkPropertyUpload = dynamic(
-  () => import("../Auction-Property/Form/BulkPropertyUpload"),
+  () => import("./Form/BulkPropertyUpload"),
   {
     loading: () => <div>Loading...</div>,
     ssr: false,

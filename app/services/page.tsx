@@ -178,7 +178,7 @@ export default function ServicesPage() {
             property valuation today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/">
+            <Link href="/property-valuation">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
