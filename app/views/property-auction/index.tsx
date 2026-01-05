@@ -180,9 +180,7 @@ const PropertyauctionList = () => {
                   setFilters({ ...filters, type: value })
                 }
               >
-                <Select.Trigger
-                  className="mt-1 w-full h-[42px] flex items-center justify-between rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 data-[placeholder]:text-slate-400"
-                >
+                <Select.Trigger className="mt-1 w-full h-[42px] flex items-center justify-between rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 data-[placeholder]:text-slate-400">
                   <Select.Value placeholder="All Types" />
                   <Select.Icon>
                     <ChevronDown className="h-4 w-4 text-slate-500" />
@@ -237,7 +235,6 @@ const PropertyauctionList = () => {
             >
               Apply Filters
             </Button>
-
           </div>
         </div>
       </div>

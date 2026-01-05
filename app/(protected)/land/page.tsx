@@ -182,7 +182,7 @@ const Land = () => {
           <form onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label className="flex pb-2">Owner Name</Label>
+                <Label className="flex pb-2">Owner Name *</Label>
                 <Input
                   name="owner"
                   type="text"
@@ -197,7 +197,7 @@ const Land = () => {
                 )}
               </div>
               <div>
-                <Label className="flex pb-2">Owner Address</Label>
+                <Label className="flex pb-2">Owner Address *</Label>
                 <Input
                   name="address"
                   type="text"
@@ -214,7 +214,7 @@ const Land = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
-                <Label className="flex pb-2">Land Area</Label>
+                <Label className="flex pb-2">Land Area *</Label>
                 <Input
                   id="landArea"
                   name="landArea"
@@ -231,7 +231,7 @@ const Land = () => {
               </div>
               <div>
                 <Label className="flex pb-2" htmlFor="mesurment">
-                  Measurement
+                  Measurement *
                 </Label>
                 <select
                   name="mesurment"
@@ -256,7 +256,7 @@ const Land = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2" htmlFor="land_area">
-                  Select Location
+                  Select Location *
                 </Label>
                 <select
                   name="location"
@@ -275,7 +275,9 @@ const Land = () => {
             </div>
 
             <div className="mt-6">
-              <Label className="text-lg font-semibold">Additional Details (Optional)</Label>
+              <Label className="text-lg font-semibold">
+                Additional Details (Optional)
+              </Label>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
                 {/* Land Use Type */}
@@ -292,8 +294,9 @@ const Land = () => {
                     <option value="Residential">Residential</option>
                     <option value="Commercial">Commercial</option>
                     <option value="Industrial">Industrial</option>
-                    <option value="NA (Non-Agricultural)">NA (Non-Agricultural)</option>
-
+                    <option value="NA (Non-Agricultural)">
+                      NA (Non-Agricultural)
+                    </option>
                   </select>
                 </div>
                 {/* Overlooking */}
@@ -322,7 +325,6 @@ const Land = () => {
                     className="border p-2 w-full rounded-md"
                   />
                 </div>
-
               </div>
             </div>
 
@@ -330,7 +332,7 @@ const Land = () => {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-blue-700 to-emerald-700 hover:from-blue-800 hover:to-emerald-800 text-lg py-6"
+                className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-lg py-6"
               >
                 Get Property Valuation
               </Button>

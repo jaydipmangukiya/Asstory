@@ -25,6 +25,11 @@ interface AddStaffFormProps {
   staffId?: string | null;
 }
 
+interface RequiredLabelProps {
+  children: string;
+  htmlFor?: string;
+}
+
 const getValidationSchema = (isEditMode: boolean) => {
   return Yup.object({
     role: Yup.string().required("Role is required"),
@@ -212,6 +217,13 @@ const StaffForm = ({
     onClose();
   };
 
+  const RequiredLabel = ({ children, htmlFor }: RequiredLabelProps) => (
+    <Label htmlFor={htmlFor} className="mb-2 flex gap-1">
+      {children}
+      <span className="text-red-500">*</span>
+    </Label>
+  );
+
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-3xl">
@@ -233,7 +245,7 @@ const StaffForm = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Role */}
               <div>
-                <Label htmlFor="role">Role</Label>
+                <RequiredLabel htmlFor="role">Role</RequiredLabel>
                 <select
                   id="role"
                   name="role"
@@ -253,7 +265,7 @@ const StaffForm = ({
 
               {/* Email */}
               <div>
-                <Label htmlFor="email">Email</Label>
+                <RequiredLabel htmlFor="email">Email</RequiredLabel>
                 <Input
                   id="email"
                   name="email"
@@ -270,7 +282,7 @@ const StaffForm = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name */}
               <div>
-                <Label htmlFor="name">Name</Label>
+                <RequiredLabel htmlFor="name">Name</RequiredLabel>
                 <Input
                   id="name"
                   name="name"
@@ -285,7 +297,7 @@ const StaffForm = ({
 
               {/* Phone */}
               <div>
-                <Label htmlFor="phone">Phone</Label>
+                <RequiredLabel htmlFor="phone">Phone</RequiredLabel>
                 <Input
                   id="phone"
                   name="phone"

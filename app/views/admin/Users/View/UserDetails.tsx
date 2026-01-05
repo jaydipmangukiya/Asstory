@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { getUserById, User } from "@/app/api/userService";
+import { getUserById, Subscription, User } from "@/app/api/userService";
 import StatusBadge from "@/components/common/StatusBadge";
 import {
   Mail,
@@ -111,7 +111,7 @@ const UserDetailsModal = ({
     return email.substring(0, 2).toUpperCase();
   };
 
-  const getSubscriptionStatus = (subscriptions_id: string | null) => {
+  const getSubscriptionStatus = (subscriptions_id: Subscription | null) => {
     if (!subscriptions_id) {
       return {
         text: "No Subscription",
@@ -283,7 +283,7 @@ const UserDetailsModal = ({
                       <div className="flex items-center space-x-1">
                         <IdCard className="h-4 w-4 text-slate-400" />
                         <span className="font-medium text-xs">
-                          {user.subscriptions_id || "No Subscription"}
+                          {user?.subscriptions_id?._id || "No Subscription"}
                         </span>
                       </div>
                     </div>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import InterestedModal from "../Form/InterestedModal";
 import { formatPriceINR } from "@/lib/utils";
 import Image from "next/image";
+import NoImageFallback from "@/components/common/NoImageFallback";
 
 export default function PropertyCard({ data }: any) {
   const router = useRouter();
@@ -16,15 +17,11 @@ export default function PropertyCard({ data }: any) {
   const minSwipeDistance = 50;
 
   const nextSlide = () => {
-    setCurrentIndex((prev) =>
-      prev === data.images.length - 1 ? 0 : prev + 1
-    );
+    setCurrentIndex((prev) => (prev === data.images.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? data.images.length - 1 : prev - 1
-    );
+    setCurrentIndex((prev) => (prev === 0 ? data.images.length - 1 : prev - 1));
   };
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -51,20 +48,19 @@ export default function PropertyCard({ data }: any) {
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/3 relative flex items-center">
             {data.images?.length > 0 ? (
-              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl"
+              <div
+                className="relative w-full aspect-[4/3] overflow-hidden rounded-xl"
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}>
+                onTouchEnd={onTouchEnd}
+              >
                 {/* SLIDER IMAGES */}
                 <div
                   className="flex h-full transition-transform duration-500"
                   style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                   {data.images.map((img: any, idx: number) => (
-                    <div
-                      key={idx}
-                      className="relative w-full flex-shrink-0"
-                    >
+                    <div key={idx} className="relative w-full flex-shrink-0">
                       <Image
                         src={img.url}
                         fill
@@ -104,10 +100,8 @@ export default function PropertyCard({ data }: any) {
               </div>
             ) : (
               // FALLBACK NO IMAGE
-              <img
-                src="/no-image.jpg"
-                className="w-full h-72 object-cover rounded-xl"
-                alt="No Image"
+              <NoImageFallback
+                subtitle={`${data.propertyArea || ""} ${data.city || ""}`}
               />
             )}
           </div>
@@ -232,15 +226,14 @@ export default function PropertyCard({ data }: any) {
             </div>
           </div>
         </div>
-      </div >
+      </div>
       {openModal && (
         <InterestedModal
           open={openModal}
           onClose={() => setOpenModal(false)}
           propertyId={data._id}
         />
-      )
-      }
+      )}
     </>
   );
 }

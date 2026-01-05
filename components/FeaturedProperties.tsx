@@ -7,7 +7,6 @@ import {
   Loader2,
   Building2,
 } from "lucide-react";
-import Image from "next/image";
 import { getReports, ValuationReport } from "@/app/api/valuationService";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -69,7 +68,7 @@ export function FeaturedProperties() {
                 key={property._id}
                 className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg"
               >
-                <div className="relative w-full h-48">
+                {/* <div className="relative w-full h-48">
                   <Image
                     src={
                       "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400"
@@ -82,36 +81,50 @@ export function FeaturedProperties() {
                   <Badge className="absolute top-3 right-3 bg-emerald-600 hover:bg-emerald-700">
                     Valued
                   </Badge>
+                </div> */}
+                <div className="relative w-full h-40 rounded-t-xl overflow-hidden bg-gradient-to-br from-emerald-50 to-emerald-100">
+                  <div className="absolute inset-0 opacity-[0.25] bg-[radial-gradient(circle_at_1px_1px,_#10b981_1px,_transparent_0)] bg-[length:18px_18px]" />
+                  <div className="relative z-10 flex flex-col items-center justify-center h-full text-emerald-700">
+                    <Building2 className="h-10 w-10 mb-2" />
+                    <span className="text-sm font-medium">Property Valued</span>
+                  </div>
+
+                  <Badge className="absolute top-3 right-3 bg-emerald-600">
+                    Valued
+                  </Badge>
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-slate-800 mb-2 line-clamp-2">
-                    {property.property_address}
-                  </h3>
+                <CardContent className="p-5 flex flex-col min-h-[220px]">
+                  <div className="space-y-3">
+                    <h3 className="font-semibold text-slate-800 mb-2 line-clamp-2">
+                      {property.property_address}
+                    </h3>
 
-                  <div className="flex items-center text-slate-600 mb-3">
-                    <MapPin className="h-4 w-4 mr-1" />
-                    <span className="text-sm">{property.nearest_landmark}</span>
-                  </div>
-
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center text-slate-600">
-                      <Home className="h-4 w-4 mr-1" />
+                    <div className="flex items-center text-slate-600 mb-3">
+                      <MapPin className="h-4 w-4 mr-1" />
                       <span className="text-sm">
-                        {property.type_of_property}
+                        {property.nearest_landmark}
                       </span>
                     </div>
-                    <div className="flex items-center text-slate-600">
-                      <Ruler className="h-4 w-4 mr-1" />
-                      <span className="text-sm">
-                        {" "}
-                        {property.built_up_area_carpet_area_super_built_up_area ||
-                          0}
-                        sq ft
-                      </span>
+
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center text-slate-600">
+                        <Home className="h-4 w-4 mr-1" />
+                        <span className="text-sm">
+                          {property.type_of_property}
+                        </span>
+                      </div>
+                      <div className="flex items-center text-slate-600">
+                        <Ruler className="h-4 w-4 mr-1" />
+                        <span className="text-sm">
+                          {" "}
+                          {property.built_up_area_carpet_area_super_built_up_area ||
+                            0}
+                          sq ft
+                        </span>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="text-2xl font-bold text-emerald-600">
+                  <div className="mt-auto pt-4 text-2xl font-bold text-emerald-600">
                     {formatPriceINR(property.final_valuation)}
                   </div>
                 </CardContent>

@@ -137,7 +137,7 @@ export default function RefundPolicyPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="flex items-center space-x-3">
-                <Clock className="h-6 w-6 text-blue-600" />
+                <Clock className="h-6 w-6 text-emerald-600" />
                 <span>Refund Process & Timeline</span>
               </CardTitle>
             </CardHeader>
@@ -168,10 +168,10 @@ export default function RefundPolicyPage() {
               </div>
 
               <div className="bg-blue-50 p-6 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">
+                <h4 className="font-semibold text-amber-800 mb-2">
                   Important Notes
                 </h4>
-                <ul className="space-y-1 text-blue-700 text-sm">
+                <ul className="space-y-1 text-amber-700 text-sm">
                   <li>
                     • Refunds will be processed to the original payment method
                   </li>

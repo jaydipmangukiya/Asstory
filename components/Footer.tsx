@@ -9,7 +9,7 @@ export function Footer() {
           {/* Logo and Description */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <Building2 className="h-8 w-8 text-blue-400" />
+              <Building2 className="h-8 w-8 text-emerald-600" />
               <span className="text-2xl font-bold">PropValuer</span>
             </div>
             <p className="text-gray-400 md:max-w-md md:mb-6 mb-3">
@@ -87,15 +87,15 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
             <ul className="space-y-3">
               <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-blue-400" />
+                <Mail className="h-4 w-4 text-emerald-400" />
                 <span className="text-gray-400">info@propvaluer.com</span>
               </li>
               <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-blue-400" />
+                <Phone className="h-4 w-4 text-emerald-400" />
                 <span className="text-gray-400">+91 98765 43210</span>
               </li>
               <li className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-blue-400" />
+                <MapPin className="h-4 w-4 text-emerald-400" />
                 <span className="text-gray-400">Surat, Gujarat</span>
               </li>
             </ul>

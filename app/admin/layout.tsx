@@ -16,6 +16,7 @@ import {
   UserCheck,
   EyeOff,
   HandshakeIcon,
+  Hammer,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LogoutButton } from "@/components/authentication/LogoutButton";
@@ -45,7 +46,7 @@ export default function AdminLayout({
     {
       name: "Auction Property",
       href: "/admin/auction-property",
-      icon: Building2,
+      icon: Hammer,
     },
     {
       name: "Interested Property",

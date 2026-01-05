@@ -1,5 +1,10 @@
 import axiosInstance from "@/lib/axiosInstance";
 
+export interface Subscription {
+  _id: string;
+  status?: string;
+}
+
 export interface User {
   _id: string;
   role: string;
@@ -16,7 +21,7 @@ export interface User {
   updatedAt: string;
   name?: string;
   phone?: string;
-  subscriptions_id: string | null;
+  subscriptions_id: Subscription | null;
 }
 
 export interface UsersResponse {

@@ -12,7 +12,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Users, Plus, Pencil, Trash2, Loader2, Eye } from "lucide-react";
+import {
+  Users,
+  Plus,
+  Pencil,
+  Trash2,
+  Loader2,
+  Eye,
+  ImageOff,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { PERMISSIONS, rowPerPage } from "@/lib/constant";
@@ -222,17 +230,22 @@ const AuctionPropertyList = () => {
                           : "--"}
                       </TableCell>
                       <TableCell>
-                        {properties.images && properties.images.length > 0 ? (
-                          <img
-                            src={properties.images[0].url}
-                            alt="property"
-                            className="h-24 w-30 object-cover rounded-md border"
-                          />
-                        ) : (
-                          <span className="text-gray-400 text-sm">
-                            No image
-                          </span>
-                        )}
+                        <div className="h-20 w-28 rounded-md overflow-hidden border bg-slate-50 flex items-center justify-center">
+                          {properties.images && properties.images.length > 0 ? (
+                            <img
+                              src={properties.images[0].url}
+                              alt={properties.title}
+                              className="h-full w-full object-cover"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <>
+                              <div className="mx-auto h-8 w-8 rounded-full bg-white/80 flex items-center justify-center shadow">
+                                <ImageOff className="h-4 w-4 text-slate-500" />
+                              </div>
+                            </>
+                          )}
+                        </div>
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">

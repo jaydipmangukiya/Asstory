@@ -11,8 +11,8 @@ export function MarketInsights() {
             Market Value & Investment Opportunities
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Understand accurate market valuation and discover auction & bank-seized
-            properties with real investment potential.
+            Understand accurate market valuation and discover auction &
+            bank-seized properties with real investment potential.
           </p>
         </div>
 
@@ -26,19 +26,21 @@ export function MarketInsights() {
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <div className="text-blue-700">
+                    <div className="text-emerald-600">
                       <Icon className="h-5 w-5" />
                     </div>
                     {data.type === "valuation" ? (
                       <div
-                        className={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-semibold ${data.trendUp
-                          ? "bg-emerald-100 text-emerald-700"
-                          : "bg-red-100 text-red-700"
-                          }`}
+                        className={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-semibold ${
+                          data.trendUp
+                            ? "bg-emerald-100 text-emerald-700"
+                            : "bg-red-100 text-red-700"
+                        }`}
                       >
                         <TrendingUp
-                          className={`h-3 w-3 ${data.trendUp ? "" : "rotate-180"
-                            }`}
+                          className={`h-3 w-3 ${
+                            data.trendUp ? "" : "rotate-180"
+                          }`}
                         />
                         <span>{data.trend}</span>
                       </div>
@@ -86,7 +88,7 @@ export function MarketInsights() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
               <div>
-                <div className="text-3xl font-bold text-blue-700 mb-2">
+                <div className="text-3xl font-bold text-slate-800 mb-2">
                   50K+
                 </div>
                 <p className="text-gray-600">Properties Valued</p>

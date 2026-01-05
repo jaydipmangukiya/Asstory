@@ -21,6 +21,11 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 
+interface RequiredLabelProps {
+  children: string;
+  htmlFor?: string;
+}
+
 const validationSchema = Yup.object().shape({
   type_of_property: Yup.string().required("Property type is required"),
   address: Yup.string().required("Address is required"),
@@ -30,26 +35,30 @@ const validationSchema = Yup.object().shape({
   longitude: Yup.number()
     .typeError("Longitude must be a number")
     .required("Longitude is required"),
-  area_rate_considered_per_sq_ft: Yup.string().when("type_of_property", {
-    is: (val: string) =>
-      ["Residential Flat", "Commercial Shop", "Office"].includes(val),
-    then: (schema) =>
-      schema.required("Area rate per sq ft is required for this type"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
-  land_rate_per_sq_mtr_Sq_yard: Yup.string().when("type_of_property", {
-    is: (val: string) =>
-      [
-        "Residential Plot",
-        "Residential House",
-        "Industrial Plot",
-        "Agricultural Land",
-        "NA Land",
-      ].includes(val),
-    then: (schema) =>
-      schema.required("Land rate per sq yard is required for this type"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  area_rate_considered_per_sq_ft: Yup.number()
+    .typeError("Area rate must be a number")
+    .when("type_of_property", {
+      is: (val: string) =>
+        ["Residential Flat", "Commercial Shop", "Office"].includes(val),
+      then: (schema) =>
+        schema.required("Area rate per sq ft is required for this type"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+  land_rate_per_sq_mtr_Sq_yard: Yup.number()
+    .typeError("Land rate must be a number")
+    .when("type_of_property", {
+      is: (val: string) =>
+        [
+          "Residential Plot",
+          "Residential House",
+          "Industrial Plot",
+          "Agricultural Land",
+          "NA Land",
+        ].includes(val),
+      then: (schema) =>
+        schema.required("Land rate per sq yard is required for this type"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
 });
 
 const initialValues = {
@@ -57,8 +66,8 @@ const initialValues = {
   address: "",
   latitude: "",
   longitude: "",
-  area_rate_considered_per_sq_ft: 0,
-  land_rate_per_sq_mtr_Sq_yard: 0,
+  area_rate_considered_per_sq_ft: "",
+  land_rate_per_sq_mtr_Sq_yard: "",
   location: { type: "Point", coordinates: [0, 0] },
 
   //   fields for edit mode only
@@ -165,6 +174,17 @@ export default function PropertyForm({
             ...data,
             latitude: data?.location?.coordinates?.[0]?.toString() ?? "",
             longitude: data?.location?.coordinates?.[1]?.toString() ?? "",
+            area_rate_considered_per_sq_ft:
+              data.area_rate_considered_per_sq_ft !== undefined &&
+              data.area_rate_considered_per_sq_ft !== null
+                ? data.area_rate_considered_per_sq_ft.toString()
+                : "",
+
+            land_rate_per_sq_mtr_Sq_yard:
+              data.land_rate_per_sq_mtr_Sq_yard !== undefined &&
+              data.land_rate_per_sq_mtr_Sq_yard !== null
+                ? data.land_rate_per_sq_mtr_Sq_yard.toString()
+                : "",
           });
         } catch (err: any) {
           toast({
@@ -181,6 +201,13 @@ export default function PropertyForm({
       setValues(initialValues);
     }
   }, [propertyId, open]);
+
+  const RequiredLabel = ({ children, htmlFor }: RequiredLabelProps) => (
+    <Label htmlFor={htmlFor} className="mb-2 flex gap-1">
+      {children}
+      <span className="text-red-500">*</span>
+    </Label>
+  );
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -205,9 +232,9 @@ export default function PropertyForm({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Type of Property */}
                 <div>
-                  <Label htmlFor="type_of_property" className="mb-2 flex">
+                  <RequiredLabel htmlFor="type_of_property">
                     Type of Property
-                  </Label>
+                  </RequiredLabel>
                   <select
                     id="type_of_property"
                     name="type_of_property"
@@ -235,9 +262,7 @@ export default function PropertyForm({
 
                 {/* Address */}
                 <div>
-                  <Label htmlFor="address" className="mb-2 flex">
-                    Address
-                  </Label>
+                  <RequiredLabel htmlFor="address">Address</RequiredLabel>
                   <Input
                     id="address"
                     name="address"
@@ -256,9 +281,7 @@ export default function PropertyForm({
               {/* Latitude & Longitude */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="latitude" className="mb-2 flex">
-                    Latitude
-                  </Label>
+                  <RequiredLabel htmlFor="latitude">Latitude</RequiredLabel>
                   <Input
                     id="latitude"
                     name="latitude"
@@ -273,9 +296,7 @@ export default function PropertyForm({
                   )}
                 </div>
                 <div>
-                  <Label htmlFor="longitude" className="mb-2 flex">
-                    Longitude
-                  </Label>
+                  <RequiredLabel htmlFor="longitude">Longitude</RequiredLabel>
                   <Input
                     id="longitude"
                     name="longitude"
@@ -296,12 +317,9 @@ export default function PropertyForm({
                 values.type_of_property === "Commercial Shop" ||
                 values.type_of_property === "Office") && (
                 <div>
-                  <Label
-                    htmlFor="area_rate_considered_per_sq_ft"
-                    className="mb-2 flex"
-                  >
+                  <RequiredLabel htmlFor="area_rate_considered_per_sq_ft">
                     Area Rate Considered Per Sq Ft
-                  </Label>
+                  </RequiredLabel>
                   <Input
                     id="area_rate_considered_per_sq_ft"
                     name="area_rate_considered_per_sq_ft"
@@ -324,12 +342,9 @@ export default function PropertyForm({
                 values.type_of_property === "Agricultural Land" ||
                 values.type_of_property === "NA Land") && (
                 <div>
-                  <Label
-                    htmlFor="land_rate_per_sq_mtr_Sq_yard"
-                    className="mb-2 flex"
-                  >
+                  <RequiredLabel htmlFor="land_rate_per_sq_mtr_Sq_yard">
                     Land Rate Per Sq Yard
-                  </Label>
+                  </RequiredLabel>
                   <Input
                     id="land_rate_per_sq_mtr_Sq_yard"
                     name="land_rate_per_sq_mtr_Sq_yard"

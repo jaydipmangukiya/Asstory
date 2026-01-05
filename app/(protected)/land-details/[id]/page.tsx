@@ -153,7 +153,7 @@ export default function LandDetailsPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <BarChart3 className="h-5 w-5 text-blue-700" />
+                    <BarChart3 className="h-5 w-5 text-emerald-700" />
                     Value Breakdown
                   </CardTitle>
                 </CardHeader>
@@ -188,7 +188,7 @@ export default function LandDetailsPage() {
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="flex items-center space-x-3">
-                    <FileText className="h-5 w-5 text-blue-700" />
+                    <FileText className="h-5 w-5 text-emerald-700" />
                     <div>
                       <p className="text-sm text-gray-600">
                         Case Reference No.
@@ -200,7 +200,7 @@ export default function LandDetailsPage() {
                   </div>
 
                   <div className="flex items-center space-x-3">
-                    <Calendar className="h-5 w-5 text-blue-700" />
+                    <Calendar className="h-5 w-5 text-emerald-700" />
                     <div>
                       <p className="text-sm text-gray-600">Report Date</p>
                       <p className="font-semibold text-lg">
@@ -210,7 +210,7 @@ export default function LandDetailsPage() {
                   </div>
 
                   <div className="flex items-center space-x-3">
-                    <Building className="h-5 w-5 text-blue-700" />
+                    <Building className="h-5 w-5 text-emerald-700" />
                     <div>
                       <p className="text-sm text-gray-600">Property Type</p>
                       <p className="font-semibold text-lg">
@@ -227,7 +227,7 @@ export default function LandDetailsPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <User className="h-5 w-5 text-blue-700" />
+                    <User className="h-5 w-5 text-emerald-700" />
                     Owner Information
                   </CardTitle>
                 </CardHeader>
@@ -250,7 +250,7 @@ export default function LandDetailsPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-blue-700" />
+                    <MapPin className="h-5 w-5 text-emerald-700" />
                     Location Details
                   </CardTitle>
                 </CardHeader>
@@ -289,7 +289,7 @@ export default function LandDetailsPage() {
               <Card className="overflow-hidden">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-blue-700" />
+                    <MapPin className="h-5 w-5 text-emerald-700" />
                     Property Location
                   </CardTitle>
                 </CardHeader>
@@ -300,8 +300,8 @@ export default function LandDetailsPage() {
                         initialLatitude={reportData.latitude}
                         initialLongitude={reportData.longitude}
                         isDraggable={false}
-                        setIsDraggable={() => { }}
-                        setOpen={() => { }}
+                        setIsDraggable={() => {}}
+                        setOpen={() => {}}
                         readonly={true}
                       />
                     </div>
@@ -317,7 +317,7 @@ export default function LandDetailsPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Home className="h-5 w-5 text-blue-700" />
+                    <Home className="h-5 w-5 text-emerald-700" />
                     Property Specifications
                   </CardTitle>
                 </CardHeader>
@@ -380,34 +380,38 @@ export default function LandDetailsPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Home className="h-5 w-5 text-blue-700" />
+                      <Home className="h-5 w-5 text-emerald-700" />
                       Additional Property Details
                     </CardTitle>
                   </CardHeader>
 
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                        <span className="text-sm text-gray-600">Overlooking</span>
+                        <span className="text-sm text-gray-600">
+                          Overlooking
+                        </span>
                         <span className="font-semibold">
                           {reportData.additional_details.overlooking || "—"}
                         </span>
                       </div>
 
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                        <span className="text-sm text-gray-600">Land Use Type</span>
+                        <span className="text-sm text-gray-600">
+                          Land Use Type
+                        </span>
                         <span className="font-semibold">
                           {reportData.additional_details.land_use_type || "—"}
                         </span>
                       </div>
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                        <span className="text-sm text-gray-600">Road Width</span>
+                        <span className="text-sm text-gray-600">
+                          Road Width
+                        </span>
                         <span className="font-semibold">
                           {reportData.additional_details.road_width || "—"}
                         </span>
                       </div>
-
                     </div>
                   </CardContent>
                 </Card>

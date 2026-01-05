@@ -14,7 +14,20 @@ import { useAuth } from "@/components/authentication/AuthProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubscriptionModal from "@/app/views/subscription/SubscriptionModal";
-import { areaClassOptions, areaMeasurementOptions, areaTypeOptions, bathroomOptions, buildingConditionOptions, civicAmenityOptions, facingOptions, furnishingStatusOptions, occupiedByOptions, overlookingOptions, possessionStatusOptions, yesNoOptions } from "@/lib/constant";
+import {
+  areaClassOptions,
+  areaMeasurementOptions,
+  areaTypeOptions,
+  bathroomOptions,
+  buildingConditionOptions,
+  civicAmenityOptions,
+  facingOptions,
+  furnishingStatusOptions,
+  occupiedByOptions,
+  overlookingOptions,
+  possessionStatusOptions,
+  yesNoOptions,
+} from "@/lib/constant";
 
 const Commercial = () => {
   const router = useRouter();
@@ -37,34 +50,32 @@ const Commercial = () => {
     age_of_property: yup
       .number()
       .typeError("Age of Property is required")
-      .required("Age of Property is required"),
+      .required("Age of Property is required")
+      .min(1, "Age of Property must be a positive number"),
     no_of_floor: yup
       .number()
       .typeError("Number of Floors is required")
       .required("Number of Floors is required")
-      .min(0, "Number of Floors must be a positive number"),
+      .min(1, "Number of Floors must be a positive number"),
     floor_of_unit: yup
       .number()
       .typeError("Floor of Unit is required")
       .required("Floor of Unit is required")
-      .min(0, "Floor of Unit must be a positive number"),
+      .min(1, "Floor of Unit must be a positive number"),
 
     flat_no: yup
       .number()
       .typeError("Flat Number is required")
-      .required("Flat Number is required"),
+      .required("Flat Number is required")
+      .min(1, "Flat Number must be a positive number"),
     owner: yup.string().required("Owner Name is required"),
     address: yup.string().required("Owner Address is required"),
-
-    open_parking: yup.number().min(0),
-    covered_parking: yup.number().min(0),
 
     interior_age: yup.string().nullable(),
 
     interior_spend: yup.string().when("interior_age", {
       is: (val: string) => !!val,
-      then: (schema) =>
-        schema.required("Please enter interior spend amount"),
+      then: (schema) => schema.required("Please enter interior spend amount"),
       otherwise: (schema) => schema.notRequired(),
     }),
   });
@@ -105,7 +116,7 @@ const Commercial = () => {
         power_supply: "",
 
         building_exterior: "",
-        building_interior: ""
+        building_interior: "",
       },
     },
     validationSchema,
@@ -259,7 +270,7 @@ const Commercial = () => {
             {/* OWNER FIELDS */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label className="flex pb-2">Owner Name</Label>
+                <Label className="flex pb-2">Owner Name *</Label>
                 <Input
                   id="owner"
                   name="owner"
@@ -277,7 +288,7 @@ const Commercial = () => {
 
               <div>
                 <Label className="flex pb-2" htmlFor="address">
-                  Owner Address
+                  Owner Address *
                 </Label>
                 <Input
                   id="address"
@@ -310,7 +321,7 @@ const Commercial = () => {
               </div>
 
               <div>
-                <Label className="flex pb-2">Input Area Measurement</Label>
+                <Label className="flex pb-2">Input Area Measurement *</Label>
                 <select
                   name="areaMesurment"
                   value={values.areaMesurment}
@@ -334,7 +345,7 @@ const Commercial = () => {
             {/* UNIT SIZE */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
-                <Label className="flex pb-2">Unit Size</Label>
+                <Label className="flex pb-2">Unit Size *</Label>
                 <Input
                   name="unit_size"
                   type="number"
@@ -372,7 +383,7 @@ const Commercial = () => {
             {/* FLOORS */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
-                <Label className="flex pb-2">Total No. of Floors</Label>
+                <Label className="flex pb-2">Total No. of Floors *</Label>
                 <Input
                   type="number"
                   name="no_of_floor"
@@ -387,7 +398,7 @@ const Commercial = () => {
               </div>
 
               <div>
-                <Label className="flex pb-2">Floor of Unit</Label>
+                <Label className="flex pb-2">Floor of Unit *</Label>
                 <Input
                   type="number"
                   name="floor_of_unit"
@@ -405,7 +416,7 @@ const Commercial = () => {
             {/* EXTRA */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
               <div>
-                <Label className="flex pb-2">Office No. / Shop No.</Label>
+                <Label className="flex pb-2">Office No. / Shop No. *</Label>
                 <Input
                   type="number"
                   name="flat_no"
@@ -429,7 +440,7 @@ const Commercial = () => {
               </div>
 
               <div>
-                <Label className="flex pb-2">Age of Property</Label>
+                <Label className="flex pb-2">Age of Property *</Label>
                 <Input
                   type="number"
                   name="age_of_property"
@@ -541,10 +552,11 @@ const Commercial = () => {
                     onClick={() =>
                       formik.setFieldValue("interior_age", item.value)
                     }
-                    className={`px-4 py-2 rounded-full border transition ${values.interior_age === item.value
-                      ? "bg-emerald-100 border-emerald-600"
-                      : "bg-white"
-                      }`}
+                    className={`px-4 py-2 rounded-full border transition ${
+                      values.interior_age === item.value
+                        ? "bg-emerald-100 border-emerald-600"
+                        : "bg-white"
+                    }`}
                   >
                     {item.label}
                   </button>
@@ -555,7 +567,7 @@ const Commercial = () => {
             {values.interior_age && (
               <div className="mt-4">
                 <Label className="pb-2 block">
-                  How much did you spend on it?
+                  How much did you spend on it? *
                 </Label>
 
                 <Input
@@ -574,9 +586,10 @@ const Commercial = () => {
               </div>
             )}
 
-
             <div className="mt-6">
-              <Label className="text-lg font-semibold">Additional Details (Optional)</Label>
+              <Label className="text-lg font-semibold">
+                Additional Details (Optional)
+              </Label>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
                 {/* Facing */}
@@ -590,7 +603,9 @@ const Commercial = () => {
                   >
                     <option value="">Select</option>
                     {facingOptions.map((option) => (
-                      <option key={option.value} value={option.value}>{option.label}</option>
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -665,22 +680,35 @@ const Commercial = () => {
                     ))}
                   </select>
                 </div>
-
               </div>
             </div>
 
             <div className="mt-4">
-              <p className="font-medium text-gray-700 mb-2">Locality & Surroundings</p>
+              <p className="font-medium text-gray-700 mb-2">
+                Locality & Surroundings
+              </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <select name="additional_details.area_classification" onChange={handleChange} className="border p-2 rounded-md">
+                <select
+                  name="additional_details.area_classification"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
                   <option value="">Area Classification</option>
-                  {areaClassOptions.map(v => <option key={v}>{v}</option>)}
+                  {areaClassOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
 
-                <select name="additional_details.area_type" onChange={handleChange} className="border p-2 rounded-md">
+                <select
+                  name="additional_details.area_type"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
                   <option value="">Area Type</option>
-                  {areaTypeOptions.map(v => <option key={v}>{v}</option>)}
+                  {areaTypeOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
 
                 <Input
@@ -689,35 +717,67 @@ const Commercial = () => {
                   onChange={handleChange}
                 />
 
-                <select name="additional_details.occupied_by" onChange={handleChange} className="border p-2 rounded-md">
+                <select
+                  name="additional_details.occupied_by"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
                   <option value="">Occupied By</option>
-                  {occupiedByOptions.map(v => <option key={v}>{v}</option>)}
+                  {occupiedByOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
               </div>
             </div>
 
             <div className="mt-6">
-              <p className="font-medium text-gray-700 mb-2">Infrastructure & Utilities</p>
+              <p className="font-medium text-gray-700 mb-2">
+                Infrastructure & Utilities
+              </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <select name="additional_details.flooding_possibility" onChange={handleChange} className="border p-2 rounded-md">
+                <select
+                  name="additional_details.flooding_possibility"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
                   <option value="">Flooding / Submerging</option>
-                  {yesNoOptions.map(v => <option key={v}>{v}</option>)}
+                  {yesNoOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
 
-                <select name="additional_details.road_facility" onChange={handleChange} className="border p-2 rounded-md">
+                <select
+                  name="additional_details.road_facility"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
                   <option value="">Road Facilities</option>
-                  {areaClassOptions.map(v => <option key={v}>{v}</option>)}
+                  {areaClassOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
 
-                <select name="additional_details.water_potentiality" onChange={handleChange} className="border p-2 rounded-md">
+                <select
+                  name="additional_details.water_potentiality"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
                   <option value="">Water Potentiality</option>
-                  {areaClassOptions.map(v => <option key={v}>{v}</option>)}
+                  {areaClassOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
 
-                <select name="additional_details.power_supply" onChange={handleChange} className="border p-2 rounded-md">
+                <select
+                  name="additional_details.power_supply"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
                   <option value="">Power Supply Available</option>
-                  {yesNoOptions.map(v => <option key={v}>{v}</option>)}
+                  {yesNoOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
               </div>
 
@@ -730,7 +790,8 @@ const Commercial = () => {
                       type="button"
                       key={amenity}
                       onClick={() => {
-                        const arr = values.additional_details.civic_amenities as string[];
+                        const arr = values.additional_details
+                          .civic_amenities as string[];
                         formik.setFieldValue(
                           "additional_details.civic_amenities",
                           arr.includes(amenity)
@@ -738,10 +799,13 @@ const Commercial = () => {
                             : [...arr, amenity]
                         );
                       }}
-                      className={`px-3 py-1 rounded-full border ${values.additional_details.civic_amenities?.includes(amenity)
-                        ? "bg-emerald-100 border-emerald-600"
-                        : ""
-                        }`}
+                      className={`px-3 py-1 rounded-full border ${
+                        values.additional_details.civic_amenities?.includes(
+                          amenity
+                        )
+                          ? "bg-emerald-100 border-emerald-600"
+                          : ""
+                      }`}
                     >
                       {amenity}
                     </button>
@@ -751,7 +815,9 @@ const Commercial = () => {
             </div>
 
             <div className="mt-6">
-              <p className="font-medium text-gray-700 mb-2">Condition of the Building</p>
+              <p className="font-medium text-gray-700 mb-2">
+                Condition of the Building
+              </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <select
@@ -760,7 +826,9 @@ const Commercial = () => {
                   className="border p-2 rounded-md"
                 >
                   <option value="">Exterior Condition</option>
-                  {buildingConditionOptions.map(v => <option key={v}>{v}</option>)}
+                  {buildingConditionOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
 
                 <select
@@ -769,7 +837,9 @@ const Commercial = () => {
                   className="border p-2 rounded-md"
                 >
                   <option value="">Interior Condition</option>
-                  {buildingConditionOptions.map(v => <option key={v}>{v}</option>)}
+                  {buildingConditionOptions.map((v) => (
+                    <option key={v}>{v}</option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -778,7 +848,7 @@ const Commercial = () => {
               <Button
                 disabled={loading}
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-700 to-emerald-700 hover:from-blue-800 hover:to-emerald-800 text-lg py-6"
+                className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-lg py-6"
               >
                 Get Property Valuation
               </Button>

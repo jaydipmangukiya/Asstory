@@ -1,19 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import NoImageFallback from "@/components/common/NoImageFallback";
 import { useState } from "react";
 
 export default function PropertyImageSlider({ images = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!images.length) {
-    return (
-      <img
-        src="/no-image.jpg"
-        alt="No image"
-        className="w-full h-64 object-cover rounded-xl border"
-      />
-    );
+    return <NoImageFallback />;
   }
 
   return (

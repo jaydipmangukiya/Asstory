@@ -5,6 +5,7 @@ import {
   incrementAuctionPropertyView,
 } from "@/app/api/auctionProperty";
 import InterestedModal from "@/app/views/property-auction/Form/InterestedModal";
+import NoImageFallback from "@/components/common/NoImageFallback";
 import QRCodeBox from "@/components/common/QRCodeBox";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -95,7 +96,6 @@ export default function PropertyDetailsPage({ params }: any) {
     }
   };
 
-
   return (
     <div className="w-full">
       <Header />
@@ -138,15 +138,11 @@ export default function PropertyDetailsPage({ params }: any) {
                       )}
                     </div>
                   ) : (
-                    <div className="relative w-full h-72">
-                      <Image
-                        src="/no-image.jpg"
-                        alt="No Image"
-                        fill
-                        className="object-cover rounded-xl"
-                        sizes="100vw"
-                      />
-                    </div>
+                    <NoImageFallback
+                      subtitle={`${property.propertyArea || ""} ${
+                        property.city || ""
+                      }`}
+                    />
                   )}
                 </div>
 
@@ -408,7 +404,8 @@ export default function PropertyDetailsPage({ params }: any) {
             </button>
 
             {/* SLIDER WRAPPER */}
-            <div className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-white flex items-center justify-center"
+            <div
+              className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-white flex items-center justify-center"
               onTouchStart={handleModalTouchStart}
               onTouchMove={handleModalTouchMove}
               onTouchEnd={handleModalTouchEnd}

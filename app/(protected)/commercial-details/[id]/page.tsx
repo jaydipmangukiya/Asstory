@@ -152,7 +152,7 @@ export default function CommercialDetails() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <BarChart3 className="h-5 w-5 text-blue-700" />
+                    <BarChart3 className="h-5 w-5 text-emerald-700" />
                     Value Breakdown
                   </CardTitle>
                 </CardHeader>
@@ -187,7 +187,7 @@ export default function CommercialDetails() {
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="flex items-center space-x-3">
-                    <FileText className="h-5 w-5 text-blue-700" />
+                    <FileText className="h-5 w-5 text-emerald-700" />
                     <div>
                       <p className="text-sm text-gray-600">
                         Case Reference No.
@@ -199,7 +199,7 @@ export default function CommercialDetails() {
                   </div>
 
                   <div className="flex items-center space-x-3">
-                    <Calendar className="h-5 w-5 text-blue-700" />
+                    <Calendar className="h-5 w-5 text-emerald-700" />
                     <div>
                       <p className="text-sm text-gray-600">Report Date</p>
                       <p className="font-semibold text-lg">
@@ -209,7 +209,7 @@ export default function CommercialDetails() {
                   </div>
 
                   <div className="flex items-center space-x-3">
-                    <Building className="h-5 w-5 text-blue-700" />
+                    <Building className="h-5 w-5 text-emerald-700" />
                     <div>
                       <p className="text-sm text-gray-600">Property Type</p>
                       <p className="font-semibold text-lg">
@@ -226,7 +226,7 @@ export default function CommercialDetails() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <User className="h-5 w-5 text-blue-700" />
+                    <User className="h-5 w-5 text-emerald-700" />
                     Owner Information
                   </CardTitle>
                 </CardHeader>
@@ -249,7 +249,7 @@ export default function CommercialDetails() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-blue-700" />
+                    <MapPin className="h-5 w-5 text-emerald-700" />
                     Location Details
                   </CardTitle>
                 </CardHeader>
@@ -288,7 +288,7 @@ export default function CommercialDetails() {
               <Card className="overflow-hidden">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-blue-700" />
+                    <MapPin className="h-5 w-5 text-emerald-700" />
                     Property Location
                   </CardTitle>
                 </CardHeader>
@@ -299,8 +299,8 @@ export default function CommercialDetails() {
                         initialLatitude={reportData.latitude}
                         initialLongitude={reportData.longitude}
                         isDraggable={false}
-                        setIsDraggable={() => { }}
-                        setOpen={() => { }}
+                        setIsDraggable={() => {}}
+                        setOpen={() => {}}
                         readonly={true}
                       />
                     </div>
@@ -316,7 +316,7 @@ export default function CommercialDetails() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Home className="h-5 w-5 text-blue-700" />
+                    <Home className="h-5 w-5 text-emerald-700" />
                     Property Specifications
                   </CardTitle>
                 </CardHeader>
@@ -401,44 +401,50 @@ export default function CommercialDetails() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Building className="h-5 w-5 text-blue-700" />
+                    <Building className="h-5 w-5 text-emerald-700" />
                     Parking & Interior Details
                   </CardTitle>
                 </CardHeader>
 
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
                     <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-sm text-gray-600">Open Parking</span>
+                      <span className="text-sm text-gray-600">
+                        Open Parking
+                      </span>
                       <span className="font-semibold">
                         {reportData.open_parking ?? 0}
                       </span>
                     </div>
 
                     <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-sm text-gray-600">Covered Parking</span>
+                      <span className="text-sm text-gray-600">
+                        Covered Parking
+                      </span>
                       <span className="font-semibold">
                         {reportData.covered_parking ?? 0}
                       </span>
                     </div>
 
                     <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-sm text-gray-600">Interior Age</span>
+                      <span className="text-sm text-gray-600">
+                        Interior Age
+                      </span>
                       <span className="font-semibold">
                         {reportData.interior_age || "—"}
                       </span>
                     </div>
 
                     <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-sm text-gray-600">Interior Spend</span>
+                      <span className="text-sm text-gray-600">
+                        Interior Spend
+                      </span>
                       <span className="font-semibold">
                         {reportData.interior_spend
                           ? `₹ ${price(reportData.interior_spend)}`
                           : "—"}
                       </span>
                     </div>
-
                   </div>
                 </CardContent>
               </Card>
@@ -447,14 +453,13 @@ export default function CommercialDetails() {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Home className="h-5 w-5 text-blue-700" />
+                      <Home className="h-5 w-5 text-emerald-700" />
                       Additional Property Details
                     </CardTitle>
                   </CardHeader>
 
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
                         <span className="text-sm text-gray-600">Facing</span>
                         <span className="font-semibold">
@@ -463,16 +468,21 @@ export default function CommercialDetails() {
                       </div>
 
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                        <span className="text-sm text-gray-600">Overlooking</span>
+                        <span className="text-sm text-gray-600">
+                          Overlooking
+                        </span>
                         <span className="font-semibold">
                           {reportData.additional_details.overlooking || "—"}
                         </span>
                       </div>
 
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                        <span className="text-sm text-gray-600">Possession Status</span>
+                        <span className="text-sm text-gray-600">
+                          Possession Status
+                        </span>
                         <span className="font-semibold">
-                          {reportData.additional_details.possession_status || "—"}
+                          {reportData.additional_details.possession_status ||
+                            "—"}
                         </span>
                       </div>
 
@@ -484,48 +494,87 @@ export default function CommercialDetails() {
                       </div>
 
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg md:col-span-2">
-                        <span className="text-sm text-gray-600">Furnishing Status</span>
+                        <span className="text-sm text-gray-600">
+                          Furnishing Status
+                        </span>
                         <span className="font-semibold">
-                          {reportData.additional_details.furnishing_status || "—"}
+                          {reportData.additional_details.furnishing_status ||
+                            "—"}
                         </span>
                       </div>
 
-
-                      <Detail label="Area Classification" value={reportData.additional_details.area_classification} />
-                      <Detail label="Area Type" value={reportData.additional_details.area_type} />
-                      <Detail label="Tenament No" value={reportData.additional_details.tenament_no} />
-                      <Detail label="Occupied By" value={reportData.additional_details.occupied_by} />
+                      <Detail
+                        label="Area Classification"
+                        value={
+                          reportData.additional_details.area_classification
+                        }
+                      />
+                      <Detail
+                        label="Area Type"
+                        value={reportData.additional_details.area_type}
+                      />
+                      <Detail
+                        label="Tenament No"
+                        value={reportData.additional_details.tenament_no}
+                      />
+                      <Detail
+                        label="Occupied By"
+                        value={reportData.additional_details.occupied_by}
+                      />
 
                       {/* ENVIRONMENT */}
-                      <Detail label="Flooding Possibility" value={reportData.additional_details.flooding_possibility} />
-                      <Detail label="Road Facility" value={reportData.additional_details.road_facility} />
-                      <Detail label="Water Potentiality" value={reportData.additional_details.water_potentiality} />
-                      <Detail label="Power Supply" value={reportData.additional_details.power_supply} />
+                      <Detail
+                        label="Flooding Possibility"
+                        value={
+                          reportData.additional_details.flooding_possibility
+                        }
+                      />
+                      <Detail
+                        label="Road Facility"
+                        value={reportData.additional_details.road_facility}
+                      />
+                      <Detail
+                        label="Water Potentiality"
+                        value={reportData.additional_details.water_potentiality}
+                      />
+                      <Detail
+                        label="Power Supply"
+                        value={reportData.additional_details.power_supply}
+                      />
 
                       {/* BUILDING CONDITION */}
-                      <Detail label="Building Exterior" value={reportData.additional_details.building_exterior} />
-                      <Detail label="Building Interior" value={reportData.additional_details.building_interior} />
+                      <Detail
+                        label="Building Exterior"
+                        value={reportData.additional_details.building_exterior}
+                      />
+                      <Detail
+                        label="Building Interior"
+                        value={reportData.additional_details.building_interior}
+                      />
 
                       {/* CIVIC AMENITIES */}
                       <div className="md:col-span-2 p-3 bg-gray-50 rounded-lg">
-                        <p className="text-sm text-gray-600 mb-2">Civic Amenities</p>
-                        {reportData.additional_details.civic_amenities?.length > 0 ? (
+                        <p className="text-sm text-gray-600 mb-2">
+                          Civic Amenities
+                        </p>
+                        {reportData.additional_details.civic_amenities?.length >
+                        0 ? (
                           <div className="flex flex-wrap gap-2">
-                            {reportData.additional_details.civic_amenities.map((amenity: string) => (
-                              <span
-                                key={amenity}
-                                className="px-3 py-1 text-sm rounded-full bg-emerald-100 text-emerald-700 border border-emerald-300"
-                              >
-                                {amenity}
-                              </span>
-                            ))}
+                            {reportData.additional_details.civic_amenities.map(
+                              (amenity: string) => (
+                                <span
+                                  key={amenity}
+                                  className="px-3 py-1 text-sm rounded-full bg-emerald-100 text-emerald-700 border border-emerald-300"
+                                >
+                                  {amenity}
+                                </span>
+                              )
+                            )}
                           </div>
                         ) : (
                           <span className="font-semibold">—</span>
                         )}
                       </div>
-
-
                     </div>
                   </CardContent>
                 </Card>

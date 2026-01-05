@@ -14,9 +14,19 @@ import {
   updateAuctionProperty,
 } from "@/app/api/auctionProperty";
 import { getStates, getCitiesByState } from "@/lib/locationService";
-import { areaMeasurementOptions, bankOptions, propertyTypeOptions } from "@/lib/constant";
+import {
+  areaMeasurementOptions,
+  bankOptions,
+  propertyTypeOptions,
+} from "@/lib/constant";
 import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
+
+const dateField = Yup.date()
+  .nullable()
+  .transform((value, originalValue) => {
+    return originalValue === "" ? null : value;
+  });
 
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
@@ -32,9 +42,30 @@ const validationSchema = Yup.object({
   cityId: Yup.number().required("City is required"),
   city: Yup.string().required("City name required"),
 
-  auctionStart: Yup.string().required("Auction start date required"),
-  auctionEnd: Yup.string().required("Auction end date required"),
-  emdEnd: Yup.string().required("EMD end date required"),
+  auctionStart: dateField
+    .required("Auction start date required")
+    .min(new Date(), "Auction start cannot be in the past"),
+
+  auctionEnd: dateField
+    .required("Auction end date required")
+    .when("auctionStart", ([auctionStart], schema) => {
+      if (!auctionStart) return schema;
+      return schema.min(
+        new Date(auctionStart),
+        "Auction end must be after start"
+      );
+    }),
+
+  emdEnd: dateField
+    .required("EMD end date required")
+    .when("auctionStart", ([auctionStart], schema) => {
+      if (!auctionStart) return schema;
+      return schema.max(
+        new Date(auctionStart),
+        "EMD end must be before auction start"
+      );
+    })
+    .min(new Date(), "EMD end cannot be in the past"),
   auctionId: Yup.string().required("Auction ID is required"),
   builtUpArea: Yup.number()
     .typeError("Built-Up Area must be a number")
@@ -205,6 +236,18 @@ const AuctionPropertyForm = () => {
   } = formik;
 
   useEffect(() => {
+    if (!values.auctionStart) return;
+
+    if (values.auctionEnd && values.auctionEnd < values.auctionStart) {
+      setFieldValue("auctionEnd", "");
+    }
+
+    if (values.emdEnd && values.emdEnd > values.auctionStart) {
+      setFieldValue("emdEnd", "");
+    }
+  }, [values.auctionStart]);
+
+  useEffect(() => {
     if (!isEditMode || !propertyId || states.length === 0) return;
 
     const loadProperty = async () => {
@@ -326,6 +369,7 @@ const AuctionPropertyForm = () => {
       <span className="text-red-500">*</span>
     </Label>
   );
+  const nowDateTime = new Date().toISOString().slice(0, 16);
 
   return (
     <Card>
@@ -351,9 +395,7 @@ const AuctionPropertyForm = () => {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <RequiredLabel>
-                    Title
-                  </RequiredLabel>
+                  <RequiredLabel>Title</RequiredLabel>
                   <Input
                     id="title"
                     name="title"
@@ -483,6 +525,7 @@ const AuctionPropertyForm = () => {
                     name="auctionStart"
                     value={values.auctionStart}
                     onChange={handleChange}
+                    min={nowDateTime}
                     placeholder="Auction Start Date"
                   />
                   {touched.auctionStart && errors.auctionStart && (
@@ -498,6 +541,7 @@ const AuctionPropertyForm = () => {
                     type="datetime-local"
                     name="auctionEnd"
                     value={values.auctionEnd}
+                    min={values.auctionStart || nowDateTime}
                     onChange={handleChange}
                     placeholder="Auction End Date"
                   />
@@ -516,6 +560,8 @@ const AuctionPropertyForm = () => {
                     type="datetime-local"
                     name="emdEnd"
                     value={values.emdEnd}
+                    min={nowDateTime}
+                    max={values.auctionStart || undefined}
                     onChange={handleChange}
                     className="w-full"
                   />
@@ -532,7 +578,9 @@ const AuctionPropertyForm = () => {
                     onChange={handleChange}
                   />
                   {touched.builtUpArea && errors.builtUpArea && (
-                    <p className="text-red-500 text-sm mt-1">{errors.builtUpArea}</p>
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.builtUpArea}
+                    </p>
                   )}
                 </div>
 
@@ -545,7 +593,9 @@ const AuctionPropertyForm = () => {
                     onChange={handleChange}
                   />
                   {touched.carpetArea && errors.carpetArea && (
-                    <p className="text-red-500 text-sm mt-1">{errors.carpetArea}</p>
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.carpetArea}
+                    </p>
                   )}
                 </div>
               </div>
@@ -566,9 +616,7 @@ const AuctionPropertyForm = () => {
                   )}
                 </div>
                 <div>
-                  <RequiredLabel>
-                    Type of Property
-                  </RequiredLabel>
+                  <RequiredLabel>Type of Property</RequiredLabel>
                   <select
                     id="type_of_property"
                     name="type_of_property"
@@ -606,7 +654,6 @@ const AuctionPropertyForm = () => {
                     ))}
                   </select>
                 </div>
-
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -927,7 +974,7 @@ const AuctionPropertyForm = () => {
                       <a
                         href={existingPdf.url}
                         target="_blank"
-                        className="text-blue-600 underline text-sm"
+                        className="text-emerald-600 underline text-sm"
                       >
                         {existingPdf.originalName}
                       </a>
@@ -980,8 +1027,8 @@ const AuctionPropertyForm = () => {
                   ? "Updating..."
                   : "Adding..."
                 : isEditMode
-                  ? "Update"
-                  : "Add"}
+                ? "Update"
+                : "Add"}
             </Button>
             <Button
               type="button"
@@ -995,7 +1042,6 @@ const AuctionPropertyForm = () => {
         </div>
       </div>
     </Card>
-
   );
 };
 
