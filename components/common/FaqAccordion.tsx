@@ -23,7 +23,7 @@ export default function FaqAccordion({
   subtitle = "Quick answers to common questions",
 }: FaqAccordionProps) {
   return (
-    <section className="pb-8 md:py-16 bg-white">
+    <section className="py-8 md:py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -39,15 +39,9 @@ export default function FaqAccordion({
             <AccordionItem
               key={index}
               value={`faq-${index}`}
-              className="border border-slate-200 rounded-xl px-4 shadow-sm"
+              className="border border-slate-200 rounded-xl px-4 shadow-sm bg-transparent"
             >
-              <AccordionTrigger
-                className="text-left text-lg font-semibold text-slate-800 hover:no-underline focus:outline-none
-    focus-visible:ring-0
-    focus-visible:bg-transparent
-    active:bg-transparent
-    data-[state=open]:bg-white"
-              >
+              <AccordionTrigger className="text-left text-lg font-semibold text-slate-800 hover:no-underline focus:outline-none focus-visible:ring-0 focus-visible:bg-transparent active:bg-transparent data-[state=open]:bg-white">
                 {faq.question}
               </AccordionTrigger>
               <AccordionContent className="text-slate-600 leading-relaxed pt-2 text-base">

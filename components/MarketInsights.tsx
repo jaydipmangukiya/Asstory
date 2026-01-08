@@ -4,7 +4,7 @@ import { marketInsightsData } from "@/lib/siteContent";
 
 export function MarketInsights() {
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 sm:text-4xl">

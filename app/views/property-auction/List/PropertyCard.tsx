@@ -6,6 +6,7 @@ import InterestedModal from "../Form/InterestedModal";
 import { formatPriceINR } from "@/lib/utils";
 import Image from "next/image";
 import NoImageFallback from "@/components/common/NoImageFallback";
+import { Button } from "@/components/ui/button";
 
 export default function PropertyCard({ data }: any) {
   const router = useRouter();
@@ -200,7 +201,7 @@ export default function PropertyCard({ data }: any) {
             </div>
 
             <div>
-              <p className="text-2xl font-bold text-emerald-600">
+              <p className="text-[22px] sm:text-2xl font-bold text-emerald-600">
                 {formatPriceINR(data.price)}
                 <span className="text-red-600 font-semibold text-sm align-super">
                   **
@@ -209,20 +210,21 @@ export default function PropertyCard({ data }: any) {
             </div>
 
             <div className="flex flex-wrap gap-4 mt-2">
-              <button
+              <Button
                 onClick={() =>
                   router.push(`/property-auction-list/${data._id}`)
                 }
                 className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-sm"
               >
                 View Details
-              </button>
-              <button
+              </Button>
+              <Button
+                variant={"outline"}
                 className="px-5 py-2.5 border border-emerald-500 text-emerald-600 hover:bg-emerald-50 rounded-xl"
                 onClick={() => setOpenModal(true)}
               >
                 Interested?
-              </button>
+              </Button>
             </div>
           </div>
         </div>

@@ -175,13 +175,13 @@ export const contactInfo = [
 ];
 
 export const supportOptions = [
-  {
-    icon: MessageSquare,
-    title: "Live Chat",
-    description: "Get instant help from our support team",
-    action: "Start Chat",
-    colorClass: "text-emerald-600",
-  },
+  // {
+  //   icon: MessageSquare,
+  //   title: "Live Chat",
+  //   description: "Get instant help from our support team",
+  //   action: "Start Chat",
+  //   colorClass: "text-emerald-600",
+  // },
   {
     icon: Headphones,
     title: "Phone Support",
@@ -195,6 +195,7 @@ export const supportOptions = [
     description: "Browse our comprehensive FAQ section",
     action: "View FAQs",
     colorClass: "text-orange-600",
+    type: "faq",
   },
   {
     icon: Users,
@@ -202,6 +203,7 @@ export const supportOptions = [
     description: "Book a consultation with our team",
     action: "Book Now",
     colorClass: "text-purple-600",
+    type: "calendly",
   },
 ];
 
@@ -273,30 +275,84 @@ export const ourProcess = [
   },
 ];
 
+// export const additionalServices = [
+//   {
+//     icon: TrendingUp,
+//     title: "Market Analysis Reports",
+//     description:
+//       "Comprehensive market trends and investment opportunities in your area",
+//   },
+//   {
+//     icon: FileText,
+//     title: "Property Documentation",
+//     description:
+//       "Legal document verification and property title analysis services",
+//   },
+//   {
+//     icon: Calculator,
+//     title: "Investment Advisory",
+//     description:
+//       "Expert guidance on property investment decisions and portfolio optimization",
+//   },
+//   {
+//     icon: Shield,
+//     title: "Property Insurance Valuation",
+//     description:
+//       "Accurate property valuation for insurance claims and coverage assessment",
+//   },
+// ];
+
 export const additionalServices = [
   {
-    icon: TrendingUp,
-    title: "Market Analysis Reports",
-    description:
-      "Comprehensive market trends and investment opportunities in your area",
-  },
-  {
     icon: FileText,
-    title: "Property Documentation",
+    title: "Prop Valuer Market Reports",
     description:
-      "Legal document verification and property title analysis services",
+      "Quick and accurate property valuation based on market data analysis and comparable properties.",
   },
   {
-    icon: Calculator,
-    title: "Investment Advisory",
+    icon: BarChart3,
+    title: "Market Analysis",
     description:
-      "Expert guidance on property investment decisions and portfolio optimization",
+      "Comprehensive analysis of local market trends, pricing patterns, and property demand.",
+  },
+  {
+    icon: Download,
+    title: "Bank-Grade PDF Reports",
+    description:
+      "Professional valuation reports accepted by banks, legal entities, and financial institutions.",
+  },
+  {
+    icon: Building,
+    title: "Residential & Commercial",
+    description:
+      "Complete support for residential, commercial, and mixed-use property valuations.",
+  },
+];
+
+export const auctionServices = [
+  {
+    icon: Gavel,
+    title: "Bank Auction Discovery",
+    description:
+      "Access to curated bank auction properties with verified documentation and ownership details.",
+  },
+  {
+    icon: Search,
+    title: "Seized Asset Listings",
+    description:
+      "Browse distressed and bank-seized properties with transparent auction schedules.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Valuation Comparison",
+    description:
+      "Compare auction reserve prices against market valuations to identify opportunities.",
   },
   {
     icon: Shield,
-    title: "Property Insurance Valuation",
+    title: "Investment Insights",
     description:
-      "Accurate property valuation for insurance claims and coverage assessment",
+      "Data-driven insights to help you make informed investment decisions.",
   },
 ];
 
@@ -330,22 +386,18 @@ export const teamMember = [
 
 export const stats = [
   {
-    icon: Building2,
-    value: "50,000+",
+    value: "50K+",
     label: "Properties Valued",
   },
   {
-    icon: Users,
-    value: "25,000+",
-    label: "Happy Customers",
-  },
-  {
-    icon: Award,
     value: "95%",
     label: "Accuracy Rate",
   },
   {
-    icon: TrendingUp,
+    value: "500+",
+    label: "Partner Institutions",
+  },
+  {
     value: "5+",
     label: "Years Experience",
   },

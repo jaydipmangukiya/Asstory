@@ -83,8 +83,8 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold mb-6">Contact Us</h1>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
+          <h1 className="text-3xl sm:text-5xl font-bold mb-6">Contact Us</h1>
+          <p className="text-base sm:text-xl max-w-3xl mx-auto leading-relaxed">
             Have questions about property valuation? We&#39;re here to help you
             make informed real estate decisions.
           </p>
@@ -219,10 +219,10 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold text-slate-800 mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-6">
                   Get in Touch
                 </h2>
-                <p className="text-lg text-slate-600 leading-relaxed">
+                <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
                   Whether you need help with property valuation, have technical
                   questions, or want to explore business opportunities, our team
                   is ready to assist you.
@@ -269,15 +269,15 @@ export default function ContactPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-800 mb-3">
               Other Ways to Reach Us
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto">
               Choose the support option that works best for you
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {supportOptions.map((option, index) => {
               const Icon = option.icon;
               return (
@@ -313,10 +313,10 @@ export default function ContactPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-800 mb-3">
               Visit Our Office
             </h2>
-            <p className="text-xl text-slate-600">
+            <p className="text-base sm:text-xl text-slate-600">
               Located in the heart of Surat&#39;s business district
             </p>
           </div>
@@ -339,10 +339,12 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <FaqAccordion
-        title="Frequently Asked Questions"
-        subtitle="Quick answers to common questions about our services"
-      />
+      <div id="faq-section" className="bg-white">
+        <FaqAccordion
+          title="Frequently Asked Questions"
+          subtitle="Quick answers to common questions about our services"
+        />
+      </div>
 
       <Footer />
     </div>
