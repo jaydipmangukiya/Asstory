@@ -12,9 +12,7 @@ export default function PropertyValuationPage() {
   return (
     <div className="w-full">
       <Header />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <SearchBar />
-      </div>
+      <SearchBar />
       <FeaturedProperties />
       <BenefitsValuationService />
       <ValuationTypes />

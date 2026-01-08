@@ -42,10 +42,10 @@ export function FeaturedProperties() {
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-800 mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">
             Recently Valued Properties
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto">
             Explore properties that have been recently valued on our platform
           </p>
         </div>
