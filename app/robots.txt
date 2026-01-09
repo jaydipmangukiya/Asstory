@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+Sitemap: https://prop-valuer-v3b2.vercel.app/sitemap.xml

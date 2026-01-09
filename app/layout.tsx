@@ -16,19 +16,44 @@ export const metadata: Metadata = {
     template: "%s | PropValuer",
   },
   description:
-    "Get instant, accurate property valuations powered by advanced market analysis and comprehensive data insights. Know your property's true worth with PropValuer.",
+    "Get accurate property valuations and real estate price estimates in India. Free online property valuation tool for apartments, villas, commercial properties, and land with instant market insights.",
   keywords: [
     "property valuation",
-    "property price check",
-    "land valuation",
-    "house valuation",
+    "real estate valuation",
+    "property price estimate",
+    "India property valuation",
+    "free property valuation",
+    "apartment valuation",
+    "villa valuation",
     "commercial property valuation",
-    "real estate valuation India",
+    "land valuation",
+    "property value checker",
   ],
+
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   alternates: {
     canonical: "https://prop-valuer-v3b2.vercel.app",
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   openGraph: {
+    type: "website",
+    locale: "en_IN",
     title: "PropValuer – Accurate Property Valuation",
     description:
       "Instant property valuation reports powered by real market data and analytics.",
@@ -42,10 +67,31 @@ export const metadata: Metadata = {
         alt: "PropValuer Property Valuation Platform",
       },
     ],
-    type: "website",
   },
   icons: {
     icon: "/assets/images/logo.svg",
+  },
+  // Twitter Card
+  twitter: {
+    card: "summary_large_image",
+    title: "Prop Valuer | Free Property Valuation in India",
+    description:
+      "Get accurate property valuations and real estate price estimates instantly.",
+    images: ["https://prop-valuer-v3b2.vercel.app/og-image.png"],
+  },
+  // Theme color
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+  category: "Real Estate",
+  authors: [{ name: "Prop Valuer Team" }],
+  creator: "Prop Valuer",
+  publisher: "Prop Valuer",
+  formatDetection: {
+    email: false,
+    telephone: false,
+    address: false,
   },
 };
 
@@ -57,6 +103,82 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* JSON-LD Structured Data - Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Prop Valuer",
+              url: "https://prop-valuer-v3b2.vercel.app",
+              logo: "https://prop-valuer-v3b2.vercel.app/logo.png",
+              description:
+                "Free online property valuation and real estate price estimation platform in India",
+              sameAs: [
+                "https://www.facebook.com/propvaluer",
+                "https://www.twitter.com/propvaluer",
+                "https://www.linkedin.com/company/propvaluer",
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "Customer Service",
+                availableLanguage: ["en", "hi"],
+              },
+            }),
+          }}
+        />
+
+        {/* JSON-LD Structured Data - Website */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Prop Valuer",
+              url: "https://prop-valuer-v3b2.vercel.app",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate:
+                    "https://prop-valuer-v3b2.vercel.app/search?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+
+        {/* JSON-LD Structured Data - Local Business */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Prop Valuer",
+              url: "https://prop-valuer-v3b2.vercel.app",
+              description:
+                "Professional property valuation and real estate pricing platform",
+              image: "https://prop-valuer-v3b2.vercel.app/og-image.png",
+              areaServed: "IN",
+              serviceType: "Property Valuation Service",
+            }),
+          }}
+        />
+
+        {/* Preconnect to external resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
         {/* ✅ Load Google Maps JavaScript SDK */}
         <Script
           src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}

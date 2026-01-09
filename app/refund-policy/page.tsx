@@ -52,18 +52,18 @@ export default function RefundPolicyPage() {
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center mb-6">
-            <RefreshCw className="h-12 w-12 mr-3" />
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <RefreshCw className="h-8 w-8 sm:h-12 sm:w-12 mr-4" />
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
               Refund Policy
             </h1>
           </div>
 
-          <p className="text-lg md:text-xl max-w-3xl mx-auto opacity-95 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto opacity-95 leading-relaxed">
             We strive for complete customer satisfaction. Learn everything about
             our refund terms and eligibility.
           </p>
 
-          <p className="text-md md:text-lg mt-4 opacity-90">
+          <p className="text-base sm:text-lg md:text-lg mt-4 opacity-90">
             Effective from: January 15, 2024
           </p>
         </div>
@@ -90,11 +90,11 @@ export default function RefundPolicyPage() {
       {/* Refund Conditions */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+          <div className="text-center mb-3 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 mb-4">
               Refund Conditions
             </h2>
-            <p className="text-xl text-slate-600">
+            <p className="text-base sm:text-xl text-slate-600">
               Understanding when refunds are applicable
             </p>
           </div>
@@ -108,7 +108,9 @@ export default function RefundPolicyPage() {
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-3">
                     {category.icon}
-                    <span>{category.title}</span>
+                    <span className="text-xl sm:text-2xl">
+                      {category.title}
+                    </span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -138,7 +140,9 @@ export default function RefundPolicyPage() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-3">
                 <Clock className="h-6 w-6 text-emerald-600" />
-                <span>Refund Process & Timeline</span>
+                <span className="text-xl sm:text-2xl">
+                  Refund Process & Timeline
+                </span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -197,7 +201,9 @@ export default function RefundPolicyPage() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-3">
                 <Phone className="h-6 w-6 text-emerald-600" />
-                <span>Need Help with Refunds?</span>
+                <span className="text-xl sm:text-2xl">
+                  Need Help with Refunds?
+                </span>
               </CardTitle>
             </CardHeader>
             <CardContent>

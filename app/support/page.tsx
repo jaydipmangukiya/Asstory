@@ -87,10 +87,12 @@ export default function SupportPage() {
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-6">
-            <Headphones className="h-12 w-12 mr-4" />
-            <h1 className="text-5xl font-bold">Support Center</h1>
+            <Headphones className="h-8 w-8 sm:h-12 sm:w-12 mr-4" />
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+              Support Center
+            </h1>
           </div>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             We&#39;re here to help you with any questions about property
             valuation and our services.
           </p>
@@ -101,15 +103,15 @@ export default function SupportPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">
               How Can We Help You?
             </h2>
-            <p className="text-xl text-slate-600">
+            <p className="text-base sm:text-xl text-slate-600">
               Choose the support option that works best for you
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {supportOptions.map((option, index) => {
               const Icon = option.icon;
               return (
@@ -127,7 +129,25 @@ export default function SupportPage() {
                     <p className="text-slate-600 text-sm">
                       {option.description}
                     </p>
-                    <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
+                    <Button
+                      className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700"
+                      onClick={() => {
+                        if (option.type === "faq") {
+                          document
+                            .getElementById("faq-section")
+                            ?.scrollIntoView({ behavior: "smooth" });
+                        }
+                        if (option.type === "calendly") {
+                          window.open(
+                            "https://calendly.com/solutionkmitjaydip/30min",
+                            "_blank"
+                          );
+                        }
+                        if (option.type === "call" && option.phone) {
+                          window.location.href = `tel:${option.phone}`;
+                        }
+                      }}
+                    >
                       {option.action}
                     </Button>
                   </CardContent>
@@ -142,10 +162,10 @@ export default function SupportPage() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">
               Send Us a Queries
             </h2>
-            <p className="text-xl text-slate-600">
+            <p className="text-base sm:text-xl text-slate-600">
               Fill out the form below and we&#39;ll get back to you within 4
               hours
             </p>
@@ -286,13 +306,13 @@ export default function SupportPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16">
+      <section className="py-16" id="faq-section">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-slate-600">
+            <p className="text-base sm:text-xl text-slate-600">
               Quick answers to common questions
             </p>
           </div>

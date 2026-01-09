@@ -13,14 +13,16 @@ export default function PrivacyPolicyPage() {
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-6">
-            <Shield className="h-12 w-12 mr-4" />
-            <h1 className="text-5xl font-bold">Privacy Policy</h1>
+            <Shield className="h-8 w-8 sm:h-12 sm:w-12 mr-4" />
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+              Privacy Policy
+            </h1>
           </div>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Your privacy is important to us. This policy explains how we
             collect, use, and protect your information.
           </p>
-          <p className="text-lg mt-4 opacity-90">
+          <p className="text-base sm:text-lg md:text-xl mt-4 opacity-90">
             Last updated: January 15, 2024
           </p>
         </div>
@@ -62,7 +64,9 @@ export default function PrivacyPolicyPage() {
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-3">
                       <Icon className={`h-6 w-6 ${section.colorClass}`} />
-                      <span>{section.title}</span>
+                      <span className="text-xl sm:text-2xl">
+                        {section.title}
+                      </span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -94,7 +98,9 @@ export default function PrivacyPolicyPage() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-3">
                 <AlertTriangle className="h-6 w-6 text-orange-600" />
-                <span>Your Rights and Choices</span>
+                <span className="text-xl sm:text-2xl">
+                  Your Rights and Choices
+                </span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -130,7 +136,9 @@ export default function PrivacyPolicyPage() {
 
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">
+                Contact Information
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-slate-700 mb-4">

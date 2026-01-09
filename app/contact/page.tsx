@@ -83,8 +83,10 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-5xl font-bold mb-6">Contact Us</h1>
-          <p className="text-base sm:text-xl max-w-3xl mx-auto leading-relaxed">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            Contact Us
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Have questions about property valuation? We&#39;re here to help you
             make informed real estate decisions.
           </p>
@@ -298,6 +300,22 @@ export default function ContactPage() {
                     <Button
                       variant="outline"
                       className="w-full border-2 border-slate-200 hover:border-emerald-500 hover:text-emerald-600"
+                      onClick={() => {
+                        if (option.type === "faq") {
+                          document
+                            .getElementById("faq-section")
+                            ?.scrollIntoView({ behavior: "smooth" });
+                        }
+                        if (option.type === "calendly") {
+                          window.open(
+                            "https://calendly.com/solutionkmitjaydip/30min",
+                            "_blank"
+                          );
+                        }
+                        if (option.type === "call" && option.phone) {
+                          window.location.href = `tel:${option.phone}`;
+                        }
+                      }}
                     >
                       {option.action}
                     </Button>

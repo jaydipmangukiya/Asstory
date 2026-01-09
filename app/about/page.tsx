@@ -4,6 +4,29 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { stats, teamMember, features } from "@/lib/siteContent";
+import { ArrowRight, Shield, Target, TrendingUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const values = [
+  {
+    icon: Target,
+    title: "Data-Driven Precision",
+    description:
+      "Every valuation and listing is backed by verified data, market analytics, and rigorous methodology.",
+  },
+  {
+    icon: Shield,
+    title: "Transparency",
+    description:
+      "Clear reporting, honest assessments, and no hidden agendas. We show you exactly how we arrive at our conclusions.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Continuous Innovation",
+    description:
+      "We constantly refine our algorithms and expand our data sources to deliver increasingly accurate insights.",
+  },
+];
 
 export default function AboutPage() {
   return (
@@ -13,11 +36,15 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold mb-6">About PropValuer</h1>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
-            We&#39;re revolutionizing property valuation in India with
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            About PropValuer
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            {/* We&#39;re revolutionizing property valuation in India with
             cutting-edge technology, comprehensive market data, and years of
-            real estate expertise.
+            real estate expertise. */}
+            India&apos;s most trusted property valuation platform, helping
+            professionals make data-driven property decisions.
           </p>
         </div>
       </section>
@@ -25,44 +52,95 @@ export default function AboutPage() {
       {/* Stats Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => {
-              // const Icon = stat.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="text-emerald-600 mb-4 flex justify-center">
-                    {/* <Icon className="w-8 h-8" /> */}
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
+                One Platform. Two Powerful Capabilities.
+              </h2>
+              <p className="text-muted-foreground mb-4">
+                PropValuer began as India&apos;s trusted property valuation
+                platform. Today, we&apos;ve evolved into a comprehensive real
+                estate intelligence solution that combines AI-powered valuations
+                with verified auction property discovery.
+              </p>
+              <p className="text-muted-foreground mb-4">
+                This isn&apos;t two separate products — it&apos;s a unified
+                platform designed for anyone who needs accurate property
+                insights: homebuyers seeking fair prices, investors identifying
+                opportunities, banks assessing collateral, and legal
+                professionals requiring reliable documentation.
+              </p>
+              <p className="text-muted-foreground">
+                Our technology-driven approach ensures every valuation is
+                data-backed, every listing is verified, and every decision you
+                make is informed.
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-emerald-600/10 to-accentyellowish/10 rounded-2xl p-8">
+              <div className="grid grid-cols-2 gap-6">
+                {stats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-slate-600">{stat.label}</div>
                   </div>
-                  <div className="text-3xl font-bold text-slate-800 mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-slate-600">{stat.label}</div>
-                </div>
-              );
-            })}
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Values Section */}
+      <section className="pb-10 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+              Our Principles
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+              The standards we hold ourselves to in everything we build
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {values.map((value, index) => (
+              <div
+                key={index}
+                className="text-center p-8 bg-white rounded-2xl border border-border"
+              >
+                <div className="w-16 h-16 mx-auto rounded-xl bg-emerald-600/10 flex items-center justify-center mb-6">
+                  <value.icon className="h-8 w-8 text-emerald-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-card-foreground mb-3">
+                  {value.title}
+                </h3>
+                <p className="text-muted-foreground">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* Mission Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-slate-800 mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-6">
                 Our Mission
               </h2>
-              <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                To democratize property valuation in India by making accurate,
-                instant, and affordable property assessments accessible to
-                everyone. We believe that every property owner, buyer, and
-                investor deserves transparent and reliable valuation data.
+              <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
+                We&apos;re building the infrastructure for transparent,
+                data-driven property decisions in India. Our goal is simple:
+                give every stakeholder — from first-time homebuyers to
+                institutional investors — access to the same quality of property
+                intelligence.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed">
-                Our platform combines advanced machine learning algorithms with
-                comprehensive market data to provide valuations that are not
-                just accurate, but also actionable for your real estate
-                decisions.
+                As we grow, we&apos;re expanding our data coverage, refining our
+                algorithms, and adding new capabilities. But our core commitment
+                remains unchanged: accuracy, transparency, and reliability in
+                every insight we deliver.
               </p>
             </div>
             <div className="relative">
@@ -79,7 +157,7 @@ export default function AboutPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-slate-800 mb-4">
@@ -115,16 +193,16 @@ export default function AboutPage() {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team Section */}
-      <section className="py-16">
+      <section className="py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">
               Meet Our Team
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto">
               Industry experts and technology leaders working together to
               transform real estate
             </p>
@@ -158,23 +236,37 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-slate-800 to-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Ready to Value Your Property?
+      <section className="py-16">
+        <div className="bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-800 text-white max-w-7xl mx-auto py-12 rounded-2xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-2 sm:mb-6">
+            Ready to Get Started?
           </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of property owners who trust PropValuer for accurate,
-            instant valuations
+          <p className="text-base sm:text-xl mb-8 max-w-2xl mx-auto">
+            Whether you need a property valuation or want to explore auction
+            opportunities, we&apos;re here to help.
           </p>
-          <Link
-            href="/login"
-            className="inline-block bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Get Started Today
-          </Link>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/property-valuation">
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-transparent hover:bg-white/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:text-white"
+              >
+                Get Property Valuation
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link href="/property-auction-list">
+              <Button
+                size="lg"
+                className="w-full justify-start bg-accentyellowish hover:bg-accentyellowish/90 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Explore Auction Properties
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 

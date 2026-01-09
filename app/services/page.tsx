@@ -16,12 +16,14 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-5xl font-bold mb-6">Our Services</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+            Our Services
+          </h1>
           {/* <p className="text-xl max-w-3xl mx-auto leading-relaxed">
             Comprehensive property valuation and real estate services powered by
             AI and expert analysis
           </p> */}
-          <p className="text-base sm:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Comprehensive property intelligence solutions for valuations and
             investment opportunities.
           </p>

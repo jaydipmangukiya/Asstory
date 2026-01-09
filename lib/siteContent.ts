@@ -175,19 +175,14 @@ export const contactInfo = [
 ];
 
 export const supportOptions = [
-  // {
-  //   icon: MessageSquare,
-  //   title: "Live Chat",
-  //   description: "Get instant help from our support team",
-  //   action: "Start Chat",
-  //   colorClass: "text-emerald-600",
-  // },
   {
     icon: Headphones,
     title: "Phone Support",
     description: "Speak directly with our experts",
     action: "Call Now",
     colorClass: "text-blue-600",
+    type: "call",
+    phone: "+919876543210",
   },
   {
     icon: FileText,
