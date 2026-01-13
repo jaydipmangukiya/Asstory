@@ -23,6 +23,7 @@ export function Header() {
     { name: "Auction Property", href: "/property-auction-list" },
     { name: "Services", href: "/services" },
     { name: "About Us", href: "/about" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact Us", href: "/contact" },
   ];
 

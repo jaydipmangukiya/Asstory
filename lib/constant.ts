@@ -196,3 +196,12 @@ export const civicAmenityOptions = [
 ];
 
 export const buildingConditionOptions = ["Excellent", "Good", "Normal", "Poor"];
+
+export const blogCategoryOptions = [
+  { label: "Real Estate Tips", value: "Real Estate Tips" },
+  { label: "Property Valuation", value: "Property Valuation" },
+  { label: "Market Trends", value: "Market Trends" },
+  { label: "Investment Advice", value: "Investment Advice" },
+  { label: "Property Management", value: "Property Management" },
+  { label: "Home Improvement", value: "Home Improvement" },
+];

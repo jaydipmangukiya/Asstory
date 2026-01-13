@@ -54,6 +54,7 @@ export default function AdminLayout({
       icon: Building2,
     },
     { name: "Staff", href: "/admin/staff", icon: UserCheck },
+    { name: "Blog", href: "/admin/blog", icon: FileText },
     {
       name: "Support Queries",
       href: "/admin/support-queries",
