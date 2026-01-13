@@ -7,11 +7,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Calendar, FileText, Folder, Loader2 } from "lucide-react";
+import { Calendar, FileText, Folder, ImageOff, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getBlogById } from "@/app/api/blog";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface Props {
   open: boolean;
@@ -90,22 +91,27 @@ const ViewBlogModal = ({ open, blogId, onClose }: Props) => {
             </div>
 
             {/* Image */}
-            {blogDetails.image && (
-              <div className="bg-slate-50 rounded-md p-4 border">
-                <h3 className="font-semibold text-slate-700 mb-3">
-                  Blog Image
-                </h3>
-                <img
-                  src={
-                    typeof blogDetails.image === "string"
-                      ? blogDetails.image
-                      : blogDetails.image.url
-                  }
-                  alt={blogDetails.title}
-                  className="max-h-64 rounded-lg object-cover"
-                />
-              </div>
-            )}
+
+            <div className="bg-slate-50 rounded-md p-4 border">
+              <h3 className="font-semibold text-slate-700 mb-3">Blog Image</h3>
+              {blogDetails.image?.url ? (
+                <div className="relative w-full max-w-xl h-64 rounded-lg overflow-hidden">
+                  <Image
+                    src={blogDetails.image.url}
+                    alt={blogDetails.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 640px"
+                    priority
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center h-64 border border-dashed rounded-lg bg-white text-slate-400">
+                  <ImageOff className="h-8 w-8 mb-2" />
+                  <p className="text-sm">No image uploaded</p>
+                </div>
+              )}
+            </div>
 
             {/* Excerpt */}
             <div className="bg-slate-50 rounded-md p-4 border">

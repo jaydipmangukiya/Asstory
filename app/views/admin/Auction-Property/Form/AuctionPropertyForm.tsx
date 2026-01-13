@@ -21,6 +21,7 @@ import {
 } from "@/lib/constant";
 import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
 
 const dateField = Yup.date()
   .nullable()
@@ -874,11 +875,16 @@ const AuctionPropertyForm = () => {
                           key={img.public_id || idx}
                           className="relative rounded-lg overflow-hidden border shadow-sm group"
                         >
-                          <img
-                            src={img.url}
-                            alt={`Property ${idx + 1}`}
-                            className="h-28 w-full object-cover"
-                          />
+                          <div className="relative h-28 w-full">
+                            <Image
+                              src={img.url}
+                              alt={`Property ${idx + 1}`}
+                              fill
+                              className="object-cover"
+                              sizes="200px"
+                            />
+                          </div>
+
                           <button
                             type="button"
                             onClick={() =>
@@ -903,11 +909,16 @@ const AuctionPropertyForm = () => {
                           key={idx}
                           className="relative rounded-lg overflow-hidden border shadow-sm group"
                         >
-                          <img
-                            src={URL.createObjectURL(file)}
-                            alt={`New ${idx + 1}`}
-                            className="h-28 w-full object-cover"
-                          />
+                          <div className="relative h-28 w-full">
+                            <Image
+                              src={URL.createObjectURL(file)}
+                              alt={`New ${idx + 1}`}
+                              fill
+                              className="object-cover"
+                              sizes="200px"
+                              unoptimized
+                            />
+                          </div>
                           <button
                             type="button"
                             onClick={() => handleRemoveNewImage(idx)}

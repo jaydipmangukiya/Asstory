@@ -35,6 +35,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/authentication/AuthProvider";
 import { hasAccess } from "@/lib/permissions";
 import BulkAuctionUploadModal from "./Form/BulkAuctionUploadModal";
+import Image from "next/image";
 
 const AuctionPropertyList = () => {
   const { toast } = useToast();
@@ -230,20 +231,19 @@ const AuctionPropertyList = () => {
                           : "--"}
                       </TableCell>
                       <TableCell>
-                        <div className="h-20 w-28 rounded-md overflow-hidden border bg-slate-50 flex items-center justify-center">
+                        <div className="relative h-20 w-28 rounded-md overflow-hidden border bg-slate-50 flex items-center justify-center">
                           {properties.images && properties.images.length > 0 ? (
-                            <img
+                            <Image
                               src={properties.images[0].url}
                               alt={properties.title}
-                              className="h-full w-full object-cover"
-                              loading="lazy"
+                              fill
+                              className="object-cover"
+                              sizes="112px"
                             />
                           ) : (
-                            <>
-                              <div className="mx-auto h-8 w-8 rounded-full bg-white/80 flex items-center justify-center shadow">
-                                <ImageOff className="h-4 w-4 text-slate-500" />
-                              </div>
-                            </>
+                            <div className="mx-auto h-8 w-8 rounded-full bg-white/80 flex items-center justify-center shadow">
+                              <ImageOff className="h-4 w-4 text-slate-500" />
+                            </div>
                           )}
                         </div>
                       </TableCell>

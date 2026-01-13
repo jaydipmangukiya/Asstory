@@ -17,6 +17,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Label } from "@/components/ui/label";
 import { Loader2, X } from "lucide-react";
+import Image from "next/image";
 
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
@@ -72,6 +73,7 @@ const AddEditBlogModal = ({ open, onClose, onSuccess, blogId }: Props) => {
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [removeExistingImage, setRemoveExistingImage] = useState(false);
   const [fileName, setFileName] = useState<string>("");
 
   const initialValues: BlogFormValues = {
@@ -91,14 +93,18 @@ const AddEditBlogModal = ({ open, onClose, onSuccess, blogId }: Props) => {
     onSubmit: async (values) => {
       setLoading(true);
       try {
+        const payload = {
+          ...values,
+          removeExistingImage,
+        };
         if (isEditMode && blogId) {
-          await updateBlog(blogId, values);
+          await updateBlog(blogId, payload);
           toast({
             title: "Updated ✅",
             description: "Blog updated successfully",
           });
         } else {
-          await createBlog(values);
+          await createBlog(payload);
           toast({
             title: "Created ✅",
             description: "Blog created successfully",
@@ -200,6 +206,7 @@ const AddEditBlogModal = ({ open, onClose, onSuccess, blogId }: Props) => {
       }
 
       formik.setFieldValue("image", file);
+      setRemoveExistingImage(false);
       setFileName(file.name);
 
       // Create preview
@@ -215,6 +222,7 @@ const AddEditBlogModal = ({ open, onClose, onSuccess, blogId }: Props) => {
     formik.setFieldValue("image", null);
     setImagePreview(null);
     setFileName("");
+    setRemoveExistingImage(true);
   };
 
   const handleClose = () => {
@@ -222,6 +230,7 @@ const AddEditBlogModal = ({ open, onClose, onSuccess, blogId }: Props) => {
     setImagePreview(null);
     setFileName("");
     onClose();
+    setRemoveExistingImage(false);
   };
 
   const RequiredLabel = ({ children }: { children: string }) => (
@@ -358,11 +367,16 @@ const AddEditBlogModal = ({ open, onClose, onSuccess, blogId }: Props) => {
                     <p className="text-sm font-medium text-slate-700 mb-3">
                       Image Preview
                     </p>
-                    <img
-                      src={imagePreview}
-                      alt="Blog preview"
-                      className="max-h-48 max-w-xs rounded-lg object-cover"
-                    />
+                    <div className="relative w-64 h-48 rounded-lg overflow-hidden">
+                      <Image
+                        src={imagePreview}
+                        alt="Blog preview"
+                        fill
+                        className="object-cover"
+                        sizes="256px"
+                        priority
+                      />
+                    </div>
                   </div>
                   <button
                     type="button"

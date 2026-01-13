@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { User, Calendar, Loader2 } from "lucide-react";
+import { User, Calendar, Loader2, ImageOff } from "lucide-react";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -135,7 +135,7 @@ export default function BlogPage() {
                           />
                         ) : (
                           <div className="h-full flex items-center justify-center text-slate-400">
-                            No Image
+                            <ImageOff className="h-8 w-8 mb-2" />
                           </div>
                         )}
                       </div>

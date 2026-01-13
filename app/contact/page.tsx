@@ -20,6 +20,35 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { sendContactMessage } from "../api/contact";
 import { contactInfo, supportOptions } from "@/lib/siteContent";
+import Script from "next/script";
+
+const contactStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact PropValuer",
+  url: "https://prop-valuer-v3b2.vercel.app/contact",
+  description:
+    "Get in touch with PropValuer for property valuation support, demos, and partnerships in India.",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://prop-valuer-v3b2.vercel.app/contact",
+  },
+  potentialAction: {
+    "@type": "CommunicateAction",
+    target: "mailto:info@propvaluer.com",
+    name: "Send an email to PropValuer",
+  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+919876543210",
+      contactType: "customer support",
+      areaServed: "IN",
+      availableLanguage: ["en", "hi"],
+      email: "support@propvaluer.com",
+    },
+  ],
+};
 
 export default function ContactPage() {
   const { toast } = useToast();
@@ -79,6 +108,15 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Header />
+
+      <Script
+        id="contact-structured-data"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(contactStructuredData),
+        }}
+      />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">

@@ -24,6 +24,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
 import DeleteDialog from "@/components/common/DeleteDialog";
+import Image from "next/image";
 
 import {
   Blog,
@@ -176,12 +177,14 @@ const BlogList = () => {
                   {blogs.map((blog) => (
                     <TableRow key={blog._id}>
                       <TableCell>
-                        <div className="h-16 w-24 border rounded overflow-hidden flex items-center justify-center">
-                          {blog.image ? (
-                            <img
+                        <div className="relative h-16 w-24 border rounded overflow-hidden flex items-center justify-center bg-slate-50">
+                          {blog.image?.url ? (
+                            <Image
                               src={blog.image.url}
                               alt={blog.title}
-                              className="h-full w-full object-cover"
+                              fill
+                              className="object-cover"
+                              sizes="96px"
                             />
                           ) : (
                             <ImageOff className="h-5 w-5 text-slate-400" />

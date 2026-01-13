@@ -2,6 +2,7 @@
 "use client";
 
 import NoImageFallback from "@/components/common/NoImageFallback";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function PropertyImageSlider({ images = [] }) {
@@ -22,12 +23,19 @@ export default function PropertyImageSlider({ images = [] }) {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {images.map((img: any, idx) => (
-              <img
-                key={idx}
-                src={img.url}
-                className="inline-block w-full h-full object-cover"
-                alt={`Property ${idx + 1}`}
-              />
+              <div
+                key={img.public_id || idx}
+                className="inline-block relative w-full h-full"
+              >
+                <Image
+                  src={img.url}
+                  alt={`Property ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 640px"
+                  priority={idx === currentIndex}
+                />
+              </div>
             ))}
           </div>
 
