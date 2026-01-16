@@ -12,7 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://prop-valuer-v3b2.vercel.app"),
   title: {
-    default: "Free Property Valuation in India | PropValuer",
+    default:
+      "Property Valuation in India – Instant Price Estimates | PropValuer",
     template: "%s | PropValuer",
   },
   description:
