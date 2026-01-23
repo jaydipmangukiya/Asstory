@@ -1,0 +1,38 @@
+# PropValuer - Search Engine Optimization
+User-agent: *
+Allow: /
+Allow: /property-valuation
+Allow: /property-auction-list
+Allow: /services
+Allow: /blog
+Allow: /about
+Allow: /contact
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api
+Disallow: /api/*
+Disallow: /*.json
+Disallow: /private/*
+
+# Sitemap location
+Sitemap: https://prop-valuer-v3b2.vercel.app/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# User-agent specific rules for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# User-agent specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
