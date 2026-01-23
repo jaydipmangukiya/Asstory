@@ -1,5 +1,6 @@
 import { Building2, Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
+import CookieSettingsButton from "./CookieConsent/CookieSettingsButton";
 
 export function Footer() {
   return (
@@ -115,13 +116,20 @@ export function Footer() {
             <p className="text-gray-400 text-sm">
               © 2025 PropValuer. All rights reserved.
             </p>
-            <div className="flex space-x-4 sm:space-x-6 mt-4 md:mt-0">
+            <div className="flex space-x-4 sm:space-x-6 mt-4 md:mt-0 flex-wrap justify-center md:justify-end">
               <Link
                 href="/privacy-policy"
                 className="text-gray-400 hover:text-white sm:text-sm text-[11px] transition-colors"
               >
                 Privacy Policy
               </Link>
+              <Link
+                href="/cookie-policy"
+                className="text-gray-400 hover:text-white sm:text-sm text-[11px] transition-colors"
+              >
+                Cookie Policy
+              </Link>
+              <CookieSettingsButton />
               <Link
                 href="/terms"
                 className="text-gray-400 hover:text-white sm:text-sm text-[11px] transition-colors"

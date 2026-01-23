@@ -1,5 +1,4 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import type { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   RefreshCw,
@@ -9,6 +8,52 @@ import {
   CircleCheck as CheckCircle,
   Phone,
 } from "lucide-react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+const title = "Refund Policy | PropValuer";
+const description =
+  "Learn how PropValuer handles refund requests for property valuation services, including eligibility, timelines, and contact information.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: "https://prop-valuer-v3b2.vercel.app/refund-policy",
+  },
+  keywords: [
+    "propValuer refund policy",
+    "property valuation refund",
+    "refund process",
+    "valuation service terms",
+    "propValuer support",
+  ],
+  openGraph: {
+    title,
+    description,
+    url: "https://prop-valuer-v3b2.vercel.app/refund-policy",
+    type: "article",
+    siteName: "PropValuer",
+    images: [
+      {
+        url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PropValuer refund policy preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function RefundPolicyPage() {
   const refundConditions = [
