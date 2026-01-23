@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/authentication/AuthProvider";
 import { PERMISSIONS } from "@/lib/constant";
 import { hasAccess } from "@/lib/permissions";
+import PropertyCharts from "@/components/PropertyCharts";
 
 const quickActions = [
   {
@@ -86,7 +87,7 @@ export default function AdminDashboard() {
       !hasAccess(
         user?.permissions,
         PERMISSIONS.DASHBOARD.actions.VIEW,
-        user?.role
+        user?.role,
       )
     ) {
       return;
@@ -118,7 +119,7 @@ export default function AdminDashboard() {
     : [];
 
   const allowedQuickActions = quickActions.filter((action) =>
-    hasAccess(user?.permissions, action.permission, user?.role)
+    hasAccess(user?.permissions, action.permission, user?.role),
   );
 
   return (
@@ -176,8 +177,8 @@ export default function AdminDashboard() {
                       activity.type === "user"
                         ? "bg-blue-500"
                         : activity.type === "property"
-                        ? "bg-emerald-500"
-                        : "bg-orange-500"
+                          ? "bg-emerald-500"
+                          : "bg-orange-500"
                     }`}
                   />
                   <div className="flex-1">
@@ -232,6 +233,14 @@ export default function AdminDashboard() {
             ))}
           </CardContent>
         </Card>
+      </div>
+
+      {/* Property Charts Section */}
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold text-slate-800 mb-6">
+          Property Analytics
+        </h2>
+        <PropertyCharts />
       </div>
     </div>
   );
