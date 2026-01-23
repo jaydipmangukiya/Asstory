@@ -3,14 +3,89 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Gavel } from "lucide-react";
 import { termsSections } from "@/lib/siteContent";
+import Head from "next/head";
 
 export default function TermsPage() {
+  // Structured Data - Organization Schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "PropValuer",
+    url: "https://propvaluer.com",
+    logo: "https://propvaluer.com/logo.png",
+    description:
+      "Free property valuation and auction service platform in India",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+91-98765-43210",
+      contactType: "Customer Service",
+      email: "support@propvaluer.com",
+    },
+  };
+
+  // Structured Data - WebPage Schema
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Terms & Conditions",
+    description:
+      "Terms and conditions for PropValuer property valuation services",
+    url: "https://propvaluer.com/terms",
+    publisher: {
+      "@type": "Organization",
+      name: "PropValuer",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://propvaluer.com/logo.png",
+      },
+    },
+  };
+
+  // Structured Data - BreadcrumbList
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://propvaluer.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Terms & Conditions",
+        item: "https://propvaluer.com/terms",
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
+      </Head>
       <Header />
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
+      <section
+        className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white"
+        aria-label="Terms and conditions header"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-6">
             <FileText className="h-8 w-8 sm:h-12 sm:w-12 mr-4" />
@@ -28,8 +103,16 @@ export default function TermsPage() {
         </div>
       </section>
 
+      {/* Hidden H1 for SEO */}
+      <h1 className="sr-only">
+        Terms and Conditions - Property Valuation Service Agreement | PropValuer
+      </h1>
+
       {/* Introduction */}
-      <section className="py-16">
+      <section
+        className="py-16"
+        aria-label="Introduction to terms and conditions"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
@@ -51,7 +134,10 @@ export default function TermsPage() {
       </section>
 
       {/* Main Sections */}
-      <section className="py-16 bg-white">
+      <section
+        className="py-16 bg-white"
+        aria-label="Key terms and conditions sections"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {termsSections.map((section, index) => {
@@ -92,7 +178,7 @@ export default function TermsPage() {
       </section>
 
       {/* Additional Terms */}
-      <section className="py-16">
+      <section className="py-16" aria-label="Additional terms details">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardHeader>
