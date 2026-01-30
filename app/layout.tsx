@@ -22,7 +22,6 @@ export const metadata: Metadata = {
     "real estate valuation",
     "property price estimate",
     "India property valuation",
-    "free property valuation",
     "apartment valuation",
     "villa valuation",
     "commercial property valuation",

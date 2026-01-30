@@ -85,7 +85,7 @@ export default function AuthLogin() {
               Sign In to Continue
             </CardTitle>
             <p className="text-slate-600 mt-2">
-              Access property valuation tools
+              Access Property Valuation & Auction Insights
             </p>
           </CardHeader>
 
