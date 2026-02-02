@@ -18,7 +18,7 @@ export default function PrivacyPolicyPage() {
       "@type": "ContactPoint",
       telephone: "+91-98765-43210",
       contactType: "Customer Service",
-      email: "privacy@asstory.com",
+      email: "info@asstory.in",
     },
   };
 
@@ -229,7 +229,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="space-y-2 text-slate-700">
                 <p>
-                  <strong>Email:</strong> privacy@asstory.com
+                  <strong>Email:</strong> info@asstory.in
                 </p>
                 <p>
                   <strong>Phone:</strong> +91 98765 43210

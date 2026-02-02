@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     canonical: "https://asstory.vercel.app/refund-policy",
   },
   keywords: [
-    "asstory refund policy",
+    "Asstory refund policy",
     "property valuation refund",
-    "refund process",
-    "valuation service terms",
-    "asstory support",
+    "auction service refund",
+    "paid service refunds",
+    "refund terms Asstory",
   ],
   openGraph: {
     title,
@@ -85,6 +85,7 @@ export default function RefundPolicyPage() {
         "User error in providing incorrect property information",
         "Change of mind after report generation",
         "Market fluctuations affecting property values",
+        "Access to auction listings or auction-related insights once provided",
       ],
     },
   ];
@@ -267,7 +268,7 @@ export default function RefundPolicyPage() {
                   </h4>
                   <div className="space-y-2 text-slate-700">
                     <p>
-                      <strong>Email:</strong> refunds@asstory.com
+                      <strong>Email:</strong> info@asstory.in
                     </p>
                     <p>
                       <strong>Phone:</strong> +91 98765 43210

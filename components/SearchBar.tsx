@@ -120,7 +120,7 @@ export function SearchBar() {
           </div>
         </Card>
         <p className="mt-4 text-sm text-white text-center">
-          Most accurate estimate in just 30 seconds
+          Most accurate estimate in just 1 min
         </p>
       </div>
       <ValuationTrust />

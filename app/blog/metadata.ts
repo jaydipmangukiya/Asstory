@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const title = "Asstory Blog | Property Valuation Insights & Market Updates";
+const title = "Asstory Blog – Real Estate Insights, Valuation & Market Trends";
 const description =
   "Expert insights on property valuation, real estate market trends, investment strategies, and auction property updates tailored for Indian real estate professionals.";
 
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://asstory.vercel.app/blog",
   },
   keywords: [
+    "Asstory blog",
     "property valuation blog",
     "real estate market insights",
     "property investment tips",

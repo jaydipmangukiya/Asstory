@@ -239,10 +239,10 @@ export default function CookiePolicyPage() {
                   <p>
                     <strong>Email:</strong>{" "}
                     <a
-                      href="mailto:info@asstory.com"
+                      href="mailto:info@asstory.in"
                       className="text-emerald-600 hover:text-emerald-700"
                     >
-                      info@asstory.com
+                      info@asstory.in
                     </a>
                   </p>
                   <p className="mt-2">

@@ -22,7 +22,7 @@ export default function PropertyValuationPage() {
             url: "https://asstory.vercel.app",
             logo: "https://asstory.vercel.app/assets/logo.png",
             description:
-              "Free property valuation and auction property listings in India",
+              "Property valuation and real estate intelligence platform in India",
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "Customer Support",
@@ -32,6 +32,11 @@ export default function PropertyValuationPage() {
               "@type": "Country",
               name: "India",
             },
+            knowsAbout: [
+              "Property Valuation",
+              "Real Estate Analytics",
+              "Market Price Estimation",
+            ],
           }),
         }}
       />
@@ -50,7 +55,7 @@ export default function PropertyValuationPage() {
               url: "https://asstory.vercel.app",
             },
             description:
-              "Free online property valuation tool for accurate market value estimation",
+              "Online property valuation service providing data-driven market value estimates for residential and commercial properties in India",
             areaServed: {
               "@type": "Country",
               name: "India",
@@ -106,8 +111,7 @@ export default function PropertyValuationPage() {
       />
 
       <h1 className="sr-only">
-        Property Valuation - Free Online Tool for Accurate Property Values in
-        India
+        Property Valuation - Data-Driven Property Price Estimates in India
       </h1>
       <Header />
       <SearchBar />

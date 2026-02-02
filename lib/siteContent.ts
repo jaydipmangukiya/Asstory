@@ -144,9 +144,9 @@ export const contactFaqs = [
       "Basic property valuations are instant. Detailed reports with market analysis are generated within 24 hours.",
   },
   {
-    question: "Do you cover all cities in India?",
+    question: "Do you cover all cities in Gujarat?",
     answer:
-      "We currently cover 50+ major cities across India, with plans to expand to more locations soon.",
+      "No. Currently, our services are available only in 2–3 selected cities in Gujarat. We are actively working on expanding to more cities once reliable data coverage is ensured.",
   },
   {
     question: "Is my property information secure?",
@@ -165,7 +165,7 @@ export const contactInfo = [
   {
     icon: Mail,
     title: "Email Addresses",
-    details: ["info@asstory.com", "support@asstory.com", "sales@asstory.com"],
+    details: ["info@asstory.in"],
     colorClass: "text-orange-600",
   },
   {
@@ -229,9 +229,9 @@ export const faqs = [
       "Yes, we provide valuations for both residential and commercial properties including offices, retail spaces, warehouses, and industrial properties.",
   },
   {
-    question: "Do you cover all cities in India?",
+    question: "Do you cover all cities in Gujarat?",
     answer:
-      "We currently cover 50+ major cities across India including Surat, Delhi, Bangalore, Hyderabad, Chennai, Pune, and more. We're continuously expanding our coverage.",
+      "No. Currently, our services are available only in 2–3 selected cities in Gujarat. We are actively working on expanding to more cities once reliable data coverage is ensured.",
   },
   {
     question: "Is my property information secure?",
@@ -373,31 +373,38 @@ export const auctionServices = [
 
 export const teamMember = [
   {
-    name: "Rajesh Kumar",
+    name: "Jay Pagada",
     role: "CEO & Founder",
     image:
       "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300",
-    description: "15+ years in real estate and technology",
+    description: "Visionary leader with 10+ years in real estate tech",
   },
   {
-    name: "Priya Sharma",
+    name: "Brijesh Movaliya",
+    role: "CTO & Co-Founder",
+    image:
+      "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300",
+    description: "Expert in scalable web architectures",
+  },
+  {
+    name: "Jaydip Mangukiya",
     role: "Head of Data Science",
     image:
-      "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300",
-    description: "PhD in Machine Learning, ex-Google",
+      "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300",
+    description: "AI specialist with a focus on real estate analytics",
   },
   {
-    name: "Amit Patel",
-    role: "VP Engineering",
+    name: "Kirit Patel",
+    role: "Advisory Board Member",
     image:
-      "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=300",
-    description: "Former CTO at leading PropTech companies",
+      "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300",
+    description: "Real Estate Investor & Mentor",
   },
 ];
 
 export const stats = [
   {
-    value: "50K+",
+    value: "1K+",
     label: "Properties Valued",
   },
   {
@@ -405,7 +412,7 @@ export const stats = [
     label: "Accuracy Rate",
   },
   {
-    value: "500+",
+    value: "30+",
     label: "Partner Institutions",
   },
   {

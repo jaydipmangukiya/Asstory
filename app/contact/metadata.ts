@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const title = "Contact Asstory | Talk to Property Valuation Experts";
+const title = "Contact Asstory | Property Valuation & Auction Property Experts";
 const description =
-  "Contact Asstory for property valuation support, demos, partnerships, and sales inquiries. Call, email, or book a consultation with our team.";
+  "Contact Asstory for property valuation support, verified auction property inquiries, demos, partnerships, and sales. Speak with our real estate experts today.";
 
 export const metadata: Metadata = {
   title,
@@ -13,10 +13,13 @@ export const metadata: Metadata = {
   keywords: [
     "contact asstory",
     "property valuation services india",
+    "auction property support",
+    "auction property consultation",
     "real estate valuation experts",
     "property valuation consultation",
     "property valuation support",
     "property valuation demo",
+    "verified auction properties india",
     "commercial property valuation",
     "residential property valuation",
     "real estate valuation company",

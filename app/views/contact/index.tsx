@@ -35,7 +35,7 @@ const contactStructuredData = {
   },
   potentialAction: {
     "@type": "CommunicateAction",
-    target: "mailto:info@asstory.com",
+    target: "mailto:info@asstory.in",
     name: "Send an email to Asstory",
   },
   contactPoint: [
@@ -45,7 +45,7 @@ const contactStructuredData = {
       contactType: "customer support",
       areaServed: "IN",
       availableLanguage: ["en", "hi"],
-      email: "support@asstory.com",
+      email: "info@asstory.in",
     },
   ],
 };

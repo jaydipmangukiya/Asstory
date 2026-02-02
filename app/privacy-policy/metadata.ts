@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const title = "Privacy Policy | Data Protection & Your Information | Asstory";
+const title = "Privacy Policy | Asstory";
 const description =
-  "Our Privacy Policy explains how Asstory collects, uses, and protects your personal data. Learn about your privacy rights and how we safeguard your information.";
+  "Learn how Asstory collects, uses, and protects your personal data when you use our property valuation and auction discovery platform.";
 
 export const metadata: Metadata = {
   title,

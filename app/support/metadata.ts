@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const title = "Support Center | Asstory - Get Help with Property Valuation";
+const title = "Support Center | Asstory – Valuation & Auction Property Help";
 const description =
-  "Get expert support for property valuation services. Contact Asstory team for technical help, billing queries, account issues, and general assistance.";
+  "Get expert support for property valuation and verified auction property services. Contact Asstory for technical help, billing queries, account issues, and general assistance.";
 
 export const metadata: Metadata = {
   title,
@@ -12,11 +12,12 @@ export const metadata: Metadata = {
   },
   keywords: [
     "Asstory support",
-    "property valuation help",
+    "property valuation support",
+    "auction property support",
+    "auction listing help",
     "customer support",
     "technical support",
     "valuation service help",
-    "Asstory contact",
     "property valuation queries",
     "billing support",
     "account help",

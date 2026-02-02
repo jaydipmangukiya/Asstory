@@ -18,7 +18,7 @@ export default function TermsPage() {
       "@type": "ContactPoint",
       telephone: "+91-98765-43210",
       contactType: "Customer Service",
-      email: "support@asstory.com",
+      email: "info@asstory.in",
     },
   };
 
@@ -264,7 +264,7 @@ export default function TermsPage() {
                 <p>
                   <strong>Contact for Legal Matters:</strong>
                 </p>
-                <p>Email: legal@asstory.com</p>
+                <p>Email: info@asstory.in</p>
                 <p>Address: Surat, Gujarat, 395003, India</p>
               </div>
             </CardContent>

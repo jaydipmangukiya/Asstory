@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
-const title = "Terms & Conditions | Property Valuation Services | Asstory";
+const title =
+  "Terms & Conditions | Valuation & Auction Property Services | Asstory";
 const description =
-  "Read our comprehensive Terms & Conditions for property valuation services. Understand usage agreements, liability, and user responsibilities at Asstory.";
+  "Read Asstory’s Terms & Conditions governing the use of our property valuation and auction property discovery services, including user responsibilities, limitations, and legal terms.";
 
 export const metadata: Metadata = {
   title,
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   keywords: [
     "terms and conditions",
     "terms of service",
+    "auction property terms",
     "property valuation terms",
     "service terms",
     "user agreement",
@@ -17,8 +19,6 @@ export const metadata: Metadata = {
     "conditions of use",
     "property services terms",
     "valuation service terms",
-    "website terms",
-    "privacy terms",
     "terms Asstory",
     "service agreement",
     "user terms",

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
-const title =
-  "Free Property Valuation Tool | Accurate Property Values in India";
+const title = "Property Valuation Tool | Accurate Property Values in India";
 const description =
   "Get instant property valuations for residential, commercial, land & villa properties in India. Our AI-powered tool provides accurate market values using location, size & condition.";
 
@@ -14,7 +13,6 @@ export const metadata: Metadata = {
   keywords: [
     "property valuation",
     "property valuation tool",
-    "free property valuation",
     "property value calculator",
     "residential property valuation",
     "commercial property valuation",
@@ -38,7 +36,7 @@ export const metadata: Metadata = {
         url: "https://asstory.vercel.app/assets/images/og-valuation.png",
         width: 1200,
         height: 630,
-        alt: "Free Property Valuation Tool",
+        alt: "Property Valuation Tool",
       },
     ],
   },

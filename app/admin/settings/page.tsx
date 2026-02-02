@@ -12,8 +12,8 @@ export default function SettingsPage() {
   const [settings, setSettings] = useState({
     siteName: "Asstory",
     siteDescription: "Property Valuation Platform",
-    contactEmail: "info@asstory.com",
-    supportEmail: "support@asstory.com",
+    contactEmail: "info@asstory.in",
+    supportEmail: "info@asstory.in",
     enableRegistration: true,
     enableNotifications: true,
     maintenanceMode: false,

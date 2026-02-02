@@ -8,7 +8,7 @@ import { stats, teamMember } from "@/lib/siteContent";
 import { ArrowRight, Quote, Shield, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const title = "About Asstory – India’s Data-Driven Property Valuation Platform";
+const title = "About Asstory – Data-Driven Real Estate Intelligence Platform";
 const description =
   "Learn how Asstory combines verified data, AI, and valuation expertise to deliver transparent property insights and auction discovery across India.";
 
@@ -78,24 +78,24 @@ const values = [
 const testimonials = [
   {
     quote:
-      "Asstory's valuation reports are now our standard for all property assessments. The accuracy and detailed methodology have significantly improved our lending decisions.",
-    author: "Rajesh Sharma",
-    role: "Chief Risk Officer",
-    company: "National Housing Bank",
+      "Asstory helped me understand the realistic market value of my property in Surat. The valuation breakdown was clear and easy to trust.",
+    author: "Property Owner",
+    role: "Residential Seller",
+    company: "Surat, Gujarat",
   },
   {
     quote:
-      "As a real estate investor, finding verified auction properties with reliable valuations was always a challenge. Asstory solved both problems in one platform.",
-    author: "Priya Mehta",
-    role: "Managing Director",
-    company: "Horizon Real Estate Investments",
+      "Finding auction properties with proper value clarity was difficult earlier. Asstory made the process much simpler for local investments.",
+    author: "Local Investor",
+    role: "Real Estate Investor",
+    company: "Surat",
   },
   {
     quote:
-      "The transparency in their valuation methodology gives our clients complete confidence. We recommend Asstory to all our property dispute cases.",
-    author: "Adv. Sunil Kapoor",
-    role: "Senior Partner",
-    company: "Kapoor & Associates Law Firm",
+      "The valuation reports are well-structured and useful for documentation and client discussions. It saves a lot of manual effort.",
+    author: "Legal Consultant",
+    role: "Property Law Advisor",
+    company: "Surat",
   },
 ];
 
@@ -112,7 +112,17 @@ export default function AboutPage() {
             name: "Asstory",
             url: "https://asstory.vercel.app",
             description:
-              "India’s data-driven property valuation and auction discovery platform",
+              "India’s data-driven real estate intelligence platform for transparent property valuation and verified market insights",
+            areaServed: {
+              "@type": "Country",
+              name: "India",
+            },
+            knowsAbout: [
+              "Property Valuation",
+              "Real Estate Analytics",
+              "Market Price Estimation",
+              "Auction Property Intelligence",
+            ],
             sameAs: [],
           }),
         }}
@@ -334,7 +344,7 @@ export default function AboutPage() {
                 key={index}
                 className="rounded-2xl border border-border p-8 relative shadow-lg"
               >
-                <Quote className="h-10 w-10 text-emerald-600 absolute top-6 right-6" />
+                <Quote className="absolute -top-4 -left-4 h-12 w-12 text-emerald-600/20" />
                 <p className="text-muted-foreground mb-6 italic relative z-10">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
