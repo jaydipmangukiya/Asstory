@@ -13,8 +13,7 @@ export default function PrivacyPolicyPage() {
     name: "Asstory",
     url: "https://asstory.com",
     logo: "https://asstory.com/logo.png",
-    description:
-      "Free property valuation and auction service platform in India",
+    description: "Property valuation and auction discovery platform in India",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-98765-43210",
@@ -118,7 +117,7 @@ export default function PrivacyPolicyPage() {
                 ensuring the security of your personal information. This Privacy
                 Policy explains how we collect, use, disclose, and safeguard
                 your information when you visit our website or use our property
-                valuation services.
+                valuation and auction property services.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
                 By using our services, you agree to the collection and use of

@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 
 const title = "Refund Policy | Asstory";
 const description =
-  "Learn how Asstory handles refund requests for property valuation services, including eligibility, timelines, and contact information.";
+  "Learn how Asstory handles refund requests for paid services, including property valuation and auction discovery features, with eligibility, timelines, and contact details.";
 
 export const metadata: Metadata = {
   title,
@@ -74,6 +74,7 @@ export default function RefundPolicyPage() {
         "Minor discrepancies in property details that don't affect overall valuation",
         "Delayed report delivery between 24-72 hours",
         "Incomplete amenity information in the final report",
+        "Partial refunds are assessed case-by-case depending on impact and service delivered.",
       ],
     },
     {
@@ -84,7 +85,6 @@ export default function RefundPolicyPage() {
         "User error in providing incorrect property information",
         "Change of mind after report generation",
         "Market fluctuations affecting property values",
-        "Free valuation services",
       ],
     },
   ];
@@ -119,9 +119,9 @@ export default function RefundPolicyPage() {
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
                 At Asstory, we are committed to providing accurate and reliable
-                property valuation services. This Refund Policy outlines the
-                terms and conditions under which refunds may be processed for
-                our premium valuation services.
+                property valuation services auction discovery features. This
+                Refund Policy outlines the terms and conditions under which
+                refunds may be processed for our premium valuation services.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
                 Please read this policy carefully before making any payment for
@@ -210,8 +210,11 @@ export default function RefundPolicyPage() {
                   <ul className="space-y-2 text-slate-700">
                     <li>• Review: 2-3 business days</li>
                     <li>• Approval notification: 1 business day</li>
-                    <li>• Refund processing: 5-7 business days</li>
-                    <li>• Bank credit: 3-5 business days</li>
+                    <li>
+                      • Refund processing: 5-10 business days (depending on
+                      payment method)
+                    </li>
+                    <li>• Bank credit: depends on your bank / card issuer</li>
                   </ul>
                 </div>
               </div>
@@ -230,8 +233,8 @@ export default function RefundPolicyPage() {
                     delivery
                   </li>
                   <li>
-                    • All refund decisions are final and at Asstory&#39;s
-                    discretion
+                    • Refund decisions are made based on this policy and
+                    applicable laws
                   </li>
                 </ul>
               </div>

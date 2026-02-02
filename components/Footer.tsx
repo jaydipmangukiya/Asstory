@@ -1,5 +1,6 @@
 import { Building2, Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
+// import CookieSettingsButton from "./CookieConsent/CookieSettingsButton";
 
 export function Footer() {
   return (
@@ -13,9 +14,9 @@ export function Footer() {
               <span className="text-2xl font-bold">Asstory</span>
             </div>
             <p className="text-gray-400 md:max-w-md md:mb-6 mb-3">
-              Your trusted partner for accurate property valuations. We provide
-              instant, reliable property estimates powered by advanced market
-              analysis and real-time data.
+              Your trusted partner for data-driven property insights. We provide
+              accurate property valuations and verified auction property
+              discovery powered by advanced market analysis and real-time data.
             </p>
           </div>
 
@@ -128,6 +129,7 @@ export function Footer() {
               >
                 Cookie Policy
               </Link>
+              {/* <CookieSettingsButton /> */}
               <Link
                 href="/terms"
                 className="text-gray-400 hover:text-white sm:text-sm text-[11px] transition-colors"

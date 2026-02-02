@@ -129,6 +129,16 @@ export const contactFaqs = [
       "Our AI-powered valuations have a 95% accuracy rate, validated against actual market transactions and expert assessments.",
   },
   {
+    question: "Do you provide auction property details and analysis?",
+    answer:
+      "Yes. Asstory provides verified auction property listings along with insights to help buyers evaluate risks and opportunities before bidding.",
+  },
+  {
+    question: "Is auction property valuation different from normal valuation?",
+    answer:
+      "Yes. Auction properties require additional checks such as legal status, reserve price, and risk assessment, which Asstory helps you understand clearly.",
+  },
+  {
     question: "How long does it take to get a valuation report?",
     answer:
       "Basic property valuations are instant. Detailed reports with market analysis are generated within 24 hours.",
@@ -232,6 +242,16 @@ export const faqs = [
     question: "Can I download my valuation report?",
     answer:
       "Yes, all valuation reports are available as downloadable PDFs with detailed analysis, comparable properties, and market insights.",
+  },
+  {
+    question: "Do you provide support for auction properties?",
+    answer:
+      "Yes. Asstory helps users discover verified auction properties and provides guidance on auction listings, risks, and valuation insights.",
+  },
+  {
+    question: "Does Asstory verify auction property listings?",
+    answer:
+      "We source auction listings from trusted public and institutional channels. While legal due diligence should be done by buyers, we ensure data accuracy and transparency.",
   },
 ];
 
@@ -482,11 +502,12 @@ export const termsSections = [
     title: "User Responsibilities",
     colorClass: "text-emerald-600",
     content: [
-      "Provide accurate and complete property information for valuation purposes.",
-      "Use the service only for legitimate property valuation needs.",
+      "Provide accurate and complete property information for valuation or auction-related purposes.",
+      "Use the service only for legitimate property valuation and auction discovery needs.",
+      "Conduct independent legal, financial, and technical due diligence before purchasing or bidding on any property.",
       "Maintain the confidentiality of your account credentials.",
       "Comply with all applicable laws and regulations when using our services.",
-      "Not attempt to reverse engineer or manipulate our valuation algorithms.",
+      "Not attempt to reverse engineer, manipulate, or misuse our valuation models or auction data.",
     ],
   },
   {
@@ -494,11 +515,12 @@ export const termsSections = [
     title: "Service Limitations",
     colorClass: "text-blue-600",
     content: [
-      "Valuations are estimates based on available data and market analysis.",
-      "We do not guarantee the accuracy of third-party data sources.",
-      "Property values may fluctuate due to market conditions.",
-      "Our service is not a substitute for professional property appraisal.",
-      "We reserve the right to refuse service for any property or location.",
+      "Valuations are estimates based on available data, algorithms, and market analysis.",
+      "Auction property information is provided for informational purposes only and may change without notice.",
+      "We do not guarantee the accuracy, completeness, or legal status of third-party or auction data sources.",
+      "Property values and auction conditions may fluctuate due to market forces, regulatory changes, or seller actions.",
+      "Our services do not replace professional appraisal, legal advice, or independent verification.",
+      "We reserve the right to refuse, modify, or discontinue services for any property, listing, or location.",
     ],
   },
   {
@@ -507,7 +529,7 @@ export const termsSections = [
     colorClass: "text-orange-600",
     content: [
       "All content, algorithms, and technology are proprietary to Asstory.",
-      "Users may not copy, distribute, or reproduce our valuation reports for commercial purposes.",
+      "Users may not copy, scrape, redistribute, or commercially exploit valuation reports or auction data without written permission.",
       "Our trademarks, logos, and brand elements are protected intellectual property.",
       "User-generated content remains the property of the user but grants us usage rights.",
       "We respect third-party intellectual property rights and expect users to do the same.",
@@ -518,11 +540,12 @@ export const termsSections = [
     title: "Liability and Disclaimers",
     colorClass: "text-red-600",
     content: [
-      "Asstory is not liable for decisions made based on our valuation reports.",
-      "We disclaim all warranties, express or implied, regarding service accuracy.",
-      "Our liability is limited to the amount paid for the specific service.",
-      "We are not responsible for losses due to market fluctuations or external factors.",
-      "Users assume full responsibility for their property investment decisions.",
+      "Asstory provides valuation insights and auction property information for informational purposes only.",
+      "We are not liable for decisions, bids, purchases, or investments made based on valuation reports or auction listings.",
+      "We do not guarantee auction outcomes, property title clearance, possession status, or legal compliance.",
+      "All services are provided on an 'as-is' and 'as-available' basis without warranties of any kind.",
+      "Our total liability, if any, is limited to the amount paid for the specific service used.",
+      "Users assume full responsibility for property-related decisions, risks, and outcomes.",
     ],
   },
 ];

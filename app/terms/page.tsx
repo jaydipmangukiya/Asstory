@@ -13,8 +13,7 @@ export default function TermsPage() {
     name: "Asstory",
     url: "https://asstory.com",
     logo: "https://asstory.com/logo.png",
-    description:
-      "Free property valuation and auction service platform in India",
+    description: "Property valuation and auction discovery platform in India",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-98765-43210",
@@ -28,7 +27,8 @@ export default function TermsPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Terms & Conditions",
-    description: "Terms and conditions for Asstory property valuation services",
+    description:
+      "Terms and conditions governing the use of Asstory property valuation and auction discovery services",
     url: "https://asstory.com/terms",
     publisher: {
       "@type": "Organization",
@@ -94,7 +94,7 @@ export default function TermsPage() {
           </div>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Please read these terms carefully before using our property
-            valuation services.
+            valuation and auction discovery services.
           </p>
           <p className="text-base sm:text-lg md:text-xl mt-4 opacity-90">
             Last updated: January 15, 2024
@@ -117,9 +117,10 @@ export default function TermsPage() {
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
                 Welcome to Asstory. These Terms and Conditions
-                (&quot;Terms&quot;) govern your use of our website and property
-                valuation services. By accessing or using our services, you
-                agree to be bound by these Terms and our Privacy Policy.
+                (&quot;Terms&quot;) govern your use of our website, property
+                valuation services and auction property discovery features. By
+                accessing or using our services, you agree to be bound by these
+                Terms and our Privacy Policy.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
                 If you do not agree with any part of these terms, please do not
@@ -205,7 +206,9 @@ export default function TermsPage() {
                 </h4>
                 <p className="text-slate-700">
                   Premium services are billed according to the selected plan.
-                  Free services remain free with usage limitations as specified.
+                  Some features may be offered free of charge, while premium
+                  services are subject to applicable fees and usage limits, as
+                  displayed at the time of purchase.
                 </p>
               </div>
               <div>
@@ -239,7 +242,6 @@ export default function TermsPage() {
                 <ul className="space-y-1 text-red-700 text-sm">
                   <li>• Violation of these Terms and Conditions</li>
                   <li>• Fraudulent or illegal use of our services</li>
-                  <li>• Non-payment of premium service fees</li>
                   <li>• Abuse of our support systems or staff</li>
                 </ul>
               </div>

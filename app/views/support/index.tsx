@@ -94,7 +94,7 @@ export default function SupportView() {
           </div>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             We&#39;re here to help you with any questions about property
-            valuation and our services.
+            valuation, auction properties, and our services.
           </p>
         </div>
       </section>
@@ -163,7 +163,7 @@ export default function SupportView() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-4">
-              Send Us a Queries
+              Send Us Your Query
             </h2>
             <p className="text-base sm:text-xl text-slate-600">
               Fill out the form below and we&#39;ll get back to you within 4
@@ -254,6 +254,12 @@ export default function SupportView() {
                     <SelectContent>
                       <SelectItem value="Property Valuation Help">
                         Property Valuation Help
+                      </SelectItem>
+                      <SelectItem value="Auction Property Help">
+                        Auction Property Help
+                      </SelectItem>
+                      <SelectItem value="Auction Listing Issue">
+                        Auction Listing Issue
                       </SelectItem>
                       <SelectItem value="Technical Support">
                         Technical Support

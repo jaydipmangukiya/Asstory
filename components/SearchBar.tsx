@@ -48,7 +48,7 @@ export function SearchBar() {
         } else {
           setSuggestions([]);
         }
-      }
+      },
     );
   }, [searchQuery]);
 
@@ -76,7 +76,7 @@ export function SearchBar() {
               Find Your Property Value
             </h2>
             <p className="text-slate-600 text-lg">
-              Enter your property location to get started with free valuation
+              Enter your property location to get started with valuation
             </p>
           </div>
 

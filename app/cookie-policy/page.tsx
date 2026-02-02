@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cookie Policy | Asstory",
   description:
-    "Learn about how Asstory uses cookies and how to manage your cookie preferences.",
+    "Learn how Asstory uses cookies for property valuation, auction discovery, analytics, and how to manage your cookie preferences.",
 };
 
 export default function CookiePolicyPage() {
@@ -32,8 +32,9 @@ export default function CookiePolicyPage() {
                   Asstory (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot; or
                   &quot;Company&quot;) uses cookies and similar tracking
                   technologies on our website to enhance your browsing
-                  experience, analyze how you use our site, and deliver
-                  personalized content and advertisements.
+                  experience, analyze how you use our site, support property
+                  valuation tools, auction property discovery, and deliver
+                  relevant content.
                 </p>
                 <p className="mt-3">
                   This Cookie Policy explains what cookies are, how we use them,
@@ -72,7 +73,10 @@ export default function CookiePolicyPage() {
                     <ul className="list-disc list-inside mt-2 ml-2 space-y-1">
                       <li>Authentication cookies (login information)</li>
                       <li>Security cookies (fraud detection)</li>
-                      <li>Functionality cookies (language preferences)</li>
+                      <li>
+                        Functionality cookies (language preferences, saved
+                        searches, filters, and user interface preferences)
+                      </li>
                     </ul>
                     <p className="mt-2 text-sm text-gray-600">
                       These cookies cannot be disabled as they are required for
@@ -189,8 +193,9 @@ export default function CookiePolicyPage() {
                   <li>Social media platforms</li>
                 </ul>
                 <p className="mt-3">
-                  These third parties have their own privacy policies. We
-                  encourage you to review them.
+                  These third parties do not receive personally identifiable
+                  property or auction data unless explicitly required for
+                  service delivery.
                 </p>
               </section>
 
@@ -202,8 +207,9 @@ export default function CookiePolicyPage() {
                 <p>
                   We take the protection of your data seriously. All information
                   collected through cookies is processed in accordance with our
-                  Privacy Policy and applicable data protection laws, including
-                  GDPR and CCPA.
+                  Privacy Policy and applicable data protection laws, in
+                  accordance with our Privacy Policy and applicable data
+                  protection laws, where required.
                 </p>
               </section>
 

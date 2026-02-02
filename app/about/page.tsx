@@ -65,7 +65,7 @@ const values = [
     icon: Shield,
     title: "Transparency",
     description:
-      "Clear reporting, honest assessments, and no hidden agendas. We show you exactly how we arrive at our conclusions.",
+      "Clear reporting, honest assessments,verified listings, and no hidden agendas. We show you exactly how we arrive at our conclusions.",
   },
   {
     icon: TrendingUp,
@@ -125,11 +125,8 @@ export default function AboutPage() {
             About Asstory
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            {/* We&#39;re revolutionizing property valuation in India with
-            cutting-edge technology, comprehensive market data, and years of
-            real estate expertise. */}
-            India&apos;s most trusted property valuation platform, helping
-            professionals make data-driven property decisions.
+            India&apos;s most trusted property intelligence platform, helping
+            professionals make data-driven valuation and auction decisions.
           </p>
         </div>
       </section>
@@ -219,7 +216,8 @@ export default function AboutPage() {
                 data-driven property decisions in India. Our goal is simple:
                 give every stakeholder — from first-time homebuyers to
                 institutional investors — access to the same quality of property
-                intelligence.
+                intelligence, including fair valuations and verified auction
+                opportunities.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed">
                 As we grow, we&apos;re expanding our data coverage, refining our

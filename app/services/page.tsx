@@ -336,7 +336,7 @@ export default function ServicesPage() {
                 size="lg"
                 className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                Start Free Valuation
+                Start Valuation
               </Button>
             </Link>
             <Link href="/property-auction-list">
