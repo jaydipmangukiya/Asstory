@@ -6,8 +6,8 @@ import Script from "next/script";
 import { AuthProvider } from "@/components/authentication/AuthProvider";
 import RazorpayScriptLoader from "./views/subscription/RazorpayScriptLoader";
 import NavigationInitializer from "@/components/navigation/NavigationInitializer";
-import CookieBanner from "@/components/CookieConsent/CookieBanner";
-import ConsentScriptManager from "@/components/CookieConsent/ConsentScriptManager";
+// import CookieBanner from "@/components/CookieConsent/CookieBanner";
+// import ConsentScriptManager from "@/components/CookieConsent/ConsentScriptManager";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 const inter = Inter({ subsets: ["latin"] });
