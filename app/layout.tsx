@@ -6,21 +6,31 @@ import Script from "next/script";
 import { AuthProvider } from "@/components/authentication/AuthProvider";
 import RazorpayScriptLoader from "./views/subscription/RazorpayScriptLoader";
 import NavigationInitializer from "@/components/navigation/NavigationInitializer";
+import CookieBanner from "@/components/CookieConsent/CookieBanner";
+import ConsentScriptManager from "@/components/CookieConsent/ConsentScriptManager";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://asstory.vercel.app"),
+  metadataBase: new URL(SITE_URL || "https://www.asstory.in"),
   title: {
-    default: "Property Valuation in India – Instant Price Estimates | Asstory",
+    default: "Property Valuation & Auction Properties in India | Asstory",
     template: "%s | Asstory",
   },
   description:
-    "Get accurate property valuations and price estimates in India. Free online tool for apartments, villas, and commercial properties.",
+    "Get accurate property valuations and explore verified auction properties in India. Data-driven insights for apartments, villas, land, and commercial real estate.",
   keywords: [
     "property valuation",
     "real estate valuation",
     "property price estimate",
+    "auction property",
+    "property auction India",
+    "bank auction property",
+    "distressed property auction",
+    "auction property valuation",
+    "India real estate auction",
+    "commercial property auction",
     "India property valuation",
     "apartment valuation",
     "villa valuation",
@@ -42,7 +52,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://asstory.vercel.app",
+    canonical: SITE_URL,
   },
   viewport: {
     width: "device-width",
@@ -53,9 +63,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    title: "Asstory – Accurate Property Valuation",
+    title: "Asstory – Property Valuation & Auction Property Platform",
     description:
-      "Instant property valuation reports powered by real market data and analytics.",
+      "Accurate property valuations and verified auction property discovery powered by real market data and analytics.",
     url: "https://asstory.vercel.app",
     siteName: "Asstory",
     images: [
@@ -73,9 +83,9 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "Asstory | Free Property Valuation in India",
+    title: "Asstory | Property Valuation & Auction Properties in India",
     description:
-      "Get accurate property valuations and real estate price estimates instantly.",
+      "Get accurate property valuations and explore verified auction properties across India.",
     images: ["https://asstory.vercel.app/og-image.png"],
   },
   // Theme color
@@ -113,7 +123,7 @@ export default function RootLayout({
               url: "https://asstory.vercel.app",
               logo: "https://asstory.vercel.app/logo.png",
               description:
-                "Free online property valuation and real estate price estimation platform in India",
+                "Property valuation and auction property discovery platform for Indian real estate",
               sameAs: [
                 "https://www.facebook.com/asstory",
                 "https://www.twitter.com/asstory",
@@ -163,7 +173,7 @@ export default function RootLayout({
                 "Professional property valuation and real estate pricing platform",
               image: "https://asstory.vercel.app/og-image.png",
               areaServed: "IN",
-              serviceType: "Property Valuation Service",
+              serviceType: ["Property Valuation", "Auction Property Discovery"],
             }),
           }}
         />
@@ -188,6 +198,8 @@ export default function RootLayout({
         <AuthProvider>
           <NavigationInitializer />
           <RazorpayScriptLoader />
+          {/* <CookieBanner /> */}
+          {/* <ConsentScriptManager /> */}
           {children}
           <Toaster />
         </AuthProvider>
