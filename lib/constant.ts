@@ -94,14 +94,6 @@ export const PERMISSIONS = {
       EDIT: "SUPPORT_QUERIES_EDIT",
     },
   },
-
-  SETTINGS: {
-    label: "Settings",
-    actions: {
-      VIEW: "SETTINGS_VIEW",
-      EDIT: "SETTINGS_EDIT",
-    },
-  },
 } as const;
 
 export const propertyTypeOptions = [

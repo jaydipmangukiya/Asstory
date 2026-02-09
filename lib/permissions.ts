@@ -10,13 +10,12 @@ export const ADMIN_ROUTE_PERMISSION_MAP: Record<string, string> = {
   "/admin/interested-property": PERMISSIONS.INTERESTED_PROPERTY.actions.VIEW,
   "/admin/staff": PERMISSIONS.STAFF.actions.VIEW,
   "/admin/support-queries": PERMISSIONS.SUPPORT_QUERIES.actions.VIEW,
-  "/admin/settings": PERMISSIONS.SETTINGS.actions.VIEW,
 };
 
 export const hasAccess = (
   userPermissions: string[] = [],
   requiredPermission?: string,
-  role?: string
+  role?: string,
 ) => {
   if (role === "SUPER_ADMIN" || role === "ADMIN") return true;
   if (!requiredPermission) return true;
@@ -30,7 +29,7 @@ export function getFirstAllowedAdminRoute(userData: {
   if (!userData) return "/";
 
   const entry = Object.entries(ADMIN_ROUTE_PERMISSION_MAP).find(([_, perm]) =>
-    hasAccess(userData.permissions, perm, userData.role)
+    hasAccess(userData.permissions, perm, userData.role),
   );
 
   return entry?.[0] || "/";

@@ -1,9 +1,7 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Building2, Users, FileText, TrendingUp, Eye } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Card, CardContent } from "@/components/ui/card";
+import { Building2, Users, FileText } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { getDashboardStats } from "../api/dashboard";
 import { useToast } from "@/hooks/use-toast";
@@ -11,57 +9,9 @@ import { useAuth } from "@/components/authentication/AuthProvider";
 import { PERMISSIONS } from "@/lib/constant";
 import { hasAccess } from "@/lib/permissions";
 import PropertyCharts from "@/components/PropertyCharts";
-
-const quickActions = [
-  {
-    name: "Manage Users",
-    href: "/admin/users",
-    icon: Users,
-    permission: PERMISSIONS.USER.actions.VIEW,
-  },
-  {
-    name: "View Properties",
-    href: "/admin/properties",
-    icon: Building2,
-    permission: PERMISSIONS.PROPERTY.actions.VIEW,
-  },
-  {
-    name: "Review Valuations",
-    href: "/admin/valuations",
-    icon: FileText,
-    permission: PERMISSIONS.VALUATION.actions.VIEW,
-  },
-  {
-    name: "System Settings",
-    href: "/admin/settings",
-    icon: Eye,
-    permission: PERMISSIONS.SETTINGS.actions.VIEW,
-  },
-];
+import AuctionPropertyCharts from "@/components/AuctionPropertyCharts";
 
 export default function AdminDashboard() {
-  const recentActivities = [
-    {
-      type: "user",
-      message: "New user registered: john@example.com",
-      time: "2 minutes ago",
-    },
-    {
-      type: "property",
-      message: "Property added in Mumbai, Bandra West",
-      time: "15 minutes ago",
-    },
-    {
-      type: "valuation",
-      message: "Valuation completed for ₹2.5 Cr property",
-      time: "1 hour ago",
-    },
-    {
-      type: "user",
-      message: "User updated profile: sarah@example.com",
-      time: "2 hours ago",
-    },
-  ];
   const { toast } = useToast();
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -118,10 +68,6 @@ export default function AdminDashboard() {
       ]
     : [];
 
-  const allowedQuickActions = quickActions.filter((action) =>
-    hasAccess(user?.permissions, action.permission, user?.role),
-  );
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -159,88 +105,20 @@ export default function AdminDashboard() {
             ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Activities */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activities</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentActivities.map((activity, index) => (
-                <div
-                  key={index}
-                  className="flex items-start space-x-3 p-3 bg-slate-50 rounded-lg"
-                >
-                  <div
-                    className={`w-2 h-2 rounded-full mt-2 ${
-                      activity.type === "user"
-                        ? "bg-blue-500"
-                        : activity.type === "property"
-                          ? "bg-emerald-500"
-                          : "bg-orange-500"
-                    }`}
-                  />
-                  <div className="flex-1">
-                    <p className="text-sm text-slate-800">{activity.message}</p>
-                    <p className="text-xs text-slate-500">{activity.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Quick Actions */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-          </CardHeader>
-          {/* <CardContent className="space-y-3">
-            <Link href="/admin/users">
-              <Button variant="outline" className="w-full justify-start">
-                <Users className="h-4 w-4 mr-2" />
-                Manage Users
-              </Button>
-            </Link>
-            <Link href="/admin/properties">
-              <Button variant="outline" className="w-full justify-start">
-                <Building2 className="h-4 w-4 mr-2" />
-                View Properties
-              </Button>
-            </Link>
-            <Link href="/admin/valuations">
-              <Button variant="outline" className="w-full justify-start">
-                <FileText className="h-4 w-4 mr-2" />
-                Review Valuations
-              </Button>
-            </Link>
-            <Link href="/admin/settings">
-              <Button variant="outline" className="w-full justify-start">
-                <Eye className="h-4 w-4 mr-2" />
-                System Settings
-              </Button>
-            </Link>
-          </CardContent> */}
-          <CardContent className="space-y-3">
-            {allowedQuickActions.map((action) => (
-              <Link key={action.href} href={action.href}>
-                <Button variant="outline" className="w-full justify-start">
-                  <action.icon className="h-4 w-4 mr-2" />
-                  {action.name}
-                </Button>
-              </Link>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Property Charts Section */}
       <div className="mt-8">
         <h2 className="text-2xl font-bold text-slate-800 mb-6">
           Property Analytics
         </h2>
         <PropertyCharts />
+      </div>
+
+      {/* Auction Property Charts Section */}
+      <div className="mt-12">
+        <h2 className="text-2xl font-bold text-slate-800 mb-6">
+          Auction Property Analytics
+        </h2>
+        <AuctionPropertyCharts />
       </div>
     </div>
   );
