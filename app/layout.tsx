@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: "Asstory – Property Valuation & Auction Property Platform",
     description:
       "Accurate property valuations and verified auction property discovery powered by real market data and analytics.",
-    url: "https://asstory.vercel.app",
+    url: SITE_URL,
     siteName: "Asstory",
     images: [
       {
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "Asstory | Property Valuation & Auction Properties in India",
     description:
       "Get accurate property valuations and explore verified auction properties across India.",
-    images: ["https://asstory.vercel.app/og-image.png"],
+    images: [`${SITE_URL}/og-image.png`],
   },
   // Theme color
   themeColor: [
@@ -120,8 +120,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Asstory",
-              url: "https://asstory.vercel.app",
-              logo: "https://asstory.vercel.app/logo.png",
+              url: SITE_URL,
+              logo: `${SITE_URL}/logo.png`,
               description:
                 "Property valuation and auction property discovery platform for Indian real estate",
               sameAs: [
@@ -146,13 +146,12 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Asstory",
-              url: "https://asstory.vercel.app",
+              url: SITE_URL,
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
-                  urlTemplate:
-                    "https://asstory.vercel.app/search?q={search_term_string}",
+                  urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
                 },
                 "query-input": "required name=search_term_string",
               },
@@ -168,10 +167,10 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Asstory",
-              url: "https://asstory.vercel.app",
+              url: SITE_URL,
               description:
                 "Professional property valuation and real estate pricing platform",
-              image: "https://asstory.vercel.app/og-image.png",
+              image: `${SITE_URL}/og-image.png`,
               areaServed: "IN",
               serviceType: ["Property Valuation", "Auction Property Discovery"],
             }),
