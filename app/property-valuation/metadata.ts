@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
 
-const title = "Property Valuation Tool | Accurate Property Values in India";
+const title = "Property Valuation Tool | Accurate Market Values in India";
 const description =
-  "Get instant property valuations for residential, commercial, land & villa properties in India. Our AI-powered tool provides accurate market values using location, size & condition.";
+  "Get instant and accurate property valuations for residential, commercial, land & villa properties in India. Our AI-powered tool provides reliable market values using location, size & condition.";
 
 export const metadata: Metadata = {
   title,

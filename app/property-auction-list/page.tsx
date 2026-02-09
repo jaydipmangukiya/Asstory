@@ -4,9 +4,9 @@ import PropertyauctionList from "@/app/views/property-auction";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
 
 const title =
-  "Bank Auction Properties India | Property Auction Listings & Valuations";
+  "Bank Auction & Bank-Seized Properties India | Auction Listings & Valuations";
 const description =
-  "Discover verified bank auction properties across India. Browse residential, commercial, land & villa auctions with accurate valuations, location filters & detailed property information.";
+  "Discover verified bank auction and bank-seized properties across India. Browse residential, commercial, land & villa auctions with accurate valuations, market value analysis, location filters & detailed property information.";
 
 export const metadata: Metadata = {
   title,

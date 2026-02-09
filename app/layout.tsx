@@ -15,11 +15,12 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL || "https://www.asstory.in"),
   title: {
-    default: "Property Valuation & Auction Properties in India | Asstory",
+    default:
+      "Property Valuation & Bank Auction Properties in India | Market Value | Asstory",
     template: "%s | Asstory",
   },
   description:
-    "Get accurate property valuations and explore verified auction properties in India. Data-driven insights for apartments, villas, land, and commercial real estate.",
+    "Get accurate property valuations and discover verified auction properties in India. Explore bank-seized properties, market value insights, and data-driven analysis for apartments, villas, land, and commercial real estate.",
   keywords: [
     "property valuation",
     "real estate valuation",
@@ -63,9 +64,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    title: "Asstory – Property Valuation & Auction Property Platform",
+    title:
+      "Asstory – Property Valuation & Bank Auction Properties | Market Value",
     description:
-      "Accurate property valuations and verified auction property discovery powered by real market data and analytics.",
+      "Accurate property valuations and verified bank auction & bank-seized property discovery powered by real market data and analytics.",
     url: SITE_URL,
     siteName: "Asstory",
     images: [
@@ -83,9 +85,9 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "Asstory | Property Valuation & Auction Properties in India",
+    title: "Asstory | Property Valuation & Bank Auction Properties in India",
     description:
-      "Get accurate property valuations and explore verified auction properties across India.",
+      "Get accurate valuations and explore bank auction, bank-seized properties with market value insights across India.",
     images: [`${SITE_URL}/assets/images/og-image.png`],
   },
   // Theme color
@@ -132,6 +134,7 @@ export default function RootLayout({
               contactPoint: {
                 "@type": "ContactPoint",
                 contactType: "Customer Service",
+                telephone: "+91-78782-83414",
                 availableLanguage: ["en", "hi"],
               },
             }),
@@ -169,16 +172,20 @@ export default function RootLayout({
               name: "Asstory",
               url: SITE_URL,
               description:
-                "Professional property valuation and real estate pricing platform",
+                "Professional property valuation, bank auction discovery, and market value analysis platform for Indian real estate",
               image: `${SITE_URL}/assets/images/og-image.png`,
               areaServed: "IN",
-              serviceType: ["Property Valuation", "Auction Property Discovery"],
-              telephone: "+91-78782 83414",
+              serviceType: [
+                "Property Valuation",
+                "Bank Auction Discovery",
+                "Bank-Seized Property Search",
+                "Market Value Analysis",
+              ],
+              telephone: "+91-78782-83414",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Gujrat, India",
                 addressLocality: "Surat",
-                addressRegion: "Gujrat",
+                addressRegion: "Gujarat",
                 postalCode: "395003",
                 addressCountry: "IN",
               },
