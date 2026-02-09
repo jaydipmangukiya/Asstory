@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     siteName: "Asstory",
     images: [
       {
-        url: "/assets/images/og-image.png",
+        url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Asstory Property Valuation Platform",
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "Asstory | Property Valuation & Auction Properties in India",
     description:
       "Get accurate property valuations and explore verified auction properties across India.",
-    images: [`${SITE_URL}/og-image.png`],
+    images: [`${SITE_URL}/assets/images/og-image.png`],
   },
   // Theme color
   themeColor: [
@@ -121,7 +121,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Asstory",
               url: SITE_URL,
-              logo: `${SITE_URL}/logo.png`,
+              logo: `${SITE_URL}/assets/images/logo.svg`,
               description:
                 "Property valuation and auction property discovery platform for Indian real estate",
               sameAs: [
@@ -170,14 +170,25 @@ export default function RootLayout({
               url: SITE_URL,
               description:
                 "Professional property valuation and real estate pricing platform",
-              image: `${SITE_URL}/og-image.png`,
+              image: `${SITE_URL}/assets/images/og-image.png`,
               areaServed: "IN",
               serviceType: ["Property Valuation", "Auction Property Discovery"],
+              telephone: "+91-78782 83414",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Gujrat, India",
+                addressLocality: "Surat",
+                addressRegion: "Gujrat",
+                postalCode: "395003",
+                addressCountry: "IN",
+              },
             }),
           }}
         />
 
         {/* Preconnect to external resources */}
+        {/* Canonical - ensure absolute canonical URL is served */}
+        <link rel="canonical" href={SITE_URL || "https://www.asstory.in"} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
