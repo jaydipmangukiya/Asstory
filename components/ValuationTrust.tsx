@@ -2,7 +2,7 @@ import { TrendingUp, Shield, Clock } from "lucide-react";
 
 export default function ValuationTrust() {
   return (
-    <section className="py-10">
+    <section className="py-10 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center text-white">
           <div className="text-center">

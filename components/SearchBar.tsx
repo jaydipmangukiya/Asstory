@@ -68,8 +68,8 @@ export function SearchBar() {
   };
 
   return (
-    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-800 text-white relative overflow-hidden">
-      <div className="max-w-4xl mx-auto">
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-800 text-white">
+      <div className="max-w-4xl mx-auto relative z-50">
         <Card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">
@@ -104,7 +104,7 @@ export function SearchBar() {
             </div>
 
             {suggestions.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-lg z-10">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-lg z-[999]">
                 {suggestions.slice(0, 5).map((item, index) => (
                   <div
                     key={index}
