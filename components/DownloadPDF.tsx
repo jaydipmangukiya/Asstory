@@ -73,7 +73,7 @@ const addFooter = (doc: any) => {
     doc.setTextColor(120);
 
     doc.text(
-      "info@asstory.com  |  +91 78945 64444  |  asstory.com",
+      "info@assetory.in  |  +91 78782 83414",
       pageWidth / 2,
       pageHeight - 14,
       { align: "center" },

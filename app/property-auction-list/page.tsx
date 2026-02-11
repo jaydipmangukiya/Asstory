@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PropertyauctionList from "@/app/views/property-auction";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const title =
   "Bank Auction & Bank-Seized Properties India | Auction Listings & Valuations";
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/property-auction-list`,
     type: "website",
-    siteName: "Asstory",
+    siteName: "Assetory",
     images: [
       {
         url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Asstory auction property listings",
+        alt: "Assetory auction property listings",
       },
     ],
   },
@@ -67,7 +67,7 @@ export default function PropertyAuctionListPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Asstory",
+            name: "Assetory",
             url: `${SITE_URL}`,
             logo: `${SITE_URL}/assets/logo.png`,
             description:

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
-const title = "Asstory Blog – Real Estate Insights, Valuation & Market Trends";
+const title = "Assetory Blog – Real Estate Insights, Valuation & Market Trends";
 const description =
   "Expert insights on property valuation, real estate market trends, investment strategies, and auction property updates tailored for Indian real estate professionals.";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/blog`,
   },
   keywords: [
-    "Asstory blog",
+    "Assetory blog",
     "property valuation blog",
     "real estate market insights",
     "property investment tips",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/blog`,
     type: "website",
-    siteName: "Asstory",
+    siteName: "Assetory",
     images: [
       {
         url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Asstory blog preview",
+        alt: "Assetory blog preview",
       },
     ],
   },

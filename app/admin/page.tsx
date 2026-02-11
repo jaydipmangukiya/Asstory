@@ -73,7 +73,7 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
-          <p className="text-slate-600">Welcome to Asstory Admin Panel</p>
+          <p className="text-slate-600">Welcome to Assetory Admin Panel</p>
         </div>
       </div>
 

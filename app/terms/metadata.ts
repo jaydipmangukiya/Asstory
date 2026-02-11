@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const title =
-  "Terms & Conditions | Valuation & Auction Property Services | Asstory";
+  "Terms & Conditions | Valuation & Auction Property Services | Assetory";
 const description =
-  "Read Asstory’s Terms & Conditions governing the use of our property valuation and auction property discovery services, including user responsibilities, limitations, and legal terms.";
+  "Read Assetory’s Terms & Conditions governing the use of our property valuation and auction property discovery services, including user responsibilities, limitations, and legal terms.";
 
 export const metadata: Metadata = {
   title,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "conditions of use",
     "property services terms",
     "valuation service terms",
-    "terms Asstory",
+    "terms Assetory",
     "service agreement",
     "user terms",
   ],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/terms`,
     title,
     description,
-    siteName: "Asstory",
+    siteName: "Assetory",
   },
   twitter: {
     card: "summary_large_image",

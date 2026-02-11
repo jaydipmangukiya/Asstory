@@ -50,7 +50,7 @@ export default function RegisterPage() {
 
         toast({
           title: "Account Created Successfully ✅",
-          description: "Welcome to Asstory!",
+          description: "Welcome to Assetory!",
         });
 
         globalThis?.window?.localStorage?.setItem(
@@ -82,7 +82,7 @@ export default function RegisterPage() {
             className="inline-flex items-center space-x-2 text-2xl font-bold text-slate-800"
           >
             <Building2 className="h-8 w-8 text-emerald-600" />
-            <span>Asstory</span>
+            <span>Assetory</span>
           </Link>
         </div>
 

@@ -8,9 +8,9 @@ import SubscriptionPlans from "../views/subscription/SubscriptionPlans";
 import Link from "next/link";
 import { additionalServices, auctionServices } from "@/lib/siteContent";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
-const title = "Property Valuation & Auction Services | Asstory";
+const title = "Property Valuation & Auction Services | Assetory";
 const description =
   "Get professional property valuations, bank auction listings, and real estate insights. Comprehensive services for homebuyers, investors, and financial institutions.";
 
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/services`,
     type: "website",
-    siteName: "Asstory",
+    siteName: "Assetory",
     images: [
       {
         url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Asstory services preview",
+        alt: "Assetory services preview",
       },
     ],
   },

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 export const metadata: Metadata = {
-  title: "Property Valuation | Instant Real Estate Price Estimate | Asstory",
+  title: "Property Valuation | Instant Real Estate Price Estimate | Assetory",
   description:
     "Get instant property valuation and real estate price estimates for apartments, villas, commercial properties, and land in India. Fast, accurate, and professional property assessment.",
   alternates: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description:
       "Instant property valuations for apartments, villas, land, and commercial properties across India.",
     url: `${SITE_URL}/property-valuation`,
-    siteName: "Asstory",
+    siteName: "Assetory",
     type: "website",
     images: [
       {

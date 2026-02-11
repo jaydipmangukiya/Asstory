@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const title = "Property Valuation Tool | Accurate Market Values in India";
 const description =
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/property-valuation`,
     type: "website",
-    siteName: "Asstory",
+    siteName: "Assetory",
     images: [
       {
         url: `${SITE_URL}/assets/images/og-valuation.png`,

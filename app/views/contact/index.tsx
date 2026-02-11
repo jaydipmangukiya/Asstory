@@ -22,23 +22,23 @@ import { sendContactMessage } from "@/app/api/contact";
 import { contactInfo, supportOptions } from "@/lib/siteContent";
 import Script from "next/script";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const contactStructuredData = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "Contact Asstory",
+  name: "Contact Assetory",
   url: `${SITE_URL}/contact`,
   description:
-    "Get in touch with Asstory for property valuation and auction property support, demos, and partnerships in India.",
+    "Get in touch with Assetory for property valuation and auction property support, demos, and partnerships in India.",
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": `${SITE_URL}/contact`,
   },
   potentialAction: {
     "@type": "CommunicateAction",
-    target: "mailto:info@asstory.in",
-    name: "Send an email to Asstory",
+    target: "mailto:info@assetory.in",
+    name: "Send an email to Assetory",
   },
   contactPoint: [
     {
@@ -47,7 +47,7 @@ const contactStructuredData = {
       contactType: "customer support",
       areaServed: "IN",
       availableLanguage: ["en", "hi"],
-      email: "info@asstory.in",
+      email: "info@assetory.in",
     },
   ],
 };

@@ -99,7 +99,7 @@ export default function AdminLayout({
               <Link href={homeHref} className="flex items-center space-x-2">
                 <Building2 className="h-8 w-8 text-emerald-600" />
                 <span className="text-xl font-bold text-slate-800">
-                  Asstory Admin
+                  Assetory Admin
                 </span>
               </Link>
               <Button

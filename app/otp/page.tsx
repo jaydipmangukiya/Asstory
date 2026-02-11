@@ -21,7 +21,7 @@ export default function VerifyOtpPage() {
       const res = await verifyOtp({ email, otp: Number(otp) });
       toast({
         title: "OTP Verified ✅",
-        description: "Welcome to Asstory!",
+        description: "Welcome to Assetory!",
       });
       router.push("/login");
     } catch (error: any) {

@@ -8,7 +8,7 @@ import BenefitsValuationService from "@/components/BenefitsValuationService";
 import ValuationTypes from "@/components/ValuationTypes";
 import HowItWorks from "@/components/HowItWorks";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 export default function PropertyValuationPage() {
   return (
@@ -20,7 +20,7 @@ export default function PropertyValuationPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Asstory",
+            name: "Assetory",
             url: `${SITE_URL}`,
             logo: `${SITE_URL}/assets/logo.png`,
             description:
@@ -53,7 +53,7 @@ export default function PropertyValuationPage() {
             name: "Property Valuation Service",
             provider: {
               "@type": "Organization",
-              name: "Asstory",
+              name: "Assetory",
               url: `${SITE_URL}`,
             },
             description:

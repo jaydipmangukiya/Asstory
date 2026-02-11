@@ -13,11 +13,11 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL || "https://www.asstory.in"),
+  metadataBase: new URL(SITE_URL || "https://www.assetory.in"),
   title: {
     default:
-      "Property Valuation & Bank Auction Properties in India | Market Value | Asstory",
-    template: "%s | Asstory",
+      "Property Valuation & Bank Auction Properties in India | Market Value | Assetory",
+    template: "%s | Assetory",
   },
   description:
     "Get accurate property valuations and discover verified auction properties in India. Explore bank-seized properties, market value insights, and data-driven analysis for apartments, villas, land, and commercial real estate.",
@@ -65,17 +65,17 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     title:
-      "Asstory – Property Valuation & Bank Auction Properties | Market Value",
+      "Assetory – Property Valuation & Bank Auction Properties | Market Value",
     description:
       "Accurate property valuations and verified bank auction & bank-seized property discovery powered by real market data and analytics.",
     url: SITE_URL,
-    siteName: "Asstory",
+    siteName: "Assetory",
     images: [
       {
         url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Asstory Property Valuation Platform",
+        alt: "Assetory Property Valuation Platform",
       },
     ],
   },
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "Asstory | Property Valuation & Bank Auction Properties in India",
+    title: "Assetory | Property Valuation & Bank Auction Properties in India",
     description:
       "Get accurate valuations and explore bank auction, bank-seized properties with market value insights across India.",
     images: [`${SITE_URL}/assets/images/og-image.png`],
@@ -96,9 +96,9 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
   ],
   category: "Real Estate",
-  authors: [{ name: "Asstory Team" }],
-  creator: "Asstory",
-  publisher: "Asstory",
+  authors: [{ name: "Assetory Team" }],
+  creator: "Assetory",
+  publisher: "Assetory",
   formatDetection: {
     email: false,
     telephone: false,
@@ -121,15 +121,15 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Asstory",
+              name: "Assetory",
               url: SITE_URL,
               logo: `${SITE_URL}/assets/images/logo.svg`,
               description:
                 "Property valuation and auction property discovery platform for Indian real estate",
               sameAs: [
-                "https://www.facebook.com/asstory",
-                "https://www.twitter.com/asstory",
-                "https://www.linkedin.com/company/asstory",
+                "https://www.facebook.com/assetory",
+                "https://www.twitter.com/assetory",
+                "https://www.linkedin.com/company/assetory",
               ],
               contactPoint: {
                 "@type": "ContactPoint",
@@ -148,7 +148,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Asstory",
+              name: "Assetory",
               url: SITE_URL,
               potentialAction: {
                 "@type": "SearchAction",
@@ -169,7 +169,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              name: "Asstory",
+              name: "Assetory",
               url: SITE_URL,
               description:
                 "Professional property valuation, bank auction discovery, and market value analysis platform for Indian real estate",
@@ -195,7 +195,7 @@ export default function RootLayout({
 
         {/* Preconnect to external resources */}
         {/* Canonical - ensure absolute canonical URL is served */}
-        <link rel="canonical" href={SITE_URL || "https://www.asstory.in"} />
+        <link rel="canonical" href={SITE_URL || "https://www.assetory.in"} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

@@ -11,11 +11,11 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
-const title = "Refund Policy | Asstory";
+const title = "Refund Policy | Assetory";
 const description =
-  "Learn how Asstory handles refund requests for paid services, including property valuation and auction discovery features, with eligibility, timelines, and contact details.";
+  "Learn how Assetory handles refund requests for paid services, including property valuation and auction discovery features, with eligibility, timelines, and contact details.";
 
 export const metadata: Metadata = {
   title,
@@ -24,24 +24,24 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/refund-policy`,
   },
   keywords: [
-    "Asstory refund policy",
+    "Assetory refund policy",
     "property valuation refund",
     "auction service refund",
     "paid service refunds",
-    "refund terms Asstory",
+    "refund terms Assetory",
   ],
   openGraph: {
     title,
     description,
     url: `${SITE_URL}/refund-policy`,
     type: "article",
-    siteName: "Asstory",
+    siteName: "Assetory",
     images: [
       {
         url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Asstory refund policy preview",
+        alt: "Assetory refund policy preview",
       },
     ],
   },
@@ -121,7 +121,7 @@ export default function RefundPolicyPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                At Asstory, we are committed to providing accurate and reliable
+                At Assetory, we are committed to providing accurate and reliable
                 property valuation services auction discovery features. This
                 Refund Policy outlines the terms and conditions under which
                 refunds may be processed for our premium valuation services.
@@ -270,7 +270,7 @@ export default function RefundPolicyPage() {
                   </h4>
                   <div className="space-y-2 text-slate-700">
                     <p>
-                      <strong>Email:</strong> info@asstory.in
+                      <strong>Email:</strong> info@assetory.in
                     </p>
                     <p>
                       <strong>Phone:</strong> +91 78782 83414

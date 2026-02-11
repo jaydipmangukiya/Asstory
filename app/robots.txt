@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
 
-Sitemap: https://www.asstory.in/sitemap.xml
+Sitemap: https://www.assetory.in/sitemap.xml

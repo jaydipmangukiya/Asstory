@@ -366,7 +366,7 @@ export default function SupportView() {
                   <h4 className="font-semibold text-slate-800 mb-2">
                     Email Us
                   </h4>
-                  <p className="text-slate-600">info@asstory.in</p>
+                  <p className="text-slate-600">info@assetory.in</p>
                 </div>
                 <div>
                   <Phone className="h-8 w-8 text-blue-600 mx-auto mb-3" />

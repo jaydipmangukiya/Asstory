@@ -5,14 +5,14 @@ import { FileText, Gavel } from "lucide-react";
 import { termsSections } from "@/lib/siteContent";
 import Head from "next/head";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 export default function TermsPage() {
   // Structured Data - Organization Schema
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Asstory",
+    name: "Assetory",
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
     description: "Property valuation and auction discovery platform in India",
@@ -20,7 +20,7 @@ export default function TermsPage() {
       "@type": "ContactPoint",
       telephone: "+91-98765-43210",
       contactType: "Customer Service",
-      email: "info@asstory.in",
+      email: "info@assetory.in",
     },
   };
 
@@ -30,11 +30,11 @@ export default function TermsPage() {
     "@type": "WebPage",
     name: "Terms & Conditions",
     description:
-      "Terms and conditions governing the use of Asstory property valuation and auction discovery services",
+      "Terms and conditions governing the use of Assetory property valuation and auction discovery services",
     url: `${SITE_URL}/terms`,
     publisher: {
       "@type": "Organization",
-      name: "Asstory",
+      name: "Assetory",
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/logo.png`,
@@ -106,7 +106,7 @@ export default function TermsPage() {
 
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">
-        Terms and Conditions - Property Valuation Service Agreement | Asstory
+        Terms and Conditions - Property Valuation Service Agreement | Assetory
       </h1>
 
       {/* Introduction */}
@@ -118,7 +118,7 @@ export default function TermsPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                Welcome to Asstory. These Terms and Conditions
+                Welcome to Assetory. These Terms and Conditions
                 (&quot;Terms&quot;) govern your use of our website, property
                 valuation services and auction property discovery features. By
                 accessing or using our services, you agree to be bound by these
@@ -266,7 +266,7 @@ export default function TermsPage() {
                 <p>
                   <strong>Contact for Legal Matters:</strong>
                 </p>
-                <p>Email: info@asstory.in</p>
+                <p>Email: info@assetory.in</p>
                 <p>Address: Surat, Gujarat, 395003, India</p>
               </div>
             </CardContent>

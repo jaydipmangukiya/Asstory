@@ -1,4 +1,4 @@
-# Asstory - Search Engine Optimization
+# Assetory - Search Engine Optimization
 User-agent: *
 Allow: /
 Allow: /property-valuation
@@ -15,7 +15,7 @@ Disallow: /*.json
 Disallow: /private/*
 
 # Sitemap location
-Sitemap: https://www.asstory.in/sitemap.xml
+Sitemap: https://www.assetory.in/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 1

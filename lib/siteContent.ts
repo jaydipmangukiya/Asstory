@@ -131,12 +131,12 @@ export const contactFaqs = [
   {
     question: "Do you provide auction property details and analysis?",
     answer:
-      "Yes. Asstory provides verified auction property listings along with insights to help buyers evaluate risks and opportunities before bidding.",
+      "Yes. Assetory provides verified auction property listings along with insights to help buyers evaluate risks and opportunities before bidding.",
   },
   {
     question: "Is auction property valuation different from normal valuation?",
     answer:
-      "Yes. Auction properties require additional checks such as legal status, reserve price, and risk assessment, which Asstory helps you understand clearly.",
+      "Yes. Auction properties require additional checks such as legal status, reserve price, and risk assessment, which Assetory helps you understand clearly.",
   },
   {
     question: "How long does it take to get a valuation report?",
@@ -165,7 +165,7 @@ export const contactInfo = [
   {
     icon: Mail,
     title: "Email Addresses",
-    details: ["info@asstory.in"],
+    details: ["info@assetory.in"],
     colorClass: "text-orange-600",
   },
   {
@@ -246,10 +246,10 @@ export const faqs = [
   {
     question: "Do you provide support for auction properties?",
     answer:
-      "Yes. Asstory helps users discover verified auction properties and provides guidance on auction listings, risks, and valuation insights.",
+      "Yes. Assetory helps users discover verified auction properties and provides guidance on auction listings, risks, and valuation insights.",
   },
   {
-    question: "Does Asstory verify auction property listings?",
+    question: "Does Assetory verify auction property listings?",
     answer:
       "We source auction listings from trusted public and institutional channels. While legal due diligence should be done by buyers, we ensure data accuracy and transparency.",
   },
@@ -316,7 +316,7 @@ export const ourProcess = [
 export const additionalServices = [
   {
     icon: FileText,
-    title: "Asstory Market Reports",
+    title: "Assetory Market Reports",
     description:
       "Quick and accurate property valuation based on market data analysis and comparable properties.",
   },
@@ -535,7 +535,7 @@ export const termsSections = [
     title: "Intellectual Property",
     colorClass: "text-orange-600",
     content: [
-      "All content, algorithms, and technology are proprietary to Asstory.",
+      "All content, algorithms, and technology are proprietary to Assetory.",
       "Users may not copy, scrape, redistribute, or commercially exploit valuation reports or auction data without written permission.",
       "Our trademarks, logos, and brand elements are protected intellectual property.",
       "User-generated content remains the property of the user but grants us usage rights.",
@@ -547,7 +547,7 @@ export const termsSections = [
     title: "Liability and Disclaimers",
     colorClass: "text-red-600",
     content: [
-      "Asstory provides valuation insights and auction property information for informational purposes only.",
+      "Assetory provides valuation insights and auction property information for informational purposes only.",
       "We are not liable for decisions, bids, purchases, or investments made based on valuation reports or auction listings.",
       "We do not guarantee auction outcomes, property title clearance, possession status, or legal compliance.",
       "All services are provided on an 'as-is' and 'as-available' basis without warranties of any kind.",

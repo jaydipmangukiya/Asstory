@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
-const title = "Support Center | Asstory – Valuation & Auction Property Help";
+const title = "Support Center | Assetory – Valuation & Auction Property Help";
 const description =
-  "Get expert support for property valuation and verified auction property services. Contact Asstory for technical help, billing queries, account issues, and general assistance.";
+  "Get expert support for property valuation and verified auction property services. Contact Assetory for technical help, billing queries, account issues, and general assistance.";
 
 export const metadata: Metadata = {
   title,
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     canonical: `${SITE_URL}/support`,
   },
   keywords: [
-    "Asstory support",
+    "Assetory support",
     "property valuation support",
     "auction property support",
     "auction listing help",
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/support`,
     type: "website",
-    siteName: "Asstory",
+    siteName: "Assetory",
     images: [
       {
         url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Asstory support center preview",
+        alt: "Assetory support center preview",
       },
     ],
   },

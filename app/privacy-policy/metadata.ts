@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
-const title = "Privacy Policy | Asstory";
+const title = "Privacy Policy | Assetory";
 const description =
-  "Learn how Asstory collects, uses, and protects your personal data when you use our property valuation and auction discovery platform.";
+  "Learn how Assetory collects, uses, and protects your personal data when you use our property valuation and auction discovery platform.";
 
 export const metadata: Metadata = {
   title,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/privacy-policy`,
     title,
     description,
-    siteName: "Asstory",
+    siteName: "Assetory",
   },
   twitter: {
     card: "summary_large_image",
