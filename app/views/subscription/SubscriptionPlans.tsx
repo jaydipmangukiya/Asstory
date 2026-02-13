@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
 import PricingBox from "./PricingBox";
 import { getSubscription } from "@/app/api/subscription";
-import { Loader } from "lucide-react";
+import { Loader, Loader2 } from "lucide-react";
 import axiosInstance from "@/lib/axiosInstance";
 import { useAuth } from "@/components/authentication/AuthProvider";
 import { RazorpayOrderOptions } from "react-razorpay";
@@ -26,7 +26,7 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
     try {
       const res = await getSubscription();
       const sorted = res?.allSubscriptionPlan?.sort(
-        (a: any, b: any) => a.plan_no - b.plan_no
+        (a: any, b: any) => a.plan_no - b.plan_no,
       );
       setPlans(sorted);
     } catch (err: any) {
@@ -134,8 +134,8 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
   return (
     <div className="relative">
       {loading && (
-        <div className="absolute inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-50">
-          <Loader />
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+          <Loader2 className="h-12 w-12 animate-spin text-emerald-600" />
         </div>
       )}
       <div
