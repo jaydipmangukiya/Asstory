@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
 import PricingBox from "./PricingBox";
 import { getSubscription } from "@/app/api/subscription";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import axiosInstance from "@/lib/axiosInstance";
 import { useAuth } from "@/components/authentication/AuthProvider";
 import { RazorpayOrderOptions } from "react-razorpay";
@@ -19,7 +19,8 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { user, refetch } = useAuth();
+  const { user, refetch, isAuth } = useAuth();
+  const isLoggedIn = isAuth;
 
   const fetchPlans = useCallback(async () => {
     setLoading(true);
@@ -45,12 +46,22 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
   }, [fetchPlans]);
 
   const handlePlanClick = async (plan: any) => {
+    if (!isLoggedIn) {
+      toast({
+        title: "Login Required",
+        description: "Please login to purchase a subscription.",
+        variant: "destructive",
+      });
+
+      router.push("/login");
+      return;
+    }
     try {
       setLoading(true);
 
       // 1️⃣ Create order on backend
       const res = await axiosInstance.post("/create-order", {
-        amount: Number(plan.per_report_price),
+        amount: Number(plan.final_price),
         currency: "INR",
         receipt: `receipt_${Date.now()}`,
         payment_capture: 1,
@@ -129,7 +140,6 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
       setLoading(false);
     }
   };
-  console.log(plans.length, "plans.length");
 
   return (
     <div className="relative">
